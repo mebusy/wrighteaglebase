@@ -45,8 +45,7 @@ const int ServerParam::SENSE_BODY_INTERVAL_MSEC = 100;
 const int ServerParam::SEND_VISUALINFO_INTERVAL_MSEC = 100;
 
 const int ServerParam::HALF_TIME = 300;
-const int ServerParam::EXTRA_HALF_TIME = 300;
-const int ServerParam::DROP_TIME = 200;
+const int ServerParam::DROP_TIME = 100;
 
 const double ServerParam::PITCH_LENGTH = 105.0;
 const double ServerParam::PITCH_WIDTH = 68.0;
@@ -203,6 +202,8 @@ const double ServerParam::UNUM_FAR_LENGTH = 20.0;
 const double ServerParam::UNUM_TOO_FAR_LENGTH = 40.0;
 const double ServerParam::TEAM_FAR_LENGTH = 40.0;
 const double ServerParam::TEAM_TOO_FAR_LENGTH = 60.0;
+
+const int ServerParam::EXTRA_HALF_TIME = 100;
 
 // 13.0.0
 const double ServerParam::STAMINA_CAPACITY = 130600.0; //13.2.2 : 148600.0; //127000.0;
