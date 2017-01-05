@@ -27,3 +27,9 @@
 *.out
 *.app
 *.*~
+
+*.d
+
+.DS_Store
+WEBase
+
