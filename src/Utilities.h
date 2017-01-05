@@ -144,7 +144,11 @@ inline SinCosT SinCos(const AngleDeg & x)
 {
 	double sine, cosine;
 
-	sincos(Deg2Rad(x), & sine, & cosine); //faster way to calculate sine and cosine of the same angle x simultaneously
+	// qibinyi
+	//sincos(Deg2Rad(x), & sine, & cosine); //faster way to calculate sine and cosine of the same angle x simultaneously
+
+	sine = Sin( x );
+	cosine = Cos( x );
 
 	return std::make_pair(sine, cosine);
 }

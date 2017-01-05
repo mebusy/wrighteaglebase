@@ -31,7 +31,9 @@
  ************************************************************************************/
 
 #include "Thread.h"
-#include <error.h>
+
+// qibinyi
+//#include <error.h>
 
 
 #ifdef WIN32
