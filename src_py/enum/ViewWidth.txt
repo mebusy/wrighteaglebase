@@ -1,0 +1,7 @@
+
+    VW_None
+    VW_Narrow
+    VW_Normal
+    VW_Wide
+
+

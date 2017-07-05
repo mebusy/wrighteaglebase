@@ -1,0 +1,66 @@
+
+    PM_No_Mode
+
+    PM_Play_On
+
+    PM_Our_Kick_Off
+    PM_Our_Kick_In
+    PM_Our_Corner_Kick
+    PM_Our_Goal_Kick
+    PM_Our_Free_Kick
+    PM_Our_Indirect_Free_Kick
+    PM_Our_Goalie_Free_Kick
+    PM_Our_Offside_Kick
+    PM_Our_Back_Pass_Kick
+    PM_Our_Free_Kick_Fault_Kick
+    PM_Our_CatchFault_Kick
+    PM_Our_Foul_Charge_Kick
+
+    PM_Our_Penalty_Setup
+    PM_Our_Penalty_Ready
+    PM_Our_Penalty_Taken
+    PM_Our_Penalty_Score
+    PM_Our_Penalty_Miss
+    PM_Our_Penalty_Foul
+    PM_Our_Penalty_Winner
+
+    PM_Our_Mode
+
+    PM_Before_Kick_Off
+    PM_Penalty_On_Our_Field
+    PM_Our_Penalty
+    PM_Opp_Penalty
+    PM_Penalty_On_Opp_Field
+    PM_Drop_Ball
+    PM_Half_Time
+    PM_Time_Over
+    PM_Time_Up
+    PM_Extended_Time
+    PM_Goal_Ours
+    PM_Goal_Opps
+    PM_Our_Foul
+    PM_Opp_Foul
+
+    PM_Opp_Mode
+
+    PM_Opp_Kick_Off
+    PM_Opp_Kick_In
+    PM_Opp_Corner_Kick
+    PM_Opp_Goal_Kick
+    PM_Opp_Free_Kick
+    PM_Opp_Indirect_Free_Kick
+    PM_Opp_Goalie_Free_Kick
+    PM_Opp_Offside_Kick
+    PM_Opp_Free_Kick_Fault_Kick
+    PM_Opp_Back_Pass_Kick
+    PM_Opp_CatchFault_Kick
+    PM_Opp_Foul_Charge_Kick
+
+    PM_Opp_Penalty_Setup
+    PM_Opp_Penalty_Ready
+    PM_Opp_Penalty_Taken
+    PM_Opp_Penalty_Score
+    PM_Opp_Penalty_Miss
+    PM_Opp_Penalty_Foul
+    PM_Opp_Penalty_Winner
+

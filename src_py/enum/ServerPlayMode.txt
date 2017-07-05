@@ -1,0 +1,70 @@
+
+	SPM_Null
+	SPM_BeforeKickOff
+	SPM_TimeOver
+	SPM_PlayOn
+	SPM_KickOff_Left
+	SPM_KickOff_Right
+	SPM_KickIn_Left
+	SPM_KickIn_Right
+	SPM_FreeKick_Left
+	SPM_FreeKick_Right
+	SPM_CornerKick_Left
+	SPM_CornerKick_Right
+	SPM_GoalKick_Left
+	SPM_GoalKick_Right
+	SPM_AfterGoal_Left
+	SPM_AfterGoal_Right
+	SPM_Drop_Ball
+	SPM_OffSide_Left
+	SPM_OffSide_Right
+
+	SPM_PK_Left
+	SPM_PK_Right
+	SPM_FirstHalfOver
+	SPM_Pause
+	SPM_Human
+	SPM_Foul_Charge_Left
+	SPM_Foul_Charge_Right
+	SPM_Foul_Push_Left
+	SPM_Foul_Push_Right
+	SPM_Foul_MultipleAttacker_Left
+	SPM_Foul_MultipleAttacker_Right
+	SPM_Foul_BallOut_Left
+	SPM_Foul_BallOut_Right
+	SPM_Back_Pass_Left
+	SPM_Back_Pass_Right
+	SPM_Free_Kick_Fault_Left
+	SPM_Free_Kick_Fault_Right
+	SPM_CatchFault_Left
+	SPM_CatchFault_Right
+	SPM_IndFreeKick_Left
+	SPM_IndFreeKick_Right
+	SPM_PenaltySetup_Left
+	SPM_PenaltySetup_Right
+	SPM_PenaltyReady_Left
+	SPM_PenaltyReady_Right
+	SPM_PenaltyTaken_Left
+	SPM_PenaltyTaken_Right
+	SPM_PenaltyMiss_Left
+	SPM_PenaltyMiss_Right
+	SPM_PenaltyScore_Left
+	SPM_PenaltyScore_Right
+
+
+	SPM_GoalieCatchBall_Left
+	SPM_GoalieCatchBall_Right
+	SPM_Foul_Left
+	SPM_Foul_Right
+	SPM_PenaltyOnfield_Left
+	SPM_PenaltyOnfield_Right
+	SPM_PenaltyFoul_Left
+	SPM_PenaltyFoul_Right
+	SPM_PenaltyWinner_Left
+	SPM_PenaltyWinner_Right
+	SPM_HalfTime
+	SPM_TimeUp
+	SPM_TimeExtended
+
+	SPM_MAX
+
