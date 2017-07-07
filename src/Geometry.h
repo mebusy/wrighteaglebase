@@ -57,6 +57,7 @@ public:
 	void SetY(const double & y) { mY = y; Assert(!IsInvalid(mY)); }
 
 	void SetValue(const double & x, const double & y) { mX = x; mY = y; AssertValid(); }
+
 	void SetValuePolar(const double & r, const AngleDeg & theta) {
 		SinCosT value = SinCos(theta);
 
@@ -267,6 +268,7 @@ public:
 	}
 
 	/** 是否在直线上方 */
+	//qibinyi, wrong ? shouldn't it be < 0?
 	bool IsUpLine(const Vector & point) const
 	{
 		return !IsOnLine(point) && (mA * point.X() + mB * point.Y() + mC > 0);
