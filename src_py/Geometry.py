@@ -122,25 +122,70 @@ class Line(object) :
     def IsOnline( self, point ,  eps = FLOAT_EPS ) :
         # return self.line.contains( point )
         return abs( self.mA * point.X() + self.mB * point.Y() + self. mC) < eps
-    def IsUpLine( self, point ) :
-        # < 0 means upper , > 0 means lower
-        return   not self.IsOnline( point ) and (self.mA * point.X() + self.mB * point.Y() + self.mC < 0)
+    def HalfPlaneTest ( self, point ) :
+        return (self.mA * point.X() + self.mB * point.Y() + self.mC > 0)
 
-    def HalfPlaneTest(self, pt) :
+    def IsUpLine(self, pt) :
+        if self.IsOnline(pt): 
+            return False 
+
         if abs(self.mB) > 0.0 :
-            print "1:",  pt.Y() , self.GetY(pt.X())
             return pt.Y() > self.GetY(pt.X())
         else:
             # vertical line
-            print "2" , pt.X() , -self.mC / self.mA
             return pt.X() < -self.mC / self.mA;
     def IsSameSlope(self,l):
-        return self.is_parallel(l)
+        return self.line.is_parallel(l.line )
 
     def GetProjectPoint(self, point ) :
         pt = self.line.projection( sympy.Point(point) )
         return Vector( float(pt.x) , float(pt.y)  )
 
+    # end1 , end2 is 2 points on the line
+    # check whether  the projection point of pt , is between end1 and end2
+    def IsInBetween( self, pt , end1, end2 ):
+        assert self.IsOnline( end1 ) and self.IsOnline(end2) 
+
+        project_pt = self.GetProjectPoint(pt) 
+        # print np.dot( (project_pt - end1).Normalize(), (project_pt - end2).Normalize()  )
+        dist2 = end1.Dist2(end2);
+        return (project_pt.Dist2(end1) < dist2+FLOAT_EPS and  project_pt.Dist2(end2) < dist2+FLOAT_EPS)
+
+
+    def Intersection( self , l_or_ray , pt=None  ) :
+        if pt is None:
+            _pt = Vector(0,0)
+            if self.Intersection( l_or_ray, _pt ) :
+                return _pt 
+            return Vector( 0,0  )
+
+        if isinstance( l_or_ray , Line ) :
+            if self.IsSameSlope( l_or_ray ):
+                return False
+            
+            points = self.line.intersection( l_or_ray.line  )
+            if len(points)==0:
+                return False 
+            pt.SetValue( float( points[0].x) , float( points[0].y)  )
+
+            return True 
+            
+        else:
+            # TODO intersection with ray
+            pass
+
+            return True
+
+    def GetClosestPointInBetween(self, pt , end1 , end2) :
+        assert self.IsOnline( end1 ) and self.IsOnline(end2) 
+
+        if self.IsInBetween( pt, end1, end2 ) :
+            return self.GetProjectPoint(pt)
+        elif end1.Dist2(pt) < end2.Dist2(pt) :
+            return end1 
+        else:
+            return end2 
+        
 
 import unittest  
 class mytest(unittest.TestCase): 
@@ -198,7 +243,7 @@ class mytest(unittest.TestCase):
     def testLine(self):
         from sympy import solve
         x,y = sympy.symbols("x , y"  )
-        for i in xrange( 100 ):
+        for i in xrange( 40 ):
             xy = np.random.randint( -10,10,2 ).astype(float)
             xy2 = np.random.randint( -10,10,2 ).astype(float)
             if all(xy == xy2 ):
@@ -223,10 +268,21 @@ class mytest(unittest.TestCase):
             # print l.line , l.line.coefficients ,  l.GetProjectPoint( Vector(1,2) ) 
             self.assertEqual( l.IsOnline( l.GetProjectPoint( Vector(-21,2) ) )  , True )
             l.IsUpLine( Vector(-21,2) )
-            print l.line , l.line.coefficients
-            self.assertEqual( l.IsUpLine( Vector(-21,2) )   , l.HalfPlaneTest(  Vector(-21,2) )  )
-             
+            # print l.line , l.line.coefficients
+            self.assertEqual( ( l.IsUpLine( Vector(-21,2) ) ==  l.HalfPlaneTest(  Vector(-21,2) ) ) ,  l.line.coefficients[1] > 0    )
+            l2 = Line( Vector( xy[0] , xy[1]+1) , Vector( xy2[0] , xy2[1]+1)  ) 
+            # print l.line.slope , l2.line.slope
+            self.assertEqual(  l.IsSameSlope (l2) , True )
+            self.assertEqual( l.GetProjectPoint( (xy[0] , xy[1])  ) == Vector( xy[0] , xy[1] ) , True  ) 
 
+            self.assertEqual(l.IsInBetween( Vector( (xy[0]+xy2[0] )/2 ,(xy[1]+xy2[1] )/2   ) ,Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]) ),True)
+            self.assertEqual(l.IsInBetween( Vector( (-xy[0]+2*xy2[0] ) ,(-xy[1]+2*xy2[1])) ,Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]) ),False)
+            self.assertEqual(l.IsInBetween( Vector( (2*xy[0]-xy2[0] ),(2*xy[1]-xy2[1])) ,Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]) ),False)
+            
+            l2 = Line( Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]-1)  ) 
+            self.assertEqual( l.Intersection( l2  ) , Vector( xy[0] , xy[1]) if not l.IsSameSlope(l2)  else Vector(0,0)  )
+
+            l.GetClosestPointInBetween( Vector( xy2[0] , xy2[1]-1)  ,  Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1])  )
 
 if __name__ == '__main__' :
     import time

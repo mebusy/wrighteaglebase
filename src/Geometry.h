@@ -268,7 +268,7 @@ public:
 	}
 
 	/** 是否在直线上方 */
-	//qibinyi, wrong ? shouldn't it be < 0?
+	//qibinyi, wrong ? should exchange with HalfPlaneTest
 	bool IsUpLine(const Vector & point) const
 	{
 		return !IsOnLine(point) && (mA * point.X() + mB * point.Y() + mC > 0);
