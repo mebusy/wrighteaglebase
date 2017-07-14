@@ -32,6 +32,21 @@ def Cos( v ):
 def SinCos( angleDeg):
     return ( Sin( angleDeg ) , Cos( angleDeg ) )
     
+def Polar2Vector( mod , ang ) :
+    value = SinCos(ang)
+    return Vector(mod * Cos(value), mod * Sin(value))
+
+# return : AngleDeg
+def GetNormalizeAngleDeg( ang, min_ang=-180.0 ):
+    if ang < min_ang:
+        while True:
+            ang += 360.0
+            if ang >= min_ang: break
+    else :
+        max_ang = 360.0 + min_ang
+        while ang >= max_ang:
+            ang -= 360.0;
+    return ang;    
 
 
 class _NpVector( np.ndarray ) :
@@ -98,14 +113,31 @@ class Line(object) :
     #     self.mB = b
     #     self.mC = c
 
-    def __init__(self, point1 , point2 = None):
-        if not point2 is None:
+    def __init__(self, point1 , point2 = None , c = None):
+        if point2 is not None and c is not None:
+            self.mA = point1
+            self.mB = point2
+            self.mC = c
+            
+            if self.mB != 0:
+                pt1 =  ( 0, -self.mC/self.mB  )
+                pt2 =  ( -self.mC/self.mA , 0  ) if self.mA !=0 else ( pt1[0]+1, pt1[1] )
+            elif self.mA !=0 :
+                pt1 = ( -self.mC/self.mA , 0  )
+                pt2 = ( -self.mC/self.mA , 1  )
+            else:
+                raise Exception( "wrong line formular" )
+                
+            self.line = sympy.Line( pt1 , pt2   )
+            self.mA , self.mB , self.mC = np.asarray( self.line.coefficients , dtype=float )
+
+        elif point2 is not  None: 
             self.line = sympy.Line( point1 , point2  )
-            self.mA , self.mB , self.mC =  [ float(i) for i in self.line.coefficients ] 
+            self.mA , self.mB , self.mC =  np.asarray( self.line.coefficients , dtype=float )
         else:
             ray = point1
             self.line = sympy.Line( ray.ray )
-            self.mA , self.mB , self.mC = [ float(i) for i in self.line.coefficients ]
+            self.mA , self.mB , self.mC = np.asarray( self.line.coefficients , dtype=float )
 
 
     def A(self): return self.mA 
@@ -186,14 +218,73 @@ class Line(object) :
         else:
             return end2 
         
+    def Dist_old(self, pt ) :
+        return abs(self.mA * pt.X() + self.mB * pt.Y() + self.mC) / np.sqrt(self.mA * self.mA + self.mB * self.mB);
+
+    def Dist( self, pt ) :
+        return float(self.line.distance( pt ) )
+
+    def IsPointInSameSide_old( self, pt1,  pt2):
+        tl = Line (pt1, pt2)
+        if self.IsSameSlope(tl): 
+            return True
+        inter_point = Vector(0,0)
+        self.Intersection(tl, inter_point)
+        return (inter_point.X() - pt1.X()) * (pt2.X() - inter_point.X()) <= 0
+
+    def IsPointInSameSide( self, pt1,  pt2): 
+        if self.IsOnline(pt1) or  self.IsOnline(pt2) :
+            return True
+        return self.IsUpLine(pt1) == self.IsUpLine( pt2 ) 
+        
+    def GetPerpendicular( self,  pt):
+        return Line(self.mB, -self.mA, self.mA * pt.Y() - self.mB * pt.X());
+
+    def GetPerpendicular_sym(self, pt):
+        l = self.line.perpendicular_line(  pt  ) 
+        a,b,c = np.asarray(l.coefficients, dtype=float )
+        return Line( a,b,c   )
+
+    def IsEqual(self, l) :
+        return self.line.equals( l.line )  
+
+    def MirrorPoint( self, pt) :
+        return self.GetProjectPoint(pt) *2 - pt 
+
+class Ray(object) :
+    def __init__(self, origin , direction) :
+        self.SetValue(origin, direction)
+    def Origin(self): 
+        return self.mOrigin
+    def Dir(self):
+        return self.mDirection
+    def SetOrigin(self, origin) :
+        self.mOrigin = origin 
+    def SetDirection(self, direction):
+        self.mDirection = direction 
+    def SetValue( self,origin, direction ) :
+        self.mOrigin = origin 
+        self.mDirection = direction 
+    def GetPoint(self,dist) :
+        return self.mOrigin + Polar2Vector( dist , self.mDirection )
+    def IsInRightDir( self,  point ) :
+        return abs(GetNormalizeAngleDeg((point - self.mOrigin).Dir() - self.mDirection)) < 10.0
+    def OnRay( self, point , buffer = FLOAT_EPS ) :
+        v = point - self.mOrigin 
+        return abs(Sin(v.Dir() - self.mDirection) * v.Mod()) < buffer and self.IsInRightDir(point)
+        
+
+# =======================================================================================================================================
+
 
 import unittest  
+
 class mytest(unittest.TestCase): 
     def setUp(self):  
         pass  
     def tearDown(self):  
         pass  
-    def testVector(self):
+    def _testVector(self):
         for i in xrange( 100 ):
             xy = np.random.randint( -100,100,2 ) 
             xy_float = xy.astype(float)
@@ -240,7 +331,7 @@ class mytest(unittest.TestCase):
             vec2 != vec 
             vec2 != 2
 
-    def testLine(self):
+    def _testLine(self):
         from sympy import solve
         x,y = sympy.symbols("x , y"  )
         for i in xrange( 40 ):
@@ -253,7 +344,7 @@ class mytest(unittest.TestCase):
             self.assertEqual( l.B() , l.line.coefficients[1] )
 
             self.assertEqual( l.Dir() , Atan2(-float(l.line.coefficients[0]) , float(l.line.coefficients[1]) )  )
-            self.assertEqual( type(l.GetX( 2.5 ) ) , float   )
+            # self.assertEqual( type(l.GetX( 2.5 ) ) , float   )
             
             # print l.line.coefficients
             expr = float( l.line.coefficients[0] ) * x + float(l.line.coefficients[1])*y + float(l.line.coefficients[2])
@@ -279,10 +370,32 @@ class mytest(unittest.TestCase):
             self.assertEqual(l.IsInBetween( Vector( (-xy[0]+2*xy2[0] ) ,(-xy[1]+2*xy2[1])) ,Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]) ),False)
             self.assertEqual(l.IsInBetween( Vector( (2*xy[0]-xy2[0] ),(2*xy[1]-xy2[1])) ,Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]) ),False)
             
-            l2 = Line( Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]-1)  ) 
+            l2 = Line( Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1]+20)  ) 
             self.assertEqual( l.Intersection( l2  ) , Vector( xy[0] , xy[1]) if not l.IsSameSlope(l2)  else Vector(0,0)  )
 
             l.GetClosestPointInBetween( Vector( xy2[0] , xy2[1]-1)  ,  Vector( xy[0] , xy[1]) , Vector( xy2[0] , xy2[1])  )
+            self.assertEqual( abs( l.Dist_old( Vector(-21,2)  ) - l.Dist( Vector(-21,2)  )  ) < FLOAT_EPS , True   )
+            self.assertEqual( l.IsPointInSameSide( Vector(-21,2) , Vector( -18,6 ) ) , l.IsPointInSameSide_old( Vector(-21,2) , Vector( -18,6 )   )  )
+
+            l.GetPerpendicular_sym(  Vector(-21,2) )
+            self.assertEqual(  l.GetPerpendicular( Vector(-21,2) ).IsEqual(  l.GetPerpendicular_sym(  Vector(-21,2) ) ) , True  )
+
+            l.MirrorPoint( Vector(-21,2) ) 
+            
+    def testRay(self):
+        for i in xrange( 40 ):
+            r = Ray(Vector (1,2) , 30  ) 
+            v0 = Vector( 1 + 100*np.cos(  np.radians(30)  ), 2 + 100*np.sin(  np.radians(30)  )  ) 
+            self.assertEqual( r.GetPoint( 100 ) , v0 ) 
+            n = np.random.randint( -180,180 ) 
+            self.assertEqual( GetNormalizeAngleDeg(n) >= -180 , True  )
+            self.assertEqual( GetNormalizeAngleDeg(n) <= 180 , True  )
+
+            v1 = v0 + np.array( [ 1,1 ] )
+            # print v1, v0
+            self.assertEqual(  r.OnRay(  v0  ) , True )
+            self.assertEqual(  r.OnRay(  v1  ) , False )
+
 
 if __name__ == '__main__' :
     import time
