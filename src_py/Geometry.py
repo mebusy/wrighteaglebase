@@ -4,6 +4,7 @@ import numpy as np
 from numpy import linalg as LA
 import sys
 import sympy
+from utils import MultiMethod
 
 FLOAT_EPS =  0.000006
 
@@ -272,6 +273,12 @@ class Ray(object) :
     def OnRay( self, point , buffer = FLOAT_EPS ) :
         v = point - self.mOrigin 
         return abs(Sin(v.Dir() - self.mDirection) * v.Mod()) < buffer and self.IsInRightDir(point)
+    @MultiMethod( Line, float )
+    def Intersection(self, l , dist ) :
+        pass
+    @MultiMethod( Line, Vector  )    
+    def Intersection(self, l , point) :
+        pass
         
 
 # =======================================================================================================================================
