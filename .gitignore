@@ -35,5 +35,6 @@ WEBase
 
 *.pyc
 
-zServer/rcssserver-15.3.0/src/coach_lang_parser.hpp
-zServer/rcssserver-15.3.0/src/player_command_parser.hpp
+zServer/
+
+
