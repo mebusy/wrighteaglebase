@@ -9,15 +9,25 @@ CXX=c++
 AM_CXXFLAGS="-W -Wall"
 CXXFLAGS="-g -O2"
 
-SRC_FILES="rcss_wrap.cxx ${SRC_PATH}/serverparam.cpp"
+SRC_FILES="rcss_wrap.cxx ${SRC_PATH}/*.cpp ${SRC_PATH}/clang*.cpp  ${SRC_PATH}/../rcssbase/conf/*.cpp ${SRC_PATH}/../rcssbase/gzip/*.cpp ${SRC_PATH}/../rcssbase/net/*.cpp "   # ${SRC_PATH}/serverparam.cpp  ${SRC_PATH}/playerparam.cpp ${SRC_PATH}/utility.cpp ${SRC_PATH}/csvsaver.cpp"
 
 ${CXX} -c -fPIC  ${DEFS} ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
 
+#link
+# PREBUILT_OBJS="${SRC_PATH}/*.o" 
 
+BOOST_FILESYSTEM_LIB="-lboost_filesystem"
+BOOST_LDFLAGS="-L/usr/local/lib"
+BOOST_SYSTEM_LIB="-lboost_system"
+BOOST_LIB="${BOOST_FILESYSTEM_LIB} ${BOOST_LDFLAGS} ${BOOST_SYSTEM_LIB}"
+
+rm -f main.o
+rm -f client.o
+
+c++ -dynamiclib -lpython -lz ${BOOST_LIB}  *.o ${PREBUILT_OBJS}    -o _rcss.so
 
 
 
 rm -f *.o
-rm -f *_wrap.cxx
 
 
