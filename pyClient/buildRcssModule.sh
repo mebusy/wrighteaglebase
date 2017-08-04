@@ -14,7 +14,6 @@ SRC_FILES="rcss_wrap.cxx ${SRC_PATH}/*.cpp ${SRC_PATH}/clang*.cpp  ${SRC_PATH}/.
 ${CXX} -c -fPIC  ${DEFS} ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
 
 #link
-# PREBUILT_OBJS="${SRC_PATH}/*.o" 
 
 BOOST_FILESYSTEM_LIB="-lboost_filesystem"
 BOOST_LDFLAGS="-L/usr/local/lib"
@@ -24,7 +23,7 @@ BOOST_LIB="${BOOST_FILESYSTEM_LIB} ${BOOST_LDFLAGS} ${BOOST_SYSTEM_LIB}"
 rm -f main.o
 rm -f client.o
 
-c++ -dynamiclib -lpython -lz ${BOOST_LIB}  *.o ${PREBUILT_OBJS}    -o _rcss.so
+c++ -dynamiclib -lpython -lz ${BOOST_LIB}  *.o  -o _rcss.so
 
 
 
