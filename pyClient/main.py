@@ -3,5 +3,6 @@
 
 
 if __name__ == '__main__':
-    import udpClient
+    from client import udpClient
     udpClient.startUDP() 
+    print 'done'
