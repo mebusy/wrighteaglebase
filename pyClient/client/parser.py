@@ -9,5 +9,5 @@ class Parser(object) :
             pass
         else:
             pass 
-        
+
         print PlayerParam.instance().playerSpeedMaxDeltaMin()
