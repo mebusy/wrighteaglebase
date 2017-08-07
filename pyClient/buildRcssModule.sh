@@ -23,7 +23,7 @@ BOOST_LIB="${BOOST_FILESYSTEM_LIB} ${BOOST_LDFLAGS} ${BOOST_SYSTEM_LIB}"
 rm -f main.o
 rm -f client.o
 
-c++ -dynamiclib -lpython -lz ${BOOST_LIB}  *.o  -o _rcss.so
+${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  *.o  -o _rcss.so
 
 
 
