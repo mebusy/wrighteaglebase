@@ -3003,19 +3003,22 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_ServerParam swig_types[0]
-#define SWIGTYPE_p_VerMap swig_types[1]
-#define SWIGTYPE_p_bool swig_types[2]
-#define SWIGTYPE_p_char swig_types[3]
-#define SWIGTYPE_p_double swig_types[4]
-#define SWIGTYPE_p_int swig_types[5]
-#define SWIGTYPE_p_p_char swig_types[6]
-#define SWIGTYPE_p_rcss__net__Addr__PortType swig_types[7]
-#define SWIGTYPE_p_server_params_t swig_types[8]
-#define SWIGTYPE_p_std__mapT_std__string_unsigned_int_t swig_types[9]
-#define SWIGTYPE_p_std__string swig_types[10]
-static swig_type_info *swig_types[12];
-static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
+#define SWIGTYPE_p_PlayerParam swig_types[0]
+#define SWIGTYPE_p_ServerParam swig_types[1]
+#define SWIGTYPE_p_VerMap swig_types[2]
+#define SWIGTYPE_p_bool swig_types[3]
+#define SWIGTYPE_p_char swig_types[4]
+#define SWIGTYPE_p_double swig_types[5]
+#define SWIGTYPE_p_int swig_types[6]
+#define SWIGTYPE_p_p_char swig_types[7]
+#define SWIGTYPE_p_player_params_t swig_types[8]
+#define SWIGTYPE_p_rcss__conf__Builder swig_types[9]
+#define SWIGTYPE_p_rcss__net__Addr__PortType swig_types[10]
+#define SWIGTYPE_p_server_params_t swig_types[11]
+#define SWIGTYPE_p_std__mapT_std__string_unsigned_int_t swig_types[12]
+#define SWIGTYPE_p_std__string swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3120,7 +3123,15 @@ namespace swig {
 }
 
 
+#include "playerparam.h"
 #include "serverparam.h"
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
 
 
 #include <limits.h>
@@ -3275,20 +3286,13 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 
 
 SWIGINTERNINLINE PyObject*
-  SWIG_From_bool  (bool value)
-{
-  return PyBool_FromLong(value ? 1 : 0);
-}
-
-
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-SWIGINTERNINLINE PyObject*
   SWIG_From_int  (int value)
 {
   return PyInt_FromLong((long) value);
 }
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
 
 
 SWIGINTERNINLINE PyObject*
@@ -3300,6 +3304,1039 @@ SWIGINTERNINLINE PyObject*
 #ifdef __cplusplus
 extern "C" {
 #endif
+SWIGINTERN PyObject *_wrap_delete_PlayerParam(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_PlayerParam",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PlayerParam" "', argument " "1"" of type '" "PlayerParam *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_instance__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *result = 0 ;
+
+  
+    printf( "c00 \n" ) ;
+  if (!PyArg_ParseTuple(args,(char *)":PlayerParam_instance")) SWIG_fail;
+
+    printf( "c01\n" ) ;
+  result = (PlayerParam *) &PlayerParam::instance();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PlayerParam, 0 |  0 );
+  
+    printf( "c02, %d \n" ,resultobj  ) ;
+  return resultobj;
+fail:
+
+    printf( "c03\n" ) ;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_instance__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  rcss::conf::Builder *arg1 = (rcss::conf::Builder *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PlayerParam *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_instance",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_rcss__conf__Builder, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_instance" "', argument " "1"" of type '" "rcss::conf::Builder *""'"); 
+  }
+  arg1 = reinterpret_cast< rcss::conf::Builder * >(argp1);
+  result = (PlayerParam *) &PlayerParam::instance(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PlayerParam, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_instance(PyObject *self, PyObject *args) {
+    printf( "aaa\n" ) ;
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+    printf( "bbb\n" ) ;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+
+   PyObject * r = _wrap_PlayerParam_instance__SWIG_0(self, args);
+    printf( "ccc, %d \n" , r  ) ;
+return  r ; 
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_rcss__conf__Builder, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+
+    printf( "ddd\n" ) ;
+      return _wrap_PlayerParam_instance__SWIG_1(self, args);
+    }
+  }
+  
+
+    printf( "eee\n" ) ;
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'PlayerParam_instance'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    PlayerParam::instance()\n"
+    "    PlayerParam::instance(rcss::conf::Builder *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_init(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  rcss::conf::Builder *arg1 = (rcss::conf::Builder *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_init",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_rcss__conf__Builder, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_init" "', argument " "1"" of type '" "rcss::conf::Builder *""'"); 
+  }
+  arg1 = reinterpret_cast< rcss::conf::Builder * >(argp1);
+  result = (bool)PlayerParam::init(arg1);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_verMap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  PlayerParam::VerMap *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_verMap",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_verMap" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (PlayerParam::VerMap *) &((PlayerParam const *)arg1)->verMap();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_std__string_unsigned_int_t, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_setRandomSeed(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:PlayerParam_setRandomSeed",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_setRandomSeed" "', argument " "1"" of type '" "PlayerParam *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PlayerParam_setRandomSeed" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setRandomSeed(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_convertToStruct(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  player_params_t result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_convertToStruct",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_convertToStruct" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = ((PlayerParam const *)arg1)->convertToStruct();
+  resultobj = SWIG_NewPointerObj((new player_params_t(static_cast< const player_params_t& >(result))), SWIGTYPE_p_player_params_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerTypes(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerTypes",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerTypes" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (int)((PlayerParam const *)arg1)->playerTypes();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_subsMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_subsMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_subsMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (int)((PlayerParam const *)arg1)->subsMax();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_ptMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_ptMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_ptMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (int)((PlayerParam const *)arg1)->ptMax();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_allowMultDefaultType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_allowMultDefaultType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_allowMultDefaultType" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (bool)((PlayerParam const *)arg1)->allowMultDefaultType();
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerSpeedMaxDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerSpeedMaxDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerSpeedMaxDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->playerSpeedMaxDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerSpeedMaxDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerSpeedMaxDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerSpeedMaxDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->playerSpeedMaxDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_staminaIncMaxDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_staminaIncMaxDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_staminaIncMaxDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->staminaIncMaxDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerDecayDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerDecayDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerDecayDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->playerDecayDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerDecayDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerDecayDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerDecayDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->playerDecayDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_inertiaMomentDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_inertiaMomentDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_inertiaMomentDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->inertiaMomentDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_dashPowerRateDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_dashPowerRateDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_dashPowerRateDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->dashPowerRateDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_dashPowerRateDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_dashPowerRateDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_dashPowerRateDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->dashPowerRateDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_playerSizeDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_playerSizeDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_playerSizeDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->playerSizeDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_kickableMarginDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_kickableMarginDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_kickableMarginDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->kickableMarginDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_kickableMarginDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_kickableMarginDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_kickableMarginDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->kickableMarginDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_kickRandDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_kickRandDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_kickRandDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->kickRandDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_extraStaminaDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_extraStaminaDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_extraStaminaDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->extraStaminaDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_extraStaminaDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_extraStaminaDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_extraStaminaDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->extraStaminaDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_effortMaxDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_effortMaxDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_effortMaxDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->effortMaxDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_effortMinDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_effortMinDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_effortMinDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->effortMinDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_randomSeed(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_randomSeed",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_randomSeed" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (int)((PlayerParam const *)arg1)->randomSeed();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_newDashPowerRateDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_newDashPowerRateDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_newDashPowerRateDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->newDashPowerRateDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_newDashPowerRateDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_newDashPowerRateDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_newDashPowerRateDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->newDashPowerRateDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_newStaminaIncMaxDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_newStaminaIncMaxDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_newStaminaIncMaxDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->newStaminaIncMaxDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_kickPowerRateDeltaMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_kickPowerRateDeltaMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_kickPowerRateDeltaMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->kickPowerRateDeltaMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_kickPowerRateDeltaMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_kickPowerRateDeltaMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_kickPowerRateDeltaMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->kickPowerRateDeltaMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_foulDetectProbabilityDeltaFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_foulDetectProbabilityDeltaFactor",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_foulDetectProbabilityDeltaFactor" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->foulDetectProbabilityDeltaFactor();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_catchAreaLengthStretchMin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_catchAreaLengthStretchMin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_catchAreaLengthStretchMin" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->catchAreaLengthStretchMin();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_catchAreaLengthStretchMax(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PlayerParam_catchAreaLengthStretchMax",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_catchAreaLengthStretchMax" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  result = (double)((PlayerParam const *)arg1)->catchAreaLengthStretchMax();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_getInt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  std::string *arg2 = 0 ;
+  int *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:PlayerParam_getInt",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_getInt" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PlayerParam_getInt" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getInt" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_int,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PlayerParam_getInt" "', argument " "3"" of type '" "int &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getInt" "', argument " "3"" of type '" "int &""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  result = (bool)((PlayerParam const *)arg1)->getInt((std::string const &)*arg2,*arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_getBool(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  std::string *arg2 = 0 ;
+  bool *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:PlayerParam_getBool",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_getBool" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PlayerParam_getBool" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getBool" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_bool,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PlayerParam_getBool" "', argument " "3"" of type '" "bool &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getBool" "', argument " "3"" of type '" "bool &""'"); 
+  }
+  arg3 = reinterpret_cast< bool * >(argp3);
+  result = (bool)((PlayerParam const *)arg1)->getBool((std::string const &)*arg2,*arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_getDouble(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  std::string *arg2 = 0 ;
+  double *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:PlayerParam_getDouble",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_getDouble" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PlayerParam_getDouble" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getDouble" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_double,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PlayerParam_getDouble" "', argument " "3"" of type '" "double &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getDouble" "', argument " "3"" of type '" "double &""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  result = (bool)((PlayerParam const *)arg1)->getDouble((std::string const &)*arg2,*arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PlayerParam_getStr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PlayerParam *arg1 = (PlayerParam *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:PlayerParam_getStr",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PlayerParam, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PlayerParam_getStr" "', argument " "1"" of type '" "PlayerParam const *""'"); 
+  }
+  arg1 = reinterpret_cast< PlayerParam * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PlayerParam_getStr" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getStr" "', argument " "2"" of type '" "std::string const &""'"); 
+  }
+  arg2 = reinterpret_cast< std::string * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_std__string,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PlayerParam_getStr" "', argument " "3"" of type '" "std::string &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "PlayerParam_getStr" "', argument " "3"" of type '" "std::string &""'"); 
+  }
+  arg3 = reinterpret_cast< std::string * >(argp3);
+  result = (bool)((PlayerParam const *)arg1)->getStr((std::string const &)*arg2,*arg3);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *PlayerParam_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char *)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_PlayerParam, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_ServerParam_instance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ServerParam *result = 0 ;
@@ -8228,6 +9265,46 @@ SWIGINTERN PyObject *ServerParam_swigregister(PyObject *SWIGUNUSEDPARM(self), Py
 
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
+	 { (char *)"delete_PlayerParam", _wrap_delete_PlayerParam, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_instance", _wrap_PlayerParam_instance, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_init", _wrap_PlayerParam_init, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_verMap", _wrap_PlayerParam_verMap, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_setRandomSeed", _wrap_PlayerParam_setRandomSeed, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_convertToStruct", _wrap_PlayerParam_convertToStruct, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerTypes", _wrap_PlayerParam_playerTypes, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_subsMax", _wrap_PlayerParam_subsMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_ptMax", _wrap_PlayerParam_ptMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_allowMultDefaultType", _wrap_PlayerParam_allowMultDefaultType, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerSpeedMaxDeltaMin", _wrap_PlayerParam_playerSpeedMaxDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerSpeedMaxDeltaMax", _wrap_PlayerParam_playerSpeedMaxDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_staminaIncMaxDeltaFactor", _wrap_PlayerParam_staminaIncMaxDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerDecayDeltaMin", _wrap_PlayerParam_playerDecayDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerDecayDeltaMax", _wrap_PlayerParam_playerDecayDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_inertiaMomentDeltaFactor", _wrap_PlayerParam_inertiaMomentDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_dashPowerRateDeltaMin", _wrap_PlayerParam_dashPowerRateDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_dashPowerRateDeltaMax", _wrap_PlayerParam_dashPowerRateDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_playerSizeDeltaFactor", _wrap_PlayerParam_playerSizeDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_kickableMarginDeltaMin", _wrap_PlayerParam_kickableMarginDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_kickableMarginDeltaMax", _wrap_PlayerParam_kickableMarginDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_kickRandDeltaFactor", _wrap_PlayerParam_kickRandDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_extraStaminaDeltaMin", _wrap_PlayerParam_extraStaminaDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_extraStaminaDeltaMax", _wrap_PlayerParam_extraStaminaDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_effortMaxDeltaFactor", _wrap_PlayerParam_effortMaxDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_effortMinDeltaFactor", _wrap_PlayerParam_effortMinDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_randomSeed", _wrap_PlayerParam_randomSeed, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_newDashPowerRateDeltaMin", _wrap_PlayerParam_newDashPowerRateDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_newDashPowerRateDeltaMax", _wrap_PlayerParam_newDashPowerRateDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_newStaminaIncMaxDeltaFactor", _wrap_PlayerParam_newStaminaIncMaxDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_kickPowerRateDeltaMin", _wrap_PlayerParam_kickPowerRateDeltaMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_kickPowerRateDeltaMax", _wrap_PlayerParam_kickPowerRateDeltaMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_foulDetectProbabilityDeltaFactor", _wrap_PlayerParam_foulDetectProbabilityDeltaFactor, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_catchAreaLengthStretchMin", _wrap_PlayerParam_catchAreaLengthStretchMin, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_catchAreaLengthStretchMax", _wrap_PlayerParam_catchAreaLengthStretchMax, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_getInt", _wrap_PlayerParam_getInt, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_getBool", _wrap_PlayerParam_getBool, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_getDouble", _wrap_PlayerParam_getDouble, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_getStr", _wrap_PlayerParam_getStr, METH_VARARGS, NULL},
+	 { (char *)"PlayerParam_swigregister", PlayerParam_swigregister, METH_VARARGS, NULL},
 	 { (char *)"ServerParam_instance", _wrap_ServerParam_instance, METH_VARARGS, NULL},
 	 { (char *)"ServerParam_init", _wrap_ServerParam_init, METH_VARARGS, NULL},
 	 { (char *)"delete_ServerParam", _wrap_delete_ServerParam, METH_VARARGS, NULL},
@@ -8444,6 +9521,7 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static swig_type_info _swigt__p_PlayerParam = {"_p_PlayerParam", "PlayerParam *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ServerParam = {"_p_ServerParam", "ServerParam *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_VerMap = {"_p_VerMap", "VerMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *", 0, 0, (void*)0, 0};
@@ -8451,12 +9529,15 @@ static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_player_params_t = {"_p_player_params_t", "player_params_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_rcss__conf__Builder = {"_p_rcss__conf__Builder", "rcss::conf::Builder *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_rcss__net__Addr__PortType = {"_p_rcss__net__Addr__PortType", "rcss::net::Addr::PortType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_server_params_t = {"_p_server_params_t", "server_params_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_std__string_unsigned_int_t = {"_p_std__mapT_std__string_unsigned_int_t", "ServerParam::VerMap *|std::map< std::string,unsigned int > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_std__string_unsigned_int_t = {"_p_std__mapT_std__string_unsigned_int_t", "PlayerParam::VerMap *|ServerParam::VerMap *|std::map< std::string,unsigned int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_PlayerParam,
   &_swigt__p_ServerParam,
   &_swigt__p_VerMap,
   &_swigt__p_bool,
@@ -8464,12 +9545,15 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_double,
   &_swigt__p_int,
   &_swigt__p_p_char,
+  &_swigt__p_player_params_t,
+  &_swigt__p_rcss__conf__Builder,
   &_swigt__p_rcss__net__Addr__PortType,
   &_swigt__p_server_params_t,
   &_swigt__p_std__mapT_std__string_unsigned_int_t,
   &_swigt__p_std__string,
 };
 
+static swig_cast_info _swigc__p_PlayerParam[] = {  {&_swigt__p_PlayerParam, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ServerParam[] = {  {&_swigt__p_ServerParam, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VerMap[] = {  {&_swigt__p_VerMap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
@@ -8477,12 +9561,15 @@ static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_player_params_t[] = {  {&_swigt__p_player_params_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_rcss__conf__Builder[] = {  {&_swigt__p_rcss__conf__Builder, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_rcss__net__Addr__PortType[] = {  {&_swigt__p_rcss__net__Addr__PortType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_server_params_t[] = {  {&_swigt__p_server_params_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_unsigned_int_t[] = {  {&_swigt__p_std__mapT_std__string_unsigned_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_PlayerParam,
   _swigc__p_ServerParam,
   _swigc__p_VerMap,
   _swigc__p_bool,
@@ -8490,6 +9577,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_double,
   _swigc__p_int,
   _swigc__p_p_char,
+  _swigc__p_player_params_t,
+  _swigc__p_rcss__conf__Builder,
   _swigc__p_rcss__net__Addr__PortType,
   _swigc__p_server_params_t,
   _swigc__p_std__mapT_std__string_unsigned_int_t,

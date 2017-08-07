@@ -1,5 +1,6 @@
 %module rcss
 %{
+#include "playerparam.h"
 #include "serverparam.h"
 %}
 
@@ -34,4 +35,5 @@
 
 
 
+%include "playerparam.h"
 %include "serverparam.h"

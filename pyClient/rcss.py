@@ -95,6 +95,147 @@ except __builtin__.Exception:
         pass
     _newclass = 0
 
+class PlayerParam(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PlayerParam, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PlayerParam, name)
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _rcss.delete_PlayerParam
+    __del__ = lambda self: None
+    if _newclass:
+        instance = staticmethod(_rcss.PlayerParam_instance)
+    else:
+        instance = _rcss.PlayerParam_instance
+    if _newclass:
+        init = staticmethod(_rcss.PlayerParam_init)
+    else:
+        init = _rcss.PlayerParam_init
+
+    def verMap(self):
+        return _rcss.PlayerParam_verMap(self)
+
+    def setRandomSeed(self, seed):
+        return _rcss.PlayerParam_setRandomSeed(self, seed)
+
+    def convertToStruct(self):
+        return _rcss.PlayerParam_convertToStruct(self)
+
+    def playerTypes(self):
+        return _rcss.PlayerParam_playerTypes(self)
+
+    def subsMax(self):
+        return _rcss.PlayerParam_subsMax(self)
+
+    def ptMax(self):
+        return _rcss.PlayerParam_ptMax(self)
+
+    def allowMultDefaultType(self):
+        return _rcss.PlayerParam_allowMultDefaultType(self)
+
+    def playerSpeedMaxDeltaMin(self):
+        return _rcss.PlayerParam_playerSpeedMaxDeltaMin(self)
+
+    def playerSpeedMaxDeltaMax(self):
+        return _rcss.PlayerParam_playerSpeedMaxDeltaMax(self)
+
+    def staminaIncMaxDeltaFactor(self):
+        return _rcss.PlayerParam_staminaIncMaxDeltaFactor(self)
+
+    def playerDecayDeltaMin(self):
+        return _rcss.PlayerParam_playerDecayDeltaMin(self)
+
+    def playerDecayDeltaMax(self):
+        return _rcss.PlayerParam_playerDecayDeltaMax(self)
+
+    def inertiaMomentDeltaFactor(self):
+        return _rcss.PlayerParam_inertiaMomentDeltaFactor(self)
+
+    def dashPowerRateDeltaMin(self):
+        return _rcss.PlayerParam_dashPowerRateDeltaMin(self)
+
+    def dashPowerRateDeltaMax(self):
+        return _rcss.PlayerParam_dashPowerRateDeltaMax(self)
+
+    def playerSizeDeltaFactor(self):
+        return _rcss.PlayerParam_playerSizeDeltaFactor(self)
+
+    def kickableMarginDeltaMin(self):
+        return _rcss.PlayerParam_kickableMarginDeltaMin(self)
+
+    def kickableMarginDeltaMax(self):
+        return _rcss.PlayerParam_kickableMarginDeltaMax(self)
+
+    def kickRandDeltaFactor(self):
+        return _rcss.PlayerParam_kickRandDeltaFactor(self)
+
+    def extraStaminaDeltaMin(self):
+        return _rcss.PlayerParam_extraStaminaDeltaMin(self)
+
+    def extraStaminaDeltaMax(self):
+        return _rcss.PlayerParam_extraStaminaDeltaMax(self)
+
+    def effortMaxDeltaFactor(self):
+        return _rcss.PlayerParam_effortMaxDeltaFactor(self)
+
+    def effortMinDeltaFactor(self):
+        return _rcss.PlayerParam_effortMinDeltaFactor(self)
+
+    def randomSeed(self):
+        return _rcss.PlayerParam_randomSeed(self)
+
+    def newDashPowerRateDeltaMin(self):
+        return _rcss.PlayerParam_newDashPowerRateDeltaMin(self)
+
+    def newDashPowerRateDeltaMax(self):
+        return _rcss.PlayerParam_newDashPowerRateDeltaMax(self)
+
+    def newStaminaIncMaxDeltaFactor(self):
+        return _rcss.PlayerParam_newStaminaIncMaxDeltaFactor(self)
+
+    def kickPowerRateDeltaMin(self):
+        return _rcss.PlayerParam_kickPowerRateDeltaMin(self)
+
+    def kickPowerRateDeltaMax(self):
+        return _rcss.PlayerParam_kickPowerRateDeltaMax(self)
+
+    def foulDetectProbabilityDeltaFactor(self):
+        return _rcss.PlayerParam_foulDetectProbabilityDeltaFactor(self)
+
+    def catchAreaLengthStretchMin(self):
+        return _rcss.PlayerParam_catchAreaLengthStretchMin(self)
+
+    def catchAreaLengthStretchMax(self):
+        return _rcss.PlayerParam_catchAreaLengthStretchMax(self)
+
+    def getInt(self, param, value):
+        return _rcss.PlayerParam_getInt(self, param, value)
+
+    def getBool(self, param, value):
+        return _rcss.PlayerParam_getBool(self, param, value)
+
+    def getDouble(self, param, value):
+        return _rcss.PlayerParam_getDouble(self, param, value)
+
+    def getStr(self, param, value):
+        return _rcss.PlayerParam_getStr(self, param, value)
+PlayerParam_swigregister = _rcss.PlayerParam_swigregister
+PlayerParam_swigregister(PlayerParam)
+
+def PlayerParam_instance(*args):
+    print "111" 
+    a = _rcss.PlayerParam_instance(*args)
+    print a 
+    return a 
+# PlayerParam_instance = _rcss.PlayerParam_instance
+
+def PlayerParam_init(parent):
+    return _rcss.PlayerParam_init(parent)
+PlayerParam_init = _rcss.PlayerParam_init
+
 class ServerParam(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ServerParam, name, value)

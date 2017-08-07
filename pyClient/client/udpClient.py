@@ -3,30 +3,38 @@ from __future__ import print_function
 from twisted.internet.protocol import DatagramProtocol
 from twisted.internet import reactor
 
+server_host = '127.0.0.1'
+server_port = 6000 
 
-class Helloer(DatagramProtocol):
+_callback_datagramReceived = None
+
+class Echo(DatagramProtocol):
     def startProtocol(self):
-        host = "127.0.0.1"
-        port = 6000
-
-        self.transport.connect(host, port)
-        print(("now we can only send to host %s port %d" % (host, port)))
-        # self.transport.write(b"hello")  # no need for address
-
+        pass
+        
     def datagramReceived(self, data, addr):
-        print("received %r from %s" % (data, addr))
-
-    # Possibly invoked if there is no server listening on the
-    # address to which we are sending.
-    def connectionRefused(self):
-        print("No one listening")
+        # print("received %r from %s" % (data, addr))
+        # print( _callback_datagramReceived  )
+        if _callback_datagramReceived  :
+            _callback_datagramReceived( data  )
 
 
 def startUDP():
     # 0 means any port, we don't care in this case
-    reactor.listenUDP(0, Helloer())
-    reactor.run()
+    t = reactor.listenUDP(0, Echo())
+    
+    def sendMsg( msg ) : 
+        t.protocol.transport.write(  msg,  ( server_host , server_port  )  )
+    return sendMsg 
+    
+def setDataReceiveCallback( callback  ):
+    global _callback_datagramReceived
+    _callback_datagramReceived = callback 
 
 
 if __name__ == '__main__':
-    startUDP() 
+    send2server  = startUDP() 
+    helloMsg = b"(init teamname (version 15))"
+    send2server(helloMsg)
+
+    reactor.run()
