@@ -3328,20 +3328,12 @@ fail:
 SWIGINTERN PyObject *_wrap_PlayerParam_instance__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   PlayerParam *result = 0 ;
-
   
-    printf( "c00 \n" ) ;
   if (!PyArg_ParseTuple(args,(char *)":PlayerParam_instance")) SWIG_fail;
-
-    printf( "c01\n" ) ;
   result = (PlayerParam *) &PlayerParam::instance();
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PlayerParam, 0 |  0 );
-  
-    printf( "c02, %d \n" ,resultobj  ) ;
   return resultobj;
 fail:
-
-    printf( "c03\n" ) ;
   return NULL;
 }
 
@@ -3369,7 +3361,6 @@ fail:
 
 
 SWIGINTERN PyObject *_wrap_PlayerParam_instance(PyObject *self, PyObject *args) {
-    printf( "aaa\n" ) ;
   Py_ssize_t argc;
   PyObject *argv[2] = {
     0
@@ -3377,16 +3368,12 @@ SWIGINTERN PyObject *_wrap_PlayerParam_instance(PyObject *self, PyObject *args) 
   Py_ssize_t ii;
   
   if (!PyTuple_Check(args)) SWIG_fail;
-    printf( "bbb\n" ) ;
   argc = args ? PyObject_Length(args) : 0;
   for (ii = 0; (ii < 1) && (ii < argc); ii++) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 0) {
-
-   PyObject * r = _wrap_PlayerParam_instance__SWIG_0(self, args);
-    printf( "ccc, %d \n" , r  ) ;
-return  r ; 
+    return _wrap_PlayerParam_instance__SWIG_0(self, args);
   }
   if (argc == 1) {
     int _v;
@@ -3394,14 +3381,9 @@ return  r ;
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_rcss__conf__Builder, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-
-    printf( "ddd\n" ) ;
       return _wrap_PlayerParam_instance__SWIG_1(self, args);
     }
   }
-  
-
-    printf( "eee\n" ) ;
   
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'PlayerParam_instance'.\n"

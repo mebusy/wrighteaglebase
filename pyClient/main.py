@@ -13,7 +13,11 @@ def startTask():
 
 
 if __name__ == '__main__':
-    from client import udpClient, client 
+    
+    from client import udpClient, client , ServerParam 
+
+    # must init before use ServerParam and PlayerParam 
+    ServerParam.init( 1 , ["rcss"] )
     
     send2server  = udpClient.startUDP() 
 

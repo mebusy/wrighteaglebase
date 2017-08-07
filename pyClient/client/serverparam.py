@@ -1,8 +1,9 @@
 from rcss import ServerParam as rcssServerParam
+from utils import Singleton
 
-class ServerParam( rcssServerParam ):
-
+class ServerParam( rcssServerParam  ):
     pass
+
 
 
 

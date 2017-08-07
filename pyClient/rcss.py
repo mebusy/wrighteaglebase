@@ -226,11 +226,8 @@ PlayerParam_swigregister = _rcss.PlayerParam_swigregister
 PlayerParam_swigregister(PlayerParam)
 
 def PlayerParam_instance(*args):
-    print "111" 
-    a = _rcss.PlayerParam_instance(*args)
-    print a 
-    return a 
-# PlayerParam_instance = _rcss.PlayerParam_instance
+    return _rcss.PlayerParam_instance(*args)
+PlayerParam_instance = _rcss.PlayerParam_instance
 
 def PlayerParam_init(parent):
     return _rcss.PlayerParam_init(parent)
