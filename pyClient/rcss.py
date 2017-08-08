@@ -95,806 +95,2287 @@ except __builtin__.Exception:
         pass
     _newclass = 0
 
-class PlayerParam(_object):
+class rcssPlayerParam(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, PlayerParam, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, rcssPlayerParam, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, PlayerParam, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, rcssPlayerParam, name)
 
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    __swig_destroy__ = _rcss.delete_PlayerParam
+    __swig_destroy__ = _rcss.delete_rcssPlayerParam
     __del__ = lambda self: None
     if _newclass:
-        instance = staticmethod(_rcss.PlayerParam_instance)
+        instance = staticmethod(_rcss.rcssPlayerParam_instance)
     else:
-        instance = _rcss.PlayerParam_instance
+        instance = _rcss.rcssPlayerParam_instance
     if _newclass:
-        init = staticmethod(_rcss.PlayerParam_init)
+        init = staticmethod(_rcss.rcssPlayerParam_init)
     else:
-        init = _rcss.PlayerParam_init
+        init = _rcss.rcssPlayerParam_init
 
     def verMap(self):
-        return _rcss.PlayerParam_verMap(self)
+        return _rcss.rcssPlayerParam_verMap(self)
 
     def setRandomSeed(self, seed):
-        return _rcss.PlayerParam_setRandomSeed(self, seed)
+        return _rcss.rcssPlayerParam_setRandomSeed(self, seed)
 
     def convertToStruct(self):
-        return _rcss.PlayerParam_convertToStruct(self)
+        return _rcss.rcssPlayerParam_convertToStruct(self)
 
     def playerTypes(self):
-        return _rcss.PlayerParam_playerTypes(self)
+        return _rcss.rcssPlayerParam_playerTypes(self)
 
     def subsMax(self):
-        return _rcss.PlayerParam_subsMax(self)
+        return _rcss.rcssPlayerParam_subsMax(self)
 
     def ptMax(self):
-        return _rcss.PlayerParam_ptMax(self)
+        return _rcss.rcssPlayerParam_ptMax(self)
 
     def allowMultDefaultType(self):
-        return _rcss.PlayerParam_allowMultDefaultType(self)
+        return _rcss.rcssPlayerParam_allowMultDefaultType(self)
 
     def playerSpeedMaxDeltaMin(self):
-        return _rcss.PlayerParam_playerSpeedMaxDeltaMin(self)
+        return _rcss.rcssPlayerParam_playerSpeedMaxDeltaMin(self)
 
     def playerSpeedMaxDeltaMax(self):
-        return _rcss.PlayerParam_playerSpeedMaxDeltaMax(self)
+        return _rcss.rcssPlayerParam_playerSpeedMaxDeltaMax(self)
 
     def staminaIncMaxDeltaFactor(self):
-        return _rcss.PlayerParam_staminaIncMaxDeltaFactor(self)
+        return _rcss.rcssPlayerParam_staminaIncMaxDeltaFactor(self)
 
     def playerDecayDeltaMin(self):
-        return _rcss.PlayerParam_playerDecayDeltaMin(self)
+        return _rcss.rcssPlayerParam_playerDecayDeltaMin(self)
 
     def playerDecayDeltaMax(self):
-        return _rcss.PlayerParam_playerDecayDeltaMax(self)
+        return _rcss.rcssPlayerParam_playerDecayDeltaMax(self)
 
     def inertiaMomentDeltaFactor(self):
-        return _rcss.PlayerParam_inertiaMomentDeltaFactor(self)
+        return _rcss.rcssPlayerParam_inertiaMomentDeltaFactor(self)
 
     def dashPowerRateDeltaMin(self):
-        return _rcss.PlayerParam_dashPowerRateDeltaMin(self)
+        return _rcss.rcssPlayerParam_dashPowerRateDeltaMin(self)
 
     def dashPowerRateDeltaMax(self):
-        return _rcss.PlayerParam_dashPowerRateDeltaMax(self)
+        return _rcss.rcssPlayerParam_dashPowerRateDeltaMax(self)
 
     def playerSizeDeltaFactor(self):
-        return _rcss.PlayerParam_playerSizeDeltaFactor(self)
+        return _rcss.rcssPlayerParam_playerSizeDeltaFactor(self)
 
     def kickableMarginDeltaMin(self):
-        return _rcss.PlayerParam_kickableMarginDeltaMin(self)
+        return _rcss.rcssPlayerParam_kickableMarginDeltaMin(self)
 
     def kickableMarginDeltaMax(self):
-        return _rcss.PlayerParam_kickableMarginDeltaMax(self)
+        return _rcss.rcssPlayerParam_kickableMarginDeltaMax(self)
 
     def kickRandDeltaFactor(self):
-        return _rcss.PlayerParam_kickRandDeltaFactor(self)
+        return _rcss.rcssPlayerParam_kickRandDeltaFactor(self)
 
     def extraStaminaDeltaMin(self):
-        return _rcss.PlayerParam_extraStaminaDeltaMin(self)
+        return _rcss.rcssPlayerParam_extraStaminaDeltaMin(self)
 
     def extraStaminaDeltaMax(self):
-        return _rcss.PlayerParam_extraStaminaDeltaMax(self)
+        return _rcss.rcssPlayerParam_extraStaminaDeltaMax(self)
 
     def effortMaxDeltaFactor(self):
-        return _rcss.PlayerParam_effortMaxDeltaFactor(self)
+        return _rcss.rcssPlayerParam_effortMaxDeltaFactor(self)
 
     def effortMinDeltaFactor(self):
-        return _rcss.PlayerParam_effortMinDeltaFactor(self)
+        return _rcss.rcssPlayerParam_effortMinDeltaFactor(self)
 
     def randomSeed(self):
-        return _rcss.PlayerParam_randomSeed(self)
+        return _rcss.rcssPlayerParam_randomSeed(self)
 
     def newDashPowerRateDeltaMin(self):
-        return _rcss.PlayerParam_newDashPowerRateDeltaMin(self)
+        return _rcss.rcssPlayerParam_newDashPowerRateDeltaMin(self)
 
     def newDashPowerRateDeltaMax(self):
-        return _rcss.PlayerParam_newDashPowerRateDeltaMax(self)
+        return _rcss.rcssPlayerParam_newDashPowerRateDeltaMax(self)
 
     def newStaminaIncMaxDeltaFactor(self):
-        return _rcss.PlayerParam_newStaminaIncMaxDeltaFactor(self)
+        return _rcss.rcssPlayerParam_newStaminaIncMaxDeltaFactor(self)
 
     def kickPowerRateDeltaMin(self):
-        return _rcss.PlayerParam_kickPowerRateDeltaMin(self)
+        return _rcss.rcssPlayerParam_kickPowerRateDeltaMin(self)
 
     def kickPowerRateDeltaMax(self):
-        return _rcss.PlayerParam_kickPowerRateDeltaMax(self)
+        return _rcss.rcssPlayerParam_kickPowerRateDeltaMax(self)
 
     def foulDetectProbabilityDeltaFactor(self):
-        return _rcss.PlayerParam_foulDetectProbabilityDeltaFactor(self)
+        return _rcss.rcssPlayerParam_foulDetectProbabilityDeltaFactor(self)
 
     def catchAreaLengthStretchMin(self):
-        return _rcss.PlayerParam_catchAreaLengthStretchMin(self)
+        return _rcss.rcssPlayerParam_catchAreaLengthStretchMin(self)
 
     def catchAreaLengthStretchMax(self):
-        return _rcss.PlayerParam_catchAreaLengthStretchMax(self)
+        return _rcss.rcssPlayerParam_catchAreaLengthStretchMax(self)
 
     def getInt(self, param, value):
-        return _rcss.PlayerParam_getInt(self, param, value)
+        return _rcss.rcssPlayerParam_getInt(self, param, value)
 
     def getBool(self, param, value):
-        return _rcss.PlayerParam_getBool(self, param, value)
+        return _rcss.rcssPlayerParam_getBool(self, param, value)
 
     def getDouble(self, param, value):
-        return _rcss.PlayerParam_getDouble(self, param, value)
+        return _rcss.rcssPlayerParam_getDouble(self, param, value)
 
     def getStr(self, param, value):
-        return _rcss.PlayerParam_getStr(self, param, value)
-PlayerParam_swigregister = _rcss.PlayerParam_swigregister
-PlayerParam_swigregister(PlayerParam)
+        return _rcss.rcssPlayerParam_getStr(self, param, value)
+rcssPlayerParam_swigregister = _rcss.rcssPlayerParam_swigregister
+rcssPlayerParam_swigregister(rcssPlayerParam)
 
-def PlayerParam_instance(*args):
-    return _rcss.PlayerParam_instance(*args)
-PlayerParam_instance = _rcss.PlayerParam_instance
+def rcssPlayerParam_instance(*args):
+    return _rcss.rcssPlayerParam_instance(*args)
+rcssPlayerParam_instance = _rcss.rcssPlayerParam_instance
 
-def PlayerParam_init(parent):
-    return _rcss.PlayerParam_init(parent)
-PlayerParam_init = _rcss.PlayerParam_init
+def rcssPlayerParam_init(parent):
+    return _rcss.rcssPlayerParam_init(parent)
+rcssPlayerParam_init = _rcss.rcssPlayerParam_init
 
-class ServerParam(_object):
+class rcssServerParam(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ServerParam, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, rcssServerParam, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ServerParam, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, rcssServerParam, name)
 
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
     if _newclass:
-        instance = staticmethod(_rcss.ServerParam_instance)
+        instance = staticmethod(_rcss.rcssServerParam_instance)
     else:
-        instance = _rcss.ServerParam_instance
+        instance = _rcss.rcssServerParam_instance
     if _newclass:
-        init = staticmethod(_rcss.ServerParam_init)
+        init = staticmethod(_rcss.rcssServerParam_init)
     else:
-        init = _rcss.ServerParam_init
-    __swig_destroy__ = _rcss.delete_ServerParam
+        init = _rcss.rcssServerParam_init
+    __swig_destroy__ = _rcss.delete_rcssServerParam
     __del__ = lambda self: None
 
     def clear(self):
-        return _rcss.ServerParam_clear(self)
+        return _rcss.rcssServerParam_clear(self)
 
     def verMap(self):
-        return _rcss.ServerParam_verMap(self)
+        return _rcss.rcssServerParam_verMap(self)
 
     def setRandomSeed(self, seed):
-        return _rcss.ServerParam_setRandomSeed(self, seed)
+        return _rcss.rcssServerParam_setRandomSeed(self, seed)
 
     def convertToStruct(self):
-        return _rcss.ServerParam_convertToStruct(self)
+        return _rcss.rcssServerParam_convertToStruct(self)
 
     def getInt(self, param, value):
-        return _rcss.ServerParam_getInt(self, param, value)
+        return _rcss.rcssServerParam_getInt(self, param, value)
 
     def getBool(self, param, value):
-        return _rcss.ServerParam_getBool(self, param, value)
+        return _rcss.rcssServerParam_getBool(self, param, value)
 
     def getDouble(self, param, value):
-        return _rcss.ServerParam_getDouble(self, param, value)
+        return _rcss.rcssServerParam_getDouble(self, param, value)
 
     def getStr(self, param, value):
-        return _rcss.ServerParam_getStr(self, param, value)
+        return _rcss.rcssServerParam_getStr(self, param, value)
 
     def goalWidth(self):
-        return _rcss.ServerParam_goalWidth(self)
+        return _rcss.rcssServerParam_goalWidth(self)
 
     def inertiaMoment(self):
-        return _rcss.ServerParam_inertiaMoment(self)
+        return _rcss.rcssServerParam_inertiaMoment(self)
 
     def playerSize(self):
-        return _rcss.ServerParam_playerSize(self)
+        return _rcss.rcssServerParam_playerSize(self)
 
     def playerDecay(self):
-        return _rcss.ServerParam_playerDecay(self)
+        return _rcss.rcssServerParam_playerDecay(self)
 
     def playerRand(self):
-        return _rcss.ServerParam_playerRand(self)
+        return _rcss.rcssServerParam_playerRand(self)
 
     def playerWeight(self):
-        return _rcss.ServerParam_playerWeight(self)
+        return _rcss.rcssServerParam_playerWeight(self)
 
     def playerSpeedMax(self):
-        return _rcss.ServerParam_playerSpeedMax(self)
+        return _rcss.rcssServerParam_playerSpeedMax(self)
 
     def playerAccelMax(self):
-        return _rcss.ServerParam_playerAccelMax(self)
+        return _rcss.rcssServerParam_playerAccelMax(self)
 
     def staminaMax(self):
-        return _rcss.ServerParam_staminaMax(self)
+        return _rcss.rcssServerParam_staminaMax(self)
 
     def staminaInc(self):
-        return _rcss.ServerParam_staminaInc(self)
+        return _rcss.rcssServerParam_staminaInc(self)
 
     def recoverInit(self):
-        return _rcss.ServerParam_recoverInit(self)
+        return _rcss.rcssServerParam_recoverInit(self)
 
     def recoverDecThr(self):
-        return _rcss.ServerParam_recoverDecThr(self)
+        return _rcss.rcssServerParam_recoverDecThr(self)
 
     def recoverMin(self):
-        return _rcss.ServerParam_recoverMin(self)
+        return _rcss.rcssServerParam_recoverMin(self)
 
     def recoverDec(self):
-        return _rcss.ServerParam_recoverDec(self)
+        return _rcss.rcssServerParam_recoverDec(self)
 
     def effortInit(self):
-        return _rcss.ServerParam_effortInit(self)
+        return _rcss.rcssServerParam_effortInit(self)
 
     def effortDecThr(self):
-        return _rcss.ServerParam_effortDecThr(self)
+        return _rcss.rcssServerParam_effortDecThr(self)
 
     def effortMin(self):
-        return _rcss.ServerParam_effortMin(self)
+        return _rcss.rcssServerParam_effortMin(self)
 
     def effortDec(self):
-        return _rcss.ServerParam_effortDec(self)
+        return _rcss.rcssServerParam_effortDec(self)
 
     def effortIncThr(self):
-        return _rcss.ServerParam_effortIncThr(self)
+        return _rcss.rcssServerParam_effortIncThr(self)
 
     def effortInc(self):
-        return _rcss.ServerParam_effortInc(self)
+        return _rcss.rcssServerParam_effortInc(self)
 
     def kickRand(self):
-        return _rcss.ServerParam_kickRand(self)
+        return _rcss.rcssServerParam_kickRand(self)
 
     def teamActuatorNoise(self):
-        return _rcss.ServerParam_teamActuatorNoise(self)
+        return _rcss.rcssServerParam_teamActuatorNoise(self)
 
     def playerRandFactorLeft(self):
-        return _rcss.ServerParam_playerRandFactorLeft(self)
+        return _rcss.rcssServerParam_playerRandFactorLeft(self)
 
     def playerRandFactorRight(self):
-        return _rcss.ServerParam_playerRandFactorRight(self)
+        return _rcss.rcssServerParam_playerRandFactorRight(self)
 
     def kickRandFactorLeft(self):
-        return _rcss.ServerParam_kickRandFactorLeft(self)
+        return _rcss.rcssServerParam_kickRandFactorLeft(self)
 
     def kickRandFactorRight(self):
-        return _rcss.ServerParam_kickRandFactorRight(self)
+        return _rcss.rcssServerParam_kickRandFactorRight(self)
 
     def ballSize(self):
-        return _rcss.ServerParam_ballSize(self)
+        return _rcss.rcssServerParam_ballSize(self)
 
     def ballDecay(self):
-        return _rcss.ServerParam_ballDecay(self)
+        return _rcss.rcssServerParam_ballDecay(self)
 
     def ballRand(self):
-        return _rcss.ServerParam_ballRand(self)
+        return _rcss.rcssServerParam_ballRand(self)
 
     def ballWeight(self):
-        return _rcss.ServerParam_ballWeight(self)
+        return _rcss.rcssServerParam_ballWeight(self)
 
     def ballSpeedMax(self):
-        return _rcss.ServerParam_ballSpeedMax(self)
+        return _rcss.rcssServerParam_ballSpeedMax(self)
 
     def ballAccelMax(self):
-        return _rcss.ServerParam_ballAccelMax(self)
+        return _rcss.rcssServerParam_ballAccelMax(self)
 
     def dashPowerRate(self):
-        return _rcss.ServerParam_dashPowerRate(self)
+        return _rcss.rcssServerParam_dashPowerRate(self)
 
     def kickPowerRate(self):
-        return _rcss.ServerParam_kickPowerRate(self)
+        return _rcss.rcssServerParam_kickPowerRate(self)
 
     def kickableMargin(self):
-        return _rcss.ServerParam_kickableMargin(self)
+        return _rcss.rcssServerParam_kickableMargin(self)
 
     def controlRadius(self):
-        return _rcss.ServerParam_controlRadius(self)
+        return _rcss.rcssServerParam_controlRadius(self)
 
     def controlRadiusWidth(self):
-        return _rcss.ServerParam_controlRadiusWidth(self)
+        return _rcss.rcssServerParam_controlRadiusWidth(self)
 
     def maxPower(self):
-        return _rcss.ServerParam_maxPower(self)
+        return _rcss.rcssServerParam_maxPower(self)
 
     def minPower(self):
-        return _rcss.ServerParam_minPower(self)
+        return _rcss.rcssServerParam_minPower(self)
 
     def maxMoment(self):
-        return _rcss.ServerParam_maxMoment(self)
+        return _rcss.rcssServerParam_maxMoment(self)
 
     def minMoment(self):
-        return _rcss.ServerParam_minMoment(self)
+        return _rcss.rcssServerParam_minMoment(self)
 
     def maxNeckMoment(self):
-        return _rcss.ServerParam_maxNeckMoment(self)
+        return _rcss.rcssServerParam_maxNeckMoment(self)
 
     def minNeckMoment(self):
-        return _rcss.ServerParam_minNeckMoment(self)
+        return _rcss.rcssServerParam_minNeckMoment(self)
 
     def maxNeckAngle(self):
-        return _rcss.ServerParam_maxNeckAngle(self)
+        return _rcss.rcssServerParam_maxNeckAngle(self)
 
     def minNeckAngle(self):
-        return _rcss.ServerParam_minNeckAngle(self)
+        return _rcss.rcssServerParam_minNeckAngle(self)
 
     def visibleAngleDegree(self):
-        return _rcss.ServerParam_visibleAngleDegree(self)
+        return _rcss.rcssServerParam_visibleAngleDegree(self)
 
     def visibleDistance(self):
-        return _rcss.ServerParam_visibleDistance(self)
+        return _rcss.rcssServerParam_visibleDistance(self)
 
     def windDir(self):
-        return _rcss.ServerParam_windDir(self)
+        return _rcss.rcssServerParam_windDir(self)
 
     def windForce(self):
-        return _rcss.ServerParam_windForce(self)
+        return _rcss.rcssServerParam_windForce(self)
 
     def windAngle(self):
-        return _rcss.ServerParam_windAngle(self)
+        return _rcss.rcssServerParam_windAngle(self)
 
     def windRand(self):
-        return _rcss.ServerParam_windRand(self)
+        return _rcss.rcssServerParam_windRand(self)
 
     def windWeight(self):
-        return _rcss.ServerParam_windWeight(self)
+        return _rcss.rcssServerParam_windWeight(self)
 
     def windNone(self):
-        return _rcss.ServerParam_windNone(self)
+        return _rcss.rcssServerParam_windNone(self)
 
     def windRandom(self):
-        return _rcss.ServerParam_windRandom(self)
+        return _rcss.rcssServerParam_windRandom(self)
 
     def kickableArea(self):
-        return _rcss.ServerParam_kickableArea(self)
+        return _rcss.rcssServerParam_kickableArea(self)
 
     def catchAreaLength(self):
-        return _rcss.ServerParam_catchAreaLength(self)
+        return _rcss.rcssServerParam_catchAreaLength(self)
 
     def catchAreaWidth(self):
-        return _rcss.ServerParam_catchAreaWidth(self)
+        return _rcss.rcssServerParam_catchAreaWidth(self)
 
     def catchProbability(self):
-        return _rcss.ServerParam_catchProbability(self)
+        return _rcss.rcssServerParam_catchProbability(self)
 
     def goalieMaxMoves(self):
-        return _rcss.ServerParam_goalieMaxMoves(self)
+        return _rcss.rcssServerParam_goalieMaxMoves(self)
 
     def keepAwayMode(self):
-        return _rcss.ServerParam_keepAwayMode(self)
+        return _rcss.rcssServerParam_keepAwayMode(self)
 
     def keepAwayLength(self):
-        return _rcss.ServerParam_keepAwayLength(self)
+        return _rcss.rcssServerParam_keepAwayLength(self)
 
     def keepAwayWidth(self):
-        return _rcss.ServerParam_keepAwayWidth(self)
+        return _rcss.rcssServerParam_keepAwayWidth(self)
 
     def cornerKickMargin(self):
-        return _rcss.ServerParam_cornerKickMargin(self)
+        return _rcss.rcssServerParam_cornerKickMargin(self)
 
     def offsideActiveArea(self):
-        return _rcss.ServerParam_offsideActiveArea(self)
+        return _rcss.rcssServerParam_offsideActiveArea(self)
 
     def playerPort(self):
-        return _rcss.ServerParam_playerPort(self)
+        return _rcss.rcssServerParam_playerPort(self)
 
     def offlineCoachPort(self):
-        return _rcss.ServerParam_offlineCoachPort(self)
+        return _rcss.rcssServerParam_offlineCoachPort(self)
 
     def onlineCoachPort(self):
-        return _rcss.ServerParam_onlineCoachPort(self)
+        return _rcss.rcssServerParam_onlineCoachPort(self)
 
     def freeformCountMax(self):
-        return _rcss.ServerParam_freeformCountMax(self)
+        return _rcss.rcssServerParam_freeformCountMax(self)
 
     def freeformMsgSize(self):
-        return _rcss.ServerParam_freeformMsgSize(self)
+        return _rcss.rcssServerParam_freeformMsgSize(self)
 
     def clangWinSize(self):
-        return _rcss.ServerParam_clangWinSize(self)
+        return _rcss.rcssServerParam_clangWinSize(self)
 
     def clangDefineWin(self):
-        return _rcss.ServerParam_clangDefineWin(self)
+        return _rcss.rcssServerParam_clangDefineWin(self)
 
     def clangMetaWin(self):
-        return _rcss.ServerParam_clangMetaWin(self)
+        return _rcss.rcssServerParam_clangMetaWin(self)
 
     def clangAdviceWin(self):
-        return _rcss.ServerParam_clangAdviceWin(self)
+        return _rcss.rcssServerParam_clangAdviceWin(self)
 
     def clangInfoWin(self):
-        return _rcss.ServerParam_clangInfoWin(self)
+        return _rcss.rcssServerParam_clangInfoWin(self)
 
     def clangMessDelay(self):
-        return _rcss.ServerParam_clangMessDelay(self)
+        return _rcss.rcssServerParam_clangMessDelay(self)
 
     def clangMessPerCycle(self):
-        return _rcss.ServerParam_clangMessPerCycle(self)
+        return _rcss.rcssServerParam_clangMessPerCycle(self)
 
     def halfTime(self):
-        return _rcss.ServerParam_halfTime(self)
+        return _rcss.rcssServerParam_halfTime(self)
 
     def dropTime(self):
-        return _rcss.ServerParam_dropTime(self)
+        return _rcss.rcssServerParam_dropTime(self)
 
     def nrNormalHalfs(self):
-        return _rcss.ServerParam_nrNormalHalfs(self)
+        return _rcss.rcssServerParam_nrNormalHalfs(self)
 
     def nrExtraHalfs(self):
-        return _rcss.ServerParam_nrExtraHalfs(self)
+        return _rcss.rcssServerParam_nrExtraHalfs(self)
 
     def penaltyShootOuts(self):
-        return _rcss.ServerParam_penaltyShootOuts(self)
+        return _rcss.rcssServerParam_penaltyShootOuts(self)
 
     def penBeforeSetupWait(self):
-        return _rcss.ServerParam_penBeforeSetupWait(self)
+        return _rcss.rcssServerParam_penBeforeSetupWait(self)
 
     def penSetupWait(self):
-        return _rcss.ServerParam_penSetupWait(self)
+        return _rcss.rcssServerParam_penSetupWait(self)
 
     def penReadyWait(self):
-        return _rcss.ServerParam_penReadyWait(self)
+        return _rcss.rcssServerParam_penReadyWait(self)
 
     def penTakenWait(self):
-        return _rcss.ServerParam_penTakenWait(self)
+        return _rcss.rcssServerParam_penTakenWait(self)
 
     def penNrKicks(self):
-        return _rcss.ServerParam_penNrKicks(self)
+        return _rcss.rcssServerParam_penNrKicks(self)
 
     def penMaxExtraKicks(self):
-        return _rcss.ServerParam_penMaxExtraKicks(self)
+        return _rcss.rcssServerParam_penMaxExtraKicks(self)
 
     def penDistX(self):
-        return _rcss.ServerParam_penDistX(self)
+        return _rcss.rcssServerParam_penDistX(self)
 
     def penRandomWinner(self):
-        return _rcss.ServerParam_penRandomWinner(self)
+        return _rcss.rcssServerParam_penRandomWinner(self)
 
     def penAllowMultiKicks(self):
-        return _rcss.ServerParam_penAllowMultiKicks(self)
+        return _rcss.rcssServerParam_penAllowMultiKicks(self)
 
     def penMaxGoalieDistX(self):
-        return _rcss.ServerParam_penMaxGoalieDistX(self)
+        return _rcss.rcssServerParam_penMaxGoalieDistX(self)
 
     def penCoachMovesPlayers(self):
-        return _rcss.ServerParam_penCoachMovesPlayers(self)
+        return _rcss.rcssServerParam_penCoachMovesPlayers(self)
 
     def simStep(self):
-        return _rcss.ServerParam_simStep(self)
+        return _rcss.rcssServerParam_simStep(self)
 
     def senseBodyStep(self):
-        return _rcss.ServerParam_senseBodyStep(self)
+        return _rcss.rcssServerParam_senseBodyStep(self)
 
     def coachVisualStep(self):
-        return _rcss.ServerParam_coachVisualStep(self)
+        return _rcss.rcssServerParam_coachVisualStep(self)
 
     def sendStep(self):
-        return _rcss.ServerParam_sendStep(self)
+        return _rcss.rcssServerParam_sendStep(self)
 
     def lcmStep(self):
-        return _rcss.ServerParam_lcmStep(self)
+        return _rcss.rcssServerParam_lcmStep(self)
 
     def recvStep(self):
-        return _rcss.ServerParam_recvStep(self)
+        return _rcss.rcssServerParam_recvStep(self)
 
     def catchBanCycle(self):
-        return _rcss.ServerParam_catchBanCycle(self)
+        return _rcss.rcssServerParam_catchBanCycle(self)
 
     def slowDownFactor(self):
-        return _rcss.ServerParam_slowDownFactor(self)
+        return _rcss.rcssServerParam_slowDownFactor(self)
 
     def useOffside(self):
-        return _rcss.ServerParam_useOffside(self)
+        return _rcss.rcssServerParam_useOffside(self)
 
     def kickOffOffside(self):
-        return _rcss.ServerParam_kickOffOffside(self)
+        return _rcss.rcssServerParam_kickOffOffside(self)
 
     def offsideKickMargin(self):
-        return _rcss.ServerParam_offsideKickMargin(self)
+        return _rcss.rcssServerParam_offsideKickMargin(self)
 
     def audioCutDist(self):
-        return _rcss.ServerParam_audioCutDist(self)
+        return _rcss.rcssServerParam_audioCutDist(self)
 
     def quantizeStep(self):
-        return _rcss.ServerParam_quantizeStep(self)
+        return _rcss.rcssServerParam_quantizeStep(self)
 
     def landmarkQuantizeStep(self):
-        return _rcss.ServerParam_landmarkQuantizeStep(self)
+        return _rcss.rcssServerParam_landmarkQuantizeStep(self)
 
     def verboseMode(self):
-        return _rcss.ServerParam_verboseMode(self)
+        return _rcss.rcssServerParam_verboseMode(self)
 
     def coachMode(self):
-        return _rcss.ServerParam_coachMode(self)
+        return _rcss.rcssServerParam_coachMode(self)
 
     def coachWithRefereeMode(self):
-        return _rcss.ServerParam_coachWithRefereeMode(self)
+        return _rcss.rcssServerParam_coachWithRefereeMode(self)
 
     def coachOldHear(self):
-        return _rcss.ServerParam_coachOldHear(self)
+        return _rcss.rcssServerParam_coachOldHear(self)
 
     def synchMode(self):
-        return _rcss.ServerParam_synchMode(self)
+        return _rcss.rcssServerParam_synchMode(self)
 
     def synchOffset(self):
-        return _rcss.ServerParam_synchOffset(self)
+        return _rcss.rcssServerParam_synchOffset(self)
 
     def synchMicroSleep(self):
-        return _rcss.ServerParam_synchMicroSleep(self)
+        return _rcss.rcssServerParam_synchMicroSleep(self)
 
     def startGoalLeft(self):
-        return _rcss.ServerParam_startGoalLeft(self)
+        return _rcss.rcssServerParam_startGoalLeft(self)
 
     def startGoalRight(self):
-        return _rcss.ServerParam_startGoalRight(self)
+        return _rcss.rcssServerParam_startGoalRight(self)
 
     def fullstateLeft(self):
-        return _rcss.ServerParam_fullstateLeft(self)
+        return _rcss.rcssServerParam_fullstateLeft(self)
 
     def fullstateRight(self):
-        return _rcss.ServerParam_fullstateRight(self)
+        return _rcss.rcssServerParam_fullstateRight(self)
 
     def slownessOnTopForLeft(self):
-        return _rcss.ServerParam_slownessOnTopForLeft(self)
+        return _rcss.rcssServerParam_slownessOnTopForLeft(self)
 
     def slownessOnTopForRight(self):
-        return _rcss.ServerParam_slownessOnTopForRight(self)
+        return _rcss.rcssServerParam_slownessOnTopForRight(self)
 
     def landmarkFile(self):
-        return _rcss.ServerParam_landmarkFile(self)
+        return _rcss.rcssServerParam_landmarkFile(self)
 
     def sendComms(self):
-        return _rcss.ServerParam_sendComms(self)
+        return _rcss.rcssServerParam_sendComms(self)
 
     def textLogging(self):
-        return _rcss.ServerParam_textLogging(self)
+        return _rcss.rcssServerParam_textLogging(self)
 
     def gameLogging(self):
-        return _rcss.ServerParam_gameLogging(self)
+        return _rcss.rcssServerParam_gameLogging(self)
 
     def gameLogVersion(self):
-        return _rcss.ServerParam_gameLogVersion(self)
+        return _rcss.rcssServerParam_gameLogVersion(self)
 
     def textLogDir(self):
-        return _rcss.ServerParam_textLogDir(self)
+        return _rcss.rcssServerParam_textLogDir(self)
 
     def gameLogDir(self):
-        return _rcss.ServerParam_gameLogDir(self)
+        return _rcss.rcssServerParam_gameLogDir(self)
 
     def textLogFixedName(self):
-        return _rcss.ServerParam_textLogFixedName(self)
+        return _rcss.rcssServerParam_textLogFixedName(self)
 
     def gameLogFixedName(self):
-        return _rcss.ServerParam_gameLogFixedName(self)
+        return _rcss.rcssServerParam_gameLogFixedName(self)
 
     def textLogFixed(self):
-        return _rcss.ServerParam_textLogFixed(self)
+        return _rcss.rcssServerParam_textLogFixed(self)
 
     def gameLogFixed(self):
-        return _rcss.ServerParam_gameLogFixed(self)
+        return _rcss.rcssServerParam_gameLogFixed(self)
 
     def textLogDated(self):
-        return _rcss.ServerParam_textLogDated(self)
+        return _rcss.rcssServerParam_textLogDated(self)
 
     def gameLogDated(self):
-        return _rcss.ServerParam_gameLogDated(self)
+        return _rcss.rcssServerParam_gameLogDated(self)
 
     def logDateFormat(self):
-        return _rcss.ServerParam_logDateFormat(self)
+        return _rcss.rcssServerParam_logDateFormat(self)
 
     def logTimes(self):
-        return _rcss.ServerParam_logTimes(self)
+        return _rcss.rcssServerParam_logTimes(self)
 
     def recordMessages(self):
-        return _rcss.ServerParam_recordMessages(self)
+        return _rcss.rcssServerParam_recordMessages(self)
 
     def textLogCompression(self):
-        return _rcss.ServerParam_textLogCompression(self)
+        return _rcss.rcssServerParam_textLogCompression(self)
 
     def gameLogCompression(self):
-        return _rcss.ServerParam_gameLogCompression(self)
+        return _rcss.rcssServerParam_gameLogCompression(self)
 
     def profile(self):
-        return _rcss.ServerParam_profile(self)
+        return _rcss.rcssServerParam_profile(self)
 
     def kawayLogging(self):
-        return _rcss.ServerParam_kawayLogging(self)
+        return _rcss.rcssServerParam_kawayLogging(self)
 
     def kawayLogDir(self):
-        return _rcss.ServerParam_kawayLogDir(self)
+        return _rcss.rcssServerParam_kawayLogDir(self)
 
     def kawayLogFixedName(self):
-        return _rcss.ServerParam_kawayLogFixedName(self)
+        return _rcss.rcssServerParam_kawayLogFixedName(self)
 
     def kawayLogFixed(self):
-        return _rcss.ServerParam_kawayLogFixed(self)
+        return _rcss.rcssServerParam_kawayLogFixed(self)
 
     def kawayLogDated(self):
-        return _rcss.ServerParam_kawayLogDated(self)
+        return _rcss.rcssServerParam_kawayLogDated(self)
 
     def kawayStart(self):
-        return _rcss.ServerParam_kawayStart(self)
+        return _rcss.rcssServerParam_kawayStart(self)
 
     def pointToBan(self):
-        return _rcss.ServerParam_pointToBan(self)
+        return _rcss.rcssServerParam_pointToBan(self)
 
     def pointToDuration(self):
-        return _rcss.ServerParam_pointToDuration(self)
+        return _rcss.rcssServerParam_pointToDuration(self)
 
     def sayMsgSize(self):
-        return _rcss.ServerParam_sayMsgSize(self)
+        return _rcss.rcssServerParam_sayMsgSize(self)
 
     def hearMax(self):
-        return _rcss.ServerParam_hearMax(self)
+        return _rcss.rcssServerParam_hearMax(self)
 
     def hearInc(self):
-        return _rcss.ServerParam_hearInc(self)
+        return _rcss.rcssServerParam_hearInc(self)
 
     def hearDecay(self):
-        return _rcss.ServerParam_hearDecay(self)
+        return _rcss.rcssServerParam_hearDecay(self)
 
     def tackleDist(self):
-        return _rcss.ServerParam_tackleDist(self)
+        return _rcss.rcssServerParam_tackleDist(self)
 
     def tackleBackDist(self):
-        return _rcss.ServerParam_tackleBackDist(self)
+        return _rcss.rcssServerParam_tackleBackDist(self)
 
     def tackleWidth(self):
-        return _rcss.ServerParam_tackleWidth(self)
+        return _rcss.rcssServerParam_tackleWidth(self)
 
     def tackleExponent(self):
-        return _rcss.ServerParam_tackleExponent(self)
+        return _rcss.rcssServerParam_tackleExponent(self)
 
     def tackleCycles(self):
-        return _rcss.ServerParam_tackleCycles(self)
+        return _rcss.rcssServerParam_tackleCycles(self)
 
     def tacklePowerRate(self):
-        return _rcss.ServerParam_tacklePowerRate(self)
+        return _rcss.rcssServerParam_tacklePowerRate(self)
 
     def freeformWaitPeriod(self):
-        return _rcss.ServerParam_freeformWaitPeriod(self)
+        return _rcss.rcssServerParam_freeformWaitPeriod(self)
 
     def freeformSendPeriod(self):
-        return _rcss.ServerParam_freeformSendPeriod(self)
+        return _rcss.rcssServerParam_freeformSendPeriod(self)
 
     def freeKickFaults(self):
-        return _rcss.ServerParam_freeKickFaults(self)
+        return _rcss.rcssServerParam_freeKickFaults(self)
 
     def backPasses(self):
-        return _rcss.ServerParam_backPasses(self)
+        return _rcss.rcssServerParam_backPasses(self)
 
     def properGoalKicks(self):
-        return _rcss.ServerParam_properGoalKicks(self)
+        return _rcss.rcssServerParam_properGoalKicks(self)
 
     def stoppedBallVel(self):
-        return _rcss.ServerParam_stoppedBallVel(self)
+        return _rcss.rcssServerParam_stoppedBallVel(self)
 
     def maxGoalKicks(self):
-        return _rcss.ServerParam_maxGoalKicks(self)
+        return _rcss.rcssServerParam_maxGoalKicks(self)
 
     def clangDelWin(self):
-        return _rcss.ServerParam_clangDelWin(self)
+        return _rcss.rcssServerParam_clangDelWin(self)
 
     def clangRuleWin(self):
-        return _rcss.ServerParam_clangRuleWin(self)
+        return _rcss.rcssServerParam_clangRuleWin(self)
 
     def autoMode(self):
-        return _rcss.ServerParam_autoMode(self)
+        return _rcss.rcssServerParam_autoMode(self)
 
     def kickOffWait(self):
-        return _rcss.ServerParam_kickOffWait(self)
+        return _rcss.rcssServerParam_kickOffWait(self)
 
     def connectWait(self):
-        return _rcss.ServerParam_connectWait(self)
+        return _rcss.rcssServerParam_connectWait(self)
 
     def gameOverWait(self):
-        return _rcss.ServerParam_gameOverWait(self)
+        return _rcss.rcssServerParam_gameOverWait(self)
 
     def teamLeftStart(self):
-        return _rcss.ServerParam_teamLeftStart(self)
+        return _rcss.rcssServerParam_teamLeftStart(self)
 
     def teamRightStart(self):
-        return _rcss.ServerParam_teamRightStart(self)
+        return _rcss.rcssServerParam_teamRightStart(self)
 
     def goalPostRadius(self):
-        return _rcss.ServerParam_goalPostRadius(self)
+        return _rcss.rcssServerParam_goalPostRadius(self)
 
     def ballStuckArea(self):
-        return _rcss.ServerParam_ballStuckArea(self)
+        return _rcss.rcssServerParam_ballStuckArea(self)
 
     def coachMsgFile(self):
-        return _rcss.ServerParam_coachMsgFile(self)
+        return _rcss.rcssServerParam_coachMsgFile(self)
 
     def maxTacklePower(self):
-        return _rcss.ServerParam_maxTacklePower(self)
+        return _rcss.rcssServerParam_maxTacklePower(self)
 
     def maxBackTacklePower(self):
-        return _rcss.ServerParam_maxBackTacklePower(self)
+        return _rcss.rcssServerParam_maxBackTacklePower(self)
 
     def playerSpeedMaxMin(self):
-        return _rcss.ServerParam_playerSpeedMaxMin(self)
+        return _rcss.rcssServerParam_playerSpeedMaxMin(self)
 
     def extraStamina(self):
-        return _rcss.ServerParam_extraStamina(self)
+        return _rcss.rcssServerParam_extraStamina(self)
 
     def maxMonitors(self):
-        return _rcss.ServerParam_maxMonitors(self)
+        return _rcss.rcssServerParam_maxMonitors(self)
 
     def synchSeeOffset(self):
-        return _rcss.ServerParam_synchSeeOffset(self)
+        return _rcss.rcssServerParam_synchSeeOffset(self)
 
     def extraHalfTime(self):
-        return _rcss.ServerParam_extraHalfTime(self)
+        return _rcss.rcssServerParam_extraHalfTime(self)
 
     def staminaCapacity(self):
-        return _rcss.ServerParam_staminaCapacity(self)
+        return _rcss.rcssServerParam_staminaCapacity(self)
 
     def maxDashAngle(self):
-        return _rcss.ServerParam_maxDashAngle(self)
+        return _rcss.rcssServerParam_maxDashAngle(self)
 
     def minDashAngle(self):
-        return _rcss.ServerParam_minDashAngle(self)
+        return _rcss.rcssServerParam_minDashAngle(self)
 
     def dashAngleStep(self):
-        return _rcss.ServerParam_dashAngleStep(self)
+        return _rcss.rcssServerParam_dashAngleStep(self)
 
     def sideDashRate(self):
-        return _rcss.ServerParam_sideDashRate(self)
+        return _rcss.rcssServerParam_sideDashRate(self)
 
     def backDashRate(self):
-        return _rcss.ServerParam_backDashRate(self)
+        return _rcss.rcssServerParam_backDashRate(self)
 
     def maxDashPower(self):
-        return _rcss.ServerParam_maxDashPower(self)
+        return _rcss.rcssServerParam_maxDashPower(self)
 
     def minDashPower(self):
-        return _rcss.ServerParam_minDashPower(self)
+        return _rcss.rcssServerParam_minDashPower(self)
 
     def tackleRandFactor(self):
-        return _rcss.ServerParam_tackleRandFactor(self)
+        return _rcss.rcssServerParam_tackleRandFactor(self)
 
     def foulDetectProbability(self):
-        return _rcss.ServerParam_foulDetectProbability(self)
+        return _rcss.rcssServerParam_foulDetectProbability(self)
 
     def foulExponent(self):
-        return _rcss.ServerParam_foulExponent(self)
+        return _rcss.rcssServerParam_foulExponent(self)
 
     def foulCycles(self):
-        return _rcss.ServerParam_foulCycles(self)
+        return _rcss.rcssServerParam_foulCycles(self)
 
     def randomSeed(self):
-        return _rcss.ServerParam_randomSeed(self)
+        return _rcss.rcssServerParam_randomSeed(self)
 
     def goldenGoal(self):
-        return _rcss.ServerParam_goldenGoal(self)
+        return _rcss.rcssServerParam_goldenGoal(self)
 
     def redCardProbability(self):
-        return _rcss.ServerParam_redCardProbability(self)
+        return _rcss.rcssServerParam_redCardProbability(self)
 
     def longKickPowerFactor(self):
-        return _rcss.ServerParam_longKickPowerFactor(self)
+        return _rcss.rcssServerParam_longKickPowerFactor(self)
 
     def longKickDelay(self):
-        return _rcss.ServerParam_longKickDelay(self)
-ServerParam_swigregister = _rcss.ServerParam_swigregister
-ServerParam_swigregister(ServerParam)
+        return _rcss.rcssServerParam_longKickDelay(self)
+rcssServerParam_swigregister = _rcss.rcssServerParam_swigregister
+rcssServerParam_swigregister(rcssServerParam)
 
-def ServerParam_instance():
-    return _rcss.ServerParam_instance()
-ServerParam_instance = _rcss.ServerParam_instance
+def rcssServerParam_instance():
+    return _rcss.rcssServerParam_instance()
+rcssServerParam_instance = _rcss.rcssServerParam_instance
 
-def ServerParam_init(argc, argv):
-    return _rcss.ServerParam_init(argc, argv)
-ServerParam_init = _rcss.ServerParam_init
+def rcssServerParam_init(argc, argv):
+    return _rcss.rcssServerParam_init(argc, argv)
+rcssServerParam_init = _rcss.rcssServerParam_init
 cvar = _rcss.cvar
-ServerParam.PITCH_LENGTH = _rcss.cvar.ServerParam_PITCH_LENGTH
-ServerParam.PITCH_WIDTH = _rcss.cvar.ServerParam_PITCH_WIDTH
-ServerParam.PITCH_MARGIN = _rcss.cvar.ServerParam_PITCH_MARGIN
-ServerParam.CENTER_CIRCLE_R = _rcss.cvar.ServerParam_CENTER_CIRCLE_R
-ServerParam.PENALTY_AREA_LENGTH = _rcss.cvar.ServerParam_PENALTY_AREA_LENGTH
-ServerParam.PENALTY_AREA_WIDTH = _rcss.cvar.ServerParam_PENALTY_AREA_WIDTH
-ServerParam.GOAL_AREA_LENGTH = _rcss.cvar.ServerParam_GOAL_AREA_LENGTH
-ServerParam.GOAL_AREA_WIDTH = _rcss.cvar.ServerParam_GOAL_AREA_WIDTH
-ServerParam.GOAL_WIDTH = _rcss.cvar.ServerParam_GOAL_WIDTH
-ServerParam.GOAL_DEPTH = _rcss.cvar.ServerParam_GOAL_DEPTH
-ServerParam.PENALTY_SPOT_DIST = _rcss.cvar.ServerParam_PENALTY_SPOT_DIST
-ServerParam.CORNER_ARC_R = _rcss.cvar.ServerParam_CORNER_ARC_R
-ServerParam.KICK_OFF_CLEAR_DISTANCE = _rcss.cvar.ServerParam_KICK_OFF_CLEAR_DISTANCE
-ServerParam.CORNER_KICK_MARGIN = _rcss.cvar.ServerParam_CORNER_KICK_MARGIN
+rcssServerParam.PITCH_LENGTH = _rcss.cvar.rcssServerParam_PITCH_LENGTH
+rcssServerParam.PITCH_WIDTH = _rcss.cvar.rcssServerParam_PITCH_WIDTH
+rcssServerParam.PITCH_MARGIN = _rcss.cvar.rcssServerParam_PITCH_MARGIN
+rcssServerParam.CENTER_CIRCLE_R = _rcss.cvar.rcssServerParam_CENTER_CIRCLE_R
+rcssServerParam.PENALTY_AREA_LENGTH = _rcss.cvar.rcssServerParam_PENALTY_AREA_LENGTH
+rcssServerParam.PENALTY_AREA_WIDTH = _rcss.cvar.rcssServerParam_PENALTY_AREA_WIDTH
+rcssServerParam.GOAL_AREA_LENGTH = _rcss.cvar.rcssServerParam_GOAL_AREA_LENGTH
+rcssServerParam.GOAL_AREA_WIDTH = _rcss.cvar.rcssServerParam_GOAL_AREA_WIDTH
+rcssServerParam.GOAL_WIDTH = _rcss.cvar.rcssServerParam_GOAL_WIDTH
+rcssServerParam.GOAL_DEPTH = _rcss.cvar.rcssServerParam_GOAL_DEPTH
+rcssServerParam.PENALTY_SPOT_DIST = _rcss.cvar.rcssServerParam_PENALTY_SPOT_DIST
+rcssServerParam.CORNER_ARC_R = _rcss.cvar.rcssServerParam_CORNER_ARC_R
+rcssServerParam.KICK_OFF_CLEAR_DISTANCE = _rcss.cvar.rcssServerParam_KICK_OFF_CLEAR_DISTANCE
+rcssServerParam.CORNER_KICK_MARGIN = _rcss.cvar.rcssServerParam_CORNER_KICK_MARGIN
+
+DISABLE = _rcss.DISABLE
+STAND = _rcss.STAND
+KICK = _rcss.KICK
+KICK_FAULT = _rcss.KICK_FAULT
+GOALIE = _rcss.GOALIE
+CATCH = _rcss.CATCH
+CATCH_FAULT = _rcss.CATCH_FAULT
+BALL_TO_PLAYER = _rcss.BALL_TO_PLAYER
+PLAYER_TO_BALL = _rcss.PLAYER_TO_BALL
+DISCARD = _rcss.DISCARD
+LOST = _rcss.LOST
+BALL_COLLIDE = _rcss.BALL_COLLIDE
+PLAYER_COLLIDE = _rcss.PLAYER_COLLIDE
+TACKLE = _rcss.TACKLE
+TACKLE_FAULT = _rcss.TACKLE_FAULT
+BACK_PASS = _rcss.BACK_PASS
+FREE_KICK_FAULT = _rcss.FREE_KICK_FAULT
+POST_COLLIDE = _rcss.POST_COLLIDE
+FOUL_CHARGED = _rcss.FOUL_CHARGED
+YELLOW_CARD = _rcss.YELLOW_CARD
+RED_CARD = _rcss.RED_CARD
+LEFT = _rcss.LEFT
+NEUTRAL = _rcss.NEUTRAL
+RIGHT = _rcss.RIGHT
+PM_Null = _rcss.PM_Null
+PM_BeforeKickOff = _rcss.PM_BeforeKickOff
+PM_TimeOver = _rcss.PM_TimeOver
+PM_PlayOn = _rcss.PM_PlayOn
+PM_KickOff_Left = _rcss.PM_KickOff_Left
+PM_KickOff_Right = _rcss.PM_KickOff_Right
+PM_KickIn_Left = _rcss.PM_KickIn_Left
+PM_KickIn_Right = _rcss.PM_KickIn_Right
+PM_FreeKick_Left = _rcss.PM_FreeKick_Left
+PM_FreeKick_Right = _rcss.PM_FreeKick_Right
+PM_CornerKick_Left = _rcss.PM_CornerKick_Left
+PM_CornerKick_Right = _rcss.PM_CornerKick_Right
+PM_GoalKick_Left = _rcss.PM_GoalKick_Left
+PM_GoalKick_Right = _rcss.PM_GoalKick_Right
+PM_AfterGoal_Left = _rcss.PM_AfterGoal_Left
+PM_AfterGoal_Right = _rcss.PM_AfterGoal_Right
+PM_Drop_Ball = _rcss.PM_Drop_Ball
+PM_OffSide_Left = _rcss.PM_OffSide_Left
+PM_OffSide_Right = _rcss.PM_OffSide_Right
+PM_PK_Left = _rcss.PM_PK_Left
+PM_PK_Right = _rcss.PM_PK_Right
+PM_FirstHalfOver = _rcss.PM_FirstHalfOver
+PM_Pause = _rcss.PM_Pause
+PM_Human = _rcss.PM_Human
+PM_Foul_Charge_Left = _rcss.PM_Foul_Charge_Left
+PM_Foul_Charge_Right = _rcss.PM_Foul_Charge_Right
+PM_Foul_Push_Left = _rcss.PM_Foul_Push_Left
+PM_Foul_Push_Right = _rcss.PM_Foul_Push_Right
+PM_Foul_MultipleAttacker_Left = _rcss.PM_Foul_MultipleAttacker_Left
+PM_Foul_MultipleAttacker_Right = _rcss.PM_Foul_MultipleAttacker_Right
+PM_Foul_BallOut_Left = _rcss.PM_Foul_BallOut_Left
+PM_Foul_BallOut_Right = _rcss.PM_Foul_BallOut_Right
+PM_Back_Pass_Left = _rcss.PM_Back_Pass_Left
+PM_Back_Pass_Right = _rcss.PM_Back_Pass_Right
+PM_Free_Kick_Fault_Left = _rcss.PM_Free_Kick_Fault_Left
+PM_Free_Kick_Fault_Right = _rcss.PM_Free_Kick_Fault_Right
+PM_CatchFault_Left = _rcss.PM_CatchFault_Left
+PM_CatchFault_Right = _rcss.PM_CatchFault_Right
+PM_IndFreeKick_Left = _rcss.PM_IndFreeKick_Left
+PM_IndFreeKick_Right = _rcss.PM_IndFreeKick_Right
+PM_PenaltySetup_Left = _rcss.PM_PenaltySetup_Left
+PM_PenaltySetup_Right = _rcss.PM_PenaltySetup_Right
+PM_PenaltyReady_Left = _rcss.PM_PenaltyReady_Left
+PM_PenaltyReady_Right = _rcss.PM_PenaltyReady_Right
+PM_PenaltyTaken_Left = _rcss.PM_PenaltyTaken_Left
+PM_PenaltyTaken_Right = _rcss.PM_PenaltyTaken_Right
+PM_PenaltyMiss_Left = _rcss.PM_PenaltyMiss_Left
+PM_PenaltyMiss_Right = _rcss.PM_PenaltyMiss_Right
+PM_PenaltyScore_Left = _rcss.PM_PenaltyScore_Left
+PM_PenaltyScore_Right = _rcss.PM_PenaltyScore_Right
+PM_MAX = _rcss.PM_MAX
+MPO_Ball = _rcss.MPO_Ball
+MPO_Player = _rcss.MPO_Player
+NO_INFO = _rcss.NO_INFO
+SHOW_MODE = _rcss.SHOW_MODE
+MSG_MODE = _rcss.MSG_MODE
+DRAW_MODE = _rcss.DRAW_MODE
+BLANK_MODE = _rcss.BLANK_MODE
+PM_MODE = _rcss.PM_MODE
+TEAM_MODE = _rcss.TEAM_MODE
+PT_MODE = _rcss.PT_MODE
+PARAM_MODE = _rcss.PARAM_MODE
+PPARAM_MODE = _rcss.PPARAM_MODE
+DrawClear = _rcss.DrawClear
+DrawPoint = _rcss.DrawPoint
+DrawCircle = _rcss.DrawCircle
+DrawLine = _rcss.DrawLine
+MSG_BOARD = _rcss.MSG_BOARD
+LOG_BOARD = _rcss.LOG_BOARD
+class pos_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, pos_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, pos_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["enable"] = _rcss.pos_t_enable_set
+    __swig_getmethods__["enable"] = _rcss.pos_t_enable_get
+    if _newclass:
+        enable = _swig_property(_rcss.pos_t_enable_get, _rcss.pos_t_enable_set)
+    __swig_setmethods__["side"] = _rcss.pos_t_side_set
+    __swig_getmethods__["side"] = _rcss.pos_t_side_get
+    if _newclass:
+        side = _swig_property(_rcss.pos_t_side_get, _rcss.pos_t_side_set)
+    __swig_setmethods__["unum"] = _rcss.pos_t_unum_set
+    __swig_getmethods__["unum"] = _rcss.pos_t_unum_get
+    if _newclass:
+        unum = _swig_property(_rcss.pos_t_unum_get, _rcss.pos_t_unum_set)
+    __swig_setmethods__["angle"] = _rcss.pos_t_angle_set
+    __swig_getmethods__["angle"] = _rcss.pos_t_angle_get
+    if _newclass:
+        angle = _swig_property(_rcss.pos_t_angle_get, _rcss.pos_t_angle_set)
+    __swig_setmethods__["x"] = _rcss.pos_t_x_set
+    __swig_getmethods__["x"] = _rcss.pos_t_x_get
+    if _newclass:
+        x = _swig_property(_rcss.pos_t_x_get, _rcss.pos_t_x_set)
+    __swig_setmethods__["y"] = _rcss.pos_t_y_set
+    __swig_getmethods__["y"] = _rcss.pos_t_y_get
+    if _newclass:
+        y = _swig_property(_rcss.pos_t_y_get, _rcss.pos_t_y_set)
+
+    def __init__(self):
+        this = _rcss.new_pos_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_pos_t
+    __del__ = lambda self: None
+pos_t_swigregister = _rcss.pos_t_swigregister
+pos_t_swigregister(pos_t)
+SHOWINFO_SCALE = cvar.SHOWINFO_SCALE
+SHOWINFO_SCALE2 = cvar.SHOWINFO_SCALE2
+REC_OLD_VERSION = cvar.REC_OLD_VERSION
+REC_VERSION_2 = cvar.REC_VERSION_2
+REC_VERSION_3 = cvar.REC_VERSION_3
+REC_VERSION_4 = cvar.REC_VERSION_4
+REC_VERSION_5 = cvar.REC_VERSION_5
+DEFAULT_REC_VERSION = cvar.DEFAULT_REC_VERSION
+
+class team_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, team_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, team_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["name"] = _rcss.team_t_name_set
+    __swig_getmethods__["name"] = _rcss.team_t_name_get
+    if _newclass:
+        name = _swig_property(_rcss.team_t_name_get, _rcss.team_t_name_set)
+    __swig_setmethods__["score"] = _rcss.team_t_score_set
+    __swig_getmethods__["score"] = _rcss.team_t_score_get
+    if _newclass:
+        score = _swig_property(_rcss.team_t_score_get, _rcss.team_t_score_set)
+
+    def __init__(self):
+        this = _rcss.new_team_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_team_t
+    __del__ = lambda self: None
+team_t_swigregister = _rcss.team_t_swigregister
+team_t_swigregister(team_t)
+
+class showinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, showinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, showinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["pmode"] = _rcss.showinfo_t_pmode_set
+    __swig_getmethods__["pmode"] = _rcss.showinfo_t_pmode_get
+    if _newclass:
+        pmode = _swig_property(_rcss.showinfo_t_pmode_get, _rcss.showinfo_t_pmode_set)
+    __swig_setmethods__["team"] = _rcss.showinfo_t_team_set
+    __swig_getmethods__["team"] = _rcss.showinfo_t_team_get
+    if _newclass:
+        team = _swig_property(_rcss.showinfo_t_team_get, _rcss.showinfo_t_team_set)
+    __swig_setmethods__["pos"] = _rcss.showinfo_t_pos_set
+    __swig_getmethods__["pos"] = _rcss.showinfo_t_pos_get
+    if _newclass:
+        pos = _swig_property(_rcss.showinfo_t_pos_get, _rcss.showinfo_t_pos_set)
+    __swig_setmethods__["time"] = _rcss.showinfo_t_time_set
+    __swig_getmethods__["time"] = _rcss.showinfo_t_time_get
+    if _newclass:
+        time = _swig_property(_rcss.showinfo_t_time_get, _rcss.showinfo_t_time_set)
+
+    def __init__(self):
+        this = _rcss.new_showinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_showinfo_t
+    __del__ = lambda self: None
+showinfo_t_swigregister = _rcss.showinfo_t_swigregister
+showinfo_t_swigregister(showinfo_t)
+
+class msginfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, msginfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, msginfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["board"] = _rcss.msginfo_t_board_set
+    __swig_getmethods__["board"] = _rcss.msginfo_t_board_get
+    if _newclass:
+        board = _swig_property(_rcss.msginfo_t_board_get, _rcss.msginfo_t_board_set)
+    __swig_setmethods__["message"] = _rcss.msginfo_t_message_set
+    __swig_getmethods__["message"] = _rcss.msginfo_t_message_get
+    if _newclass:
+        message = _swig_property(_rcss.msginfo_t_message_get, _rcss.msginfo_t_message_set)
+
+    def __init__(self):
+        this = _rcss.new_msginfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_msginfo_t
+    __del__ = lambda self: None
+msginfo_t_swigregister = _rcss.msginfo_t_swigregister
+msginfo_t_swigregister(msginfo_t)
+max_message_length_for_display = cvar.max_message_length_for_display
+
+class pointinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, pointinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, pointinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _rcss.pointinfo_t_x_set
+    __swig_getmethods__["x"] = _rcss.pointinfo_t_x_get
+    if _newclass:
+        x = _swig_property(_rcss.pointinfo_t_x_get, _rcss.pointinfo_t_x_set)
+    __swig_setmethods__["y"] = _rcss.pointinfo_t_y_set
+    __swig_getmethods__["y"] = _rcss.pointinfo_t_y_get
+    if _newclass:
+        y = _swig_property(_rcss.pointinfo_t_y_get, _rcss.pointinfo_t_y_set)
+    __swig_setmethods__["color"] = _rcss.pointinfo_t_color_set
+    __swig_getmethods__["color"] = _rcss.pointinfo_t_color_get
+    if _newclass:
+        color = _swig_property(_rcss.pointinfo_t_color_get, _rcss.pointinfo_t_color_set)
+
+    def __init__(self):
+        this = _rcss.new_pointinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_pointinfo_t
+    __del__ = lambda self: None
+pointinfo_t_swigregister = _rcss.pointinfo_t_swigregister
+pointinfo_t_swigregister(pointinfo_t)
+COLOR_NAME_MAX = cvar.COLOR_NAME_MAX
+
+class circleinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, circleinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, circleinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _rcss.circleinfo_t_x_set
+    __swig_getmethods__["x"] = _rcss.circleinfo_t_x_get
+    if _newclass:
+        x = _swig_property(_rcss.circleinfo_t_x_get, _rcss.circleinfo_t_x_set)
+    __swig_setmethods__["y"] = _rcss.circleinfo_t_y_set
+    __swig_getmethods__["y"] = _rcss.circleinfo_t_y_get
+    if _newclass:
+        y = _swig_property(_rcss.circleinfo_t_y_get, _rcss.circleinfo_t_y_set)
+    __swig_setmethods__["r"] = _rcss.circleinfo_t_r_set
+    __swig_getmethods__["r"] = _rcss.circleinfo_t_r_get
+    if _newclass:
+        r = _swig_property(_rcss.circleinfo_t_r_get, _rcss.circleinfo_t_r_set)
+    __swig_setmethods__["color"] = _rcss.circleinfo_t_color_set
+    __swig_getmethods__["color"] = _rcss.circleinfo_t_color_get
+    if _newclass:
+        color = _swig_property(_rcss.circleinfo_t_color_get, _rcss.circleinfo_t_color_set)
+
+    def __init__(self):
+        this = _rcss.new_circleinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_circleinfo_t
+    __del__ = lambda self: None
+circleinfo_t_swigregister = _rcss.circleinfo_t_swigregister
+circleinfo_t_swigregister(circleinfo_t)
+
+class lineinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, lineinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, lineinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x1"] = _rcss.lineinfo_t_x1_set
+    __swig_getmethods__["x1"] = _rcss.lineinfo_t_x1_get
+    if _newclass:
+        x1 = _swig_property(_rcss.lineinfo_t_x1_get, _rcss.lineinfo_t_x1_set)
+    __swig_setmethods__["y1"] = _rcss.lineinfo_t_y1_set
+    __swig_getmethods__["y1"] = _rcss.lineinfo_t_y1_get
+    if _newclass:
+        y1 = _swig_property(_rcss.lineinfo_t_y1_get, _rcss.lineinfo_t_y1_set)
+    __swig_setmethods__["x2"] = _rcss.lineinfo_t_x2_set
+    __swig_getmethods__["x2"] = _rcss.lineinfo_t_x2_get
+    if _newclass:
+        x2 = _swig_property(_rcss.lineinfo_t_x2_get, _rcss.lineinfo_t_x2_set)
+    __swig_setmethods__["y2"] = _rcss.lineinfo_t_y2_set
+    __swig_getmethods__["y2"] = _rcss.lineinfo_t_y2_get
+    if _newclass:
+        y2 = _swig_property(_rcss.lineinfo_t_y2_get, _rcss.lineinfo_t_y2_set)
+    __swig_setmethods__["color"] = _rcss.lineinfo_t_color_set
+    __swig_getmethods__["color"] = _rcss.lineinfo_t_color_get
+    if _newclass:
+        color = _swig_property(_rcss.lineinfo_t_color_get, _rcss.lineinfo_t_color_set)
+
+    def __init__(self):
+        this = _rcss.new_lineinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_lineinfo_t
+    __del__ = lambda self: None
+lineinfo_t_swigregister = _rcss.lineinfo_t_swigregister
+lineinfo_t_swigregister(lineinfo_t)
+
+class drawinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, drawinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, drawinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["mode"] = _rcss.drawinfo_t_mode_set
+    __swig_getmethods__["mode"] = _rcss.drawinfo_t_mode_get
+    if _newclass:
+        mode = _swig_property(_rcss.drawinfo_t_mode_get, _rcss.drawinfo_t_mode_set)
+
+    def __init__(self):
+        this = _rcss.new_drawinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_drawinfo_t
+    __del__ = lambda self: None
+drawinfo_t_swigregister = _rcss.drawinfo_t_swigregister
+drawinfo_t_swigregister(drawinfo_t)
+
+class dispinfo_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, dispinfo_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, dispinfo_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["mode"] = _rcss.dispinfo_t_mode_set
+    __swig_getmethods__["mode"] = _rcss.dispinfo_t_mode_get
+    if _newclass:
+        mode = _swig_property(_rcss.dispinfo_t_mode_get, _rcss.dispinfo_t_mode_set)
+
+    def __init__(self):
+        this = _rcss.new_dispinfo_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_dispinfo_t
+    __del__ = lambda self: None
+dispinfo_t_swigregister = _rcss.dispinfo_t_swigregister
+dispinfo_t_swigregister(dispinfo_t)
+
+class ball_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ball_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ball_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["x"] = _rcss.ball_t_x_set
+    __swig_getmethods__["x"] = _rcss.ball_t_x_get
+    if _newclass:
+        x = _swig_property(_rcss.ball_t_x_get, _rcss.ball_t_x_set)
+    __swig_setmethods__["y"] = _rcss.ball_t_y_set
+    __swig_getmethods__["y"] = _rcss.ball_t_y_get
+    if _newclass:
+        y = _swig_property(_rcss.ball_t_y_get, _rcss.ball_t_y_set)
+    __swig_setmethods__["deltax"] = _rcss.ball_t_deltax_set
+    __swig_getmethods__["deltax"] = _rcss.ball_t_deltax_get
+    if _newclass:
+        deltax = _swig_property(_rcss.ball_t_deltax_get, _rcss.ball_t_deltax_set)
+    __swig_setmethods__["deltay"] = _rcss.ball_t_deltay_set
+    __swig_getmethods__["deltay"] = _rcss.ball_t_deltay_get
+    if _newclass:
+        deltay = _swig_property(_rcss.ball_t_deltay_get, _rcss.ball_t_deltay_set)
+
+    def __init__(self):
+        this = _rcss.new_ball_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_ball_t
+    __del__ = lambda self: None
+ball_t_swigregister = _rcss.ball_t_swigregister
+ball_t_swigregister(ball_t)
+
+class player_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, player_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, player_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["mode"] = _rcss.player_t_mode_set
+    __swig_getmethods__["mode"] = _rcss.player_t_mode_get
+    if _newclass:
+        mode = _swig_property(_rcss.player_t_mode_get, _rcss.player_t_mode_set)
+    __swig_setmethods__["type"] = _rcss.player_t_type_set
+    __swig_getmethods__["type"] = _rcss.player_t_type_get
+    if _newclass:
+        type = _swig_property(_rcss.player_t_type_get, _rcss.player_t_type_set)
+    __swig_setmethods__["x"] = _rcss.player_t_x_set
+    __swig_getmethods__["x"] = _rcss.player_t_x_get
+    if _newclass:
+        x = _swig_property(_rcss.player_t_x_get, _rcss.player_t_x_set)
+    __swig_setmethods__["y"] = _rcss.player_t_y_set
+    __swig_getmethods__["y"] = _rcss.player_t_y_get
+    if _newclass:
+        y = _swig_property(_rcss.player_t_y_get, _rcss.player_t_y_set)
+    __swig_setmethods__["deltax"] = _rcss.player_t_deltax_set
+    __swig_getmethods__["deltax"] = _rcss.player_t_deltax_get
+    if _newclass:
+        deltax = _swig_property(_rcss.player_t_deltax_get, _rcss.player_t_deltax_set)
+    __swig_setmethods__["deltay"] = _rcss.player_t_deltay_set
+    __swig_getmethods__["deltay"] = _rcss.player_t_deltay_get
+    if _newclass:
+        deltay = _swig_property(_rcss.player_t_deltay_get, _rcss.player_t_deltay_set)
+    __swig_setmethods__["body_angle"] = _rcss.player_t_body_angle_set
+    __swig_getmethods__["body_angle"] = _rcss.player_t_body_angle_get
+    if _newclass:
+        body_angle = _swig_property(_rcss.player_t_body_angle_get, _rcss.player_t_body_angle_set)
+    __swig_setmethods__["head_angle"] = _rcss.player_t_head_angle_set
+    __swig_getmethods__["head_angle"] = _rcss.player_t_head_angle_get
+    if _newclass:
+        head_angle = _swig_property(_rcss.player_t_head_angle_get, _rcss.player_t_head_angle_set)
+    __swig_setmethods__["view_width"] = _rcss.player_t_view_width_set
+    __swig_getmethods__["view_width"] = _rcss.player_t_view_width_get
+    if _newclass:
+        view_width = _swig_property(_rcss.player_t_view_width_get, _rcss.player_t_view_width_set)
+    __swig_setmethods__["view_quality"] = _rcss.player_t_view_quality_set
+    __swig_getmethods__["view_quality"] = _rcss.player_t_view_quality_get
+    if _newclass:
+        view_quality = _swig_property(_rcss.player_t_view_quality_get, _rcss.player_t_view_quality_set)
+    __swig_setmethods__["stamina"] = _rcss.player_t_stamina_set
+    __swig_getmethods__["stamina"] = _rcss.player_t_stamina_get
+    if _newclass:
+        stamina = _swig_property(_rcss.player_t_stamina_get, _rcss.player_t_stamina_set)
+    __swig_setmethods__["effort"] = _rcss.player_t_effort_set
+    __swig_getmethods__["effort"] = _rcss.player_t_effort_get
+    if _newclass:
+        effort = _swig_property(_rcss.player_t_effort_get, _rcss.player_t_effort_set)
+    __swig_setmethods__["recovery"] = _rcss.player_t_recovery_set
+    __swig_getmethods__["recovery"] = _rcss.player_t_recovery_get
+    if _newclass:
+        recovery = _swig_property(_rcss.player_t_recovery_get, _rcss.player_t_recovery_set)
+    __swig_setmethods__["kick_count"] = _rcss.player_t_kick_count_set
+    __swig_getmethods__["kick_count"] = _rcss.player_t_kick_count_get
+    if _newclass:
+        kick_count = _swig_property(_rcss.player_t_kick_count_get, _rcss.player_t_kick_count_set)
+    __swig_setmethods__["dash_count"] = _rcss.player_t_dash_count_set
+    __swig_getmethods__["dash_count"] = _rcss.player_t_dash_count_get
+    if _newclass:
+        dash_count = _swig_property(_rcss.player_t_dash_count_get, _rcss.player_t_dash_count_set)
+    __swig_setmethods__["turn_count"] = _rcss.player_t_turn_count_set
+    __swig_getmethods__["turn_count"] = _rcss.player_t_turn_count_get
+    if _newclass:
+        turn_count = _swig_property(_rcss.player_t_turn_count_get, _rcss.player_t_turn_count_set)
+    __swig_setmethods__["say_count"] = _rcss.player_t_say_count_set
+    __swig_getmethods__["say_count"] = _rcss.player_t_say_count_get
+    if _newclass:
+        say_count = _swig_property(_rcss.player_t_say_count_get, _rcss.player_t_say_count_set)
+    __swig_setmethods__["tneck_count"] = _rcss.player_t_tneck_count_set
+    __swig_getmethods__["tneck_count"] = _rcss.player_t_tneck_count_get
+    if _newclass:
+        tneck_count = _swig_property(_rcss.player_t_tneck_count_get, _rcss.player_t_tneck_count_set)
+    __swig_setmethods__["catch_count"] = _rcss.player_t_catch_count_set
+    __swig_getmethods__["catch_count"] = _rcss.player_t_catch_count_get
+    if _newclass:
+        catch_count = _swig_property(_rcss.player_t_catch_count_get, _rcss.player_t_catch_count_set)
+    __swig_setmethods__["move_count"] = _rcss.player_t_move_count_set
+    __swig_getmethods__["move_count"] = _rcss.player_t_move_count_get
+    if _newclass:
+        move_count = _swig_property(_rcss.player_t_move_count_get, _rcss.player_t_move_count_set)
+    __swig_setmethods__["chg_view_count"] = _rcss.player_t_chg_view_count_set
+    __swig_getmethods__["chg_view_count"] = _rcss.player_t_chg_view_count_get
+    if _newclass:
+        chg_view_count = _swig_property(_rcss.player_t_chg_view_count_get, _rcss.player_t_chg_view_count_set)
+
+    def __init__(self):
+        this = _rcss.new_player_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_player_t
+    __del__ = lambda self: None
+player_t_swigregister = _rcss.player_t_swigregister
+player_t_swigregister(player_t)
+
+class showinfo_t2(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, showinfo_t2, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, showinfo_t2, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["pmode"] = _rcss.showinfo_t2_pmode_set
+    __swig_getmethods__["pmode"] = _rcss.showinfo_t2_pmode_get
+    if _newclass:
+        pmode = _swig_property(_rcss.showinfo_t2_pmode_get, _rcss.showinfo_t2_pmode_set)
+    __swig_setmethods__["team"] = _rcss.showinfo_t2_team_set
+    __swig_getmethods__["team"] = _rcss.showinfo_t2_team_get
+    if _newclass:
+        team = _swig_property(_rcss.showinfo_t2_team_get, _rcss.showinfo_t2_team_set)
+    __swig_setmethods__["ball"] = _rcss.showinfo_t2_ball_set
+    __swig_getmethods__["ball"] = _rcss.showinfo_t2_ball_get
+    if _newclass:
+        ball = _swig_property(_rcss.showinfo_t2_ball_get, _rcss.showinfo_t2_ball_set)
+    __swig_setmethods__["pos"] = _rcss.showinfo_t2_pos_set
+    __swig_getmethods__["pos"] = _rcss.showinfo_t2_pos_get
+    if _newclass:
+        pos = _swig_property(_rcss.showinfo_t2_pos_get, _rcss.showinfo_t2_pos_set)
+    __swig_setmethods__["time"] = _rcss.showinfo_t2_time_set
+    __swig_getmethods__["time"] = _rcss.showinfo_t2_time_get
+    if _newclass:
+        time = _swig_property(_rcss.showinfo_t2_time_get, _rcss.showinfo_t2_time_set)
+
+    def __init__(self):
+        this = _rcss.new_showinfo_t2()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_showinfo_t2
+    __del__ = lambda self: None
+showinfo_t2_swigregister = _rcss.showinfo_t2_swigregister
+showinfo_t2_swigregister(showinfo_t2)
+
+class short_showinfo_t2(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, short_showinfo_t2, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, short_showinfo_t2, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["ball"] = _rcss.short_showinfo_t2_ball_set
+    __swig_getmethods__["ball"] = _rcss.short_showinfo_t2_ball_get
+    if _newclass:
+        ball = _swig_property(_rcss.short_showinfo_t2_ball_get, _rcss.short_showinfo_t2_ball_set)
+    __swig_setmethods__["pos"] = _rcss.short_showinfo_t2_pos_set
+    __swig_getmethods__["pos"] = _rcss.short_showinfo_t2_pos_get
+    if _newclass:
+        pos = _swig_property(_rcss.short_showinfo_t2_pos_get, _rcss.short_showinfo_t2_pos_set)
+    __swig_setmethods__["time"] = _rcss.short_showinfo_t2_time_set
+    __swig_getmethods__["time"] = _rcss.short_showinfo_t2_time_get
+    if _newclass:
+        time = _swig_property(_rcss.short_showinfo_t2_time_get, _rcss.short_showinfo_t2_time_set)
+
+    def __init__(self):
+        this = _rcss.new_short_showinfo_t2()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_short_showinfo_t2
+    __del__ = lambda self: None
+short_showinfo_t2_swigregister = _rcss.short_showinfo_t2_swigregister
+short_showinfo_t2_swigregister(short_showinfo_t2)
+
+class player_type_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, player_type_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, player_type_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["id"] = _rcss.player_type_t_id_set
+    __swig_getmethods__["id"] = _rcss.player_type_t_id_get
+    if _newclass:
+        id = _swig_property(_rcss.player_type_t_id_get, _rcss.player_type_t_id_set)
+    __swig_setmethods__["player_speed_max"] = _rcss.player_type_t_player_speed_max_set
+    __swig_getmethods__["player_speed_max"] = _rcss.player_type_t_player_speed_max_get
+    if _newclass:
+        player_speed_max = _swig_property(_rcss.player_type_t_player_speed_max_get, _rcss.player_type_t_player_speed_max_set)
+    __swig_setmethods__["stamina_inc_max"] = _rcss.player_type_t_stamina_inc_max_set
+    __swig_getmethods__["stamina_inc_max"] = _rcss.player_type_t_stamina_inc_max_get
+    if _newclass:
+        stamina_inc_max = _swig_property(_rcss.player_type_t_stamina_inc_max_get, _rcss.player_type_t_stamina_inc_max_set)
+    __swig_setmethods__["player_decay"] = _rcss.player_type_t_player_decay_set
+    __swig_getmethods__["player_decay"] = _rcss.player_type_t_player_decay_get
+    if _newclass:
+        player_decay = _swig_property(_rcss.player_type_t_player_decay_get, _rcss.player_type_t_player_decay_set)
+    __swig_setmethods__["inertia_moment"] = _rcss.player_type_t_inertia_moment_set
+    __swig_getmethods__["inertia_moment"] = _rcss.player_type_t_inertia_moment_get
+    if _newclass:
+        inertia_moment = _swig_property(_rcss.player_type_t_inertia_moment_get, _rcss.player_type_t_inertia_moment_set)
+    __swig_setmethods__["dash_power_rate"] = _rcss.player_type_t_dash_power_rate_set
+    __swig_getmethods__["dash_power_rate"] = _rcss.player_type_t_dash_power_rate_get
+    if _newclass:
+        dash_power_rate = _swig_property(_rcss.player_type_t_dash_power_rate_get, _rcss.player_type_t_dash_power_rate_set)
+    __swig_setmethods__["player_size"] = _rcss.player_type_t_player_size_set
+    __swig_getmethods__["player_size"] = _rcss.player_type_t_player_size_get
+    if _newclass:
+        player_size = _swig_property(_rcss.player_type_t_player_size_get, _rcss.player_type_t_player_size_set)
+    __swig_setmethods__["kickable_margin"] = _rcss.player_type_t_kickable_margin_set
+    __swig_getmethods__["kickable_margin"] = _rcss.player_type_t_kickable_margin_get
+    if _newclass:
+        kickable_margin = _swig_property(_rcss.player_type_t_kickable_margin_get, _rcss.player_type_t_kickable_margin_set)
+    __swig_setmethods__["kick_rand"] = _rcss.player_type_t_kick_rand_set
+    __swig_getmethods__["kick_rand"] = _rcss.player_type_t_kick_rand_get
+    if _newclass:
+        kick_rand = _swig_property(_rcss.player_type_t_kick_rand_get, _rcss.player_type_t_kick_rand_set)
+    __swig_setmethods__["extra_stamina"] = _rcss.player_type_t_extra_stamina_set
+    __swig_getmethods__["extra_stamina"] = _rcss.player_type_t_extra_stamina_get
+    if _newclass:
+        extra_stamina = _swig_property(_rcss.player_type_t_extra_stamina_get, _rcss.player_type_t_extra_stamina_set)
+    __swig_setmethods__["effort_max"] = _rcss.player_type_t_effort_max_set
+    __swig_getmethods__["effort_max"] = _rcss.player_type_t_effort_max_get
+    if _newclass:
+        effort_max = _swig_property(_rcss.player_type_t_effort_max_get, _rcss.player_type_t_effort_max_set)
+    __swig_setmethods__["effort_min"] = _rcss.player_type_t_effort_min_set
+    __swig_getmethods__["effort_min"] = _rcss.player_type_t_effort_min_get
+    if _newclass:
+        effort_min = _swig_property(_rcss.player_type_t_effort_min_get, _rcss.player_type_t_effort_min_set)
+    __swig_setmethods__["kick_power_rate"] = _rcss.player_type_t_kick_power_rate_set
+    __swig_getmethods__["kick_power_rate"] = _rcss.player_type_t_kick_power_rate_get
+    if _newclass:
+        kick_power_rate = _swig_property(_rcss.player_type_t_kick_power_rate_get, _rcss.player_type_t_kick_power_rate_set)
+    __swig_setmethods__["foul_detect_probability"] = _rcss.player_type_t_foul_detect_probability_set
+    __swig_getmethods__["foul_detect_probability"] = _rcss.player_type_t_foul_detect_probability_get
+    if _newclass:
+        foul_detect_probability = _swig_property(_rcss.player_type_t_foul_detect_probability_get, _rcss.player_type_t_foul_detect_probability_set)
+    __swig_setmethods__["catchable_area_l_stretch"] = _rcss.player_type_t_catchable_area_l_stretch_set
+    __swig_getmethods__["catchable_area_l_stretch"] = _rcss.player_type_t_catchable_area_l_stretch_get
+    if _newclass:
+        catchable_area_l_stretch = _swig_property(_rcss.player_type_t_catchable_area_l_stretch_get, _rcss.player_type_t_catchable_area_l_stretch_set)
+    __swig_setmethods__["sparelong4"] = _rcss.player_type_t_sparelong4_set
+    __swig_getmethods__["sparelong4"] = _rcss.player_type_t_sparelong4_get
+    if _newclass:
+        sparelong4 = _swig_property(_rcss.player_type_t_sparelong4_get, _rcss.player_type_t_sparelong4_set)
+    __swig_setmethods__["sparelong5"] = _rcss.player_type_t_sparelong5_set
+    __swig_getmethods__["sparelong5"] = _rcss.player_type_t_sparelong5_get
+    if _newclass:
+        sparelong5 = _swig_property(_rcss.player_type_t_sparelong5_get, _rcss.player_type_t_sparelong5_set)
+    __swig_setmethods__["sparelong6"] = _rcss.player_type_t_sparelong6_set
+    __swig_getmethods__["sparelong6"] = _rcss.player_type_t_sparelong6_get
+    if _newclass:
+        sparelong6 = _swig_property(_rcss.player_type_t_sparelong6_get, _rcss.player_type_t_sparelong6_set)
+    __swig_setmethods__["sparelong7"] = _rcss.player_type_t_sparelong7_set
+    __swig_getmethods__["sparelong7"] = _rcss.player_type_t_sparelong7_get
+    if _newclass:
+        sparelong7 = _swig_property(_rcss.player_type_t_sparelong7_get, _rcss.player_type_t_sparelong7_set)
+    __swig_setmethods__["sparelong8"] = _rcss.player_type_t_sparelong8_set
+    __swig_getmethods__["sparelong8"] = _rcss.player_type_t_sparelong8_get
+    if _newclass:
+        sparelong8 = _swig_property(_rcss.player_type_t_sparelong8_get, _rcss.player_type_t_sparelong8_set)
+    __swig_setmethods__["sparelong9"] = _rcss.player_type_t_sparelong9_set
+    __swig_getmethods__["sparelong9"] = _rcss.player_type_t_sparelong9_get
+    if _newclass:
+        sparelong9 = _swig_property(_rcss.player_type_t_sparelong9_get, _rcss.player_type_t_sparelong9_set)
+    __swig_setmethods__["sparelong10"] = _rcss.player_type_t_sparelong10_set
+    __swig_getmethods__["sparelong10"] = _rcss.player_type_t_sparelong10_get
+    if _newclass:
+        sparelong10 = _swig_property(_rcss.player_type_t_sparelong10_get, _rcss.player_type_t_sparelong10_set)
+
+    def __init__(self):
+        this = _rcss.new_player_type_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_player_type_t
+    __del__ = lambda self: None
+player_type_t_swigregister = _rcss.player_type_t_swigregister
+player_type_t_swigregister(player_type_t)
+
+class server_params_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, server_params_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, server_params_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["gwidth"] = _rcss.server_params_t_gwidth_set
+    __swig_getmethods__["gwidth"] = _rcss.server_params_t_gwidth_get
+    if _newclass:
+        gwidth = _swig_property(_rcss.server_params_t_gwidth_get, _rcss.server_params_t_gwidth_set)
+    __swig_setmethods__["inertia_moment"] = _rcss.server_params_t_inertia_moment_set
+    __swig_getmethods__["inertia_moment"] = _rcss.server_params_t_inertia_moment_get
+    if _newclass:
+        inertia_moment = _swig_property(_rcss.server_params_t_inertia_moment_get, _rcss.server_params_t_inertia_moment_set)
+    __swig_setmethods__["psize"] = _rcss.server_params_t_psize_set
+    __swig_getmethods__["psize"] = _rcss.server_params_t_psize_get
+    if _newclass:
+        psize = _swig_property(_rcss.server_params_t_psize_get, _rcss.server_params_t_psize_set)
+    __swig_setmethods__["pdecay"] = _rcss.server_params_t_pdecay_set
+    __swig_getmethods__["pdecay"] = _rcss.server_params_t_pdecay_get
+    if _newclass:
+        pdecay = _swig_property(_rcss.server_params_t_pdecay_get, _rcss.server_params_t_pdecay_set)
+    __swig_setmethods__["prand"] = _rcss.server_params_t_prand_set
+    __swig_getmethods__["prand"] = _rcss.server_params_t_prand_get
+    if _newclass:
+        prand = _swig_property(_rcss.server_params_t_prand_get, _rcss.server_params_t_prand_set)
+    __swig_setmethods__["pweight"] = _rcss.server_params_t_pweight_set
+    __swig_getmethods__["pweight"] = _rcss.server_params_t_pweight_get
+    if _newclass:
+        pweight = _swig_property(_rcss.server_params_t_pweight_get, _rcss.server_params_t_pweight_set)
+    __swig_setmethods__["pspeed_max"] = _rcss.server_params_t_pspeed_max_set
+    __swig_getmethods__["pspeed_max"] = _rcss.server_params_t_pspeed_max_get
+    if _newclass:
+        pspeed_max = _swig_property(_rcss.server_params_t_pspeed_max_get, _rcss.server_params_t_pspeed_max_set)
+    __swig_setmethods__["paccel_max"] = _rcss.server_params_t_paccel_max_set
+    __swig_getmethods__["paccel_max"] = _rcss.server_params_t_paccel_max_get
+    if _newclass:
+        paccel_max = _swig_property(_rcss.server_params_t_paccel_max_get, _rcss.server_params_t_paccel_max_set)
+    __swig_setmethods__["stamina_max"] = _rcss.server_params_t_stamina_max_set
+    __swig_getmethods__["stamina_max"] = _rcss.server_params_t_stamina_max_get
+    if _newclass:
+        stamina_max = _swig_property(_rcss.server_params_t_stamina_max_get, _rcss.server_params_t_stamina_max_set)
+    __swig_setmethods__["stamina_inc"] = _rcss.server_params_t_stamina_inc_set
+    __swig_getmethods__["stamina_inc"] = _rcss.server_params_t_stamina_inc_get
+    if _newclass:
+        stamina_inc = _swig_property(_rcss.server_params_t_stamina_inc_get, _rcss.server_params_t_stamina_inc_set)
+    __swig_setmethods__["recover_init"] = _rcss.server_params_t_recover_init_set
+    __swig_getmethods__["recover_init"] = _rcss.server_params_t_recover_init_get
+    if _newclass:
+        recover_init = _swig_property(_rcss.server_params_t_recover_init_get, _rcss.server_params_t_recover_init_set)
+    __swig_setmethods__["recover_dthr"] = _rcss.server_params_t_recover_dthr_set
+    __swig_getmethods__["recover_dthr"] = _rcss.server_params_t_recover_dthr_get
+    if _newclass:
+        recover_dthr = _swig_property(_rcss.server_params_t_recover_dthr_get, _rcss.server_params_t_recover_dthr_set)
+    __swig_setmethods__["recover_min"] = _rcss.server_params_t_recover_min_set
+    __swig_getmethods__["recover_min"] = _rcss.server_params_t_recover_min_get
+    if _newclass:
+        recover_min = _swig_property(_rcss.server_params_t_recover_min_get, _rcss.server_params_t_recover_min_set)
+    __swig_setmethods__["recover_dec"] = _rcss.server_params_t_recover_dec_set
+    __swig_getmethods__["recover_dec"] = _rcss.server_params_t_recover_dec_get
+    if _newclass:
+        recover_dec = _swig_property(_rcss.server_params_t_recover_dec_get, _rcss.server_params_t_recover_dec_set)
+    __swig_setmethods__["effort_init"] = _rcss.server_params_t_effort_init_set
+    __swig_getmethods__["effort_init"] = _rcss.server_params_t_effort_init_get
+    if _newclass:
+        effort_init = _swig_property(_rcss.server_params_t_effort_init_get, _rcss.server_params_t_effort_init_set)
+    __swig_setmethods__["effort_dthr"] = _rcss.server_params_t_effort_dthr_set
+    __swig_getmethods__["effort_dthr"] = _rcss.server_params_t_effort_dthr_get
+    if _newclass:
+        effort_dthr = _swig_property(_rcss.server_params_t_effort_dthr_get, _rcss.server_params_t_effort_dthr_set)
+    __swig_setmethods__["effort_min"] = _rcss.server_params_t_effort_min_set
+    __swig_getmethods__["effort_min"] = _rcss.server_params_t_effort_min_get
+    if _newclass:
+        effort_min = _swig_property(_rcss.server_params_t_effort_min_get, _rcss.server_params_t_effort_min_set)
+    __swig_setmethods__["effort_dec"] = _rcss.server_params_t_effort_dec_set
+    __swig_getmethods__["effort_dec"] = _rcss.server_params_t_effort_dec_get
+    if _newclass:
+        effort_dec = _swig_property(_rcss.server_params_t_effort_dec_get, _rcss.server_params_t_effort_dec_set)
+    __swig_setmethods__["effort_ithr"] = _rcss.server_params_t_effort_ithr_set
+    __swig_getmethods__["effort_ithr"] = _rcss.server_params_t_effort_ithr_get
+    if _newclass:
+        effort_ithr = _swig_property(_rcss.server_params_t_effort_ithr_get, _rcss.server_params_t_effort_ithr_set)
+    __swig_setmethods__["effort_inc"] = _rcss.server_params_t_effort_inc_set
+    __swig_getmethods__["effort_inc"] = _rcss.server_params_t_effort_inc_get
+    if _newclass:
+        effort_inc = _swig_property(_rcss.server_params_t_effort_inc_get, _rcss.server_params_t_effort_inc_set)
+    __swig_setmethods__["kick_rand"] = _rcss.server_params_t_kick_rand_set
+    __swig_getmethods__["kick_rand"] = _rcss.server_params_t_kick_rand_get
+    if _newclass:
+        kick_rand = _swig_property(_rcss.server_params_t_kick_rand_get, _rcss.server_params_t_kick_rand_set)
+    __swig_setmethods__["team_actuator_noise"] = _rcss.server_params_t_team_actuator_noise_set
+    __swig_getmethods__["team_actuator_noise"] = _rcss.server_params_t_team_actuator_noise_get
+    if _newclass:
+        team_actuator_noise = _swig_property(_rcss.server_params_t_team_actuator_noise_get, _rcss.server_params_t_team_actuator_noise_set)
+    __swig_setmethods__["prand_factor_l"] = _rcss.server_params_t_prand_factor_l_set
+    __swig_getmethods__["prand_factor_l"] = _rcss.server_params_t_prand_factor_l_get
+    if _newclass:
+        prand_factor_l = _swig_property(_rcss.server_params_t_prand_factor_l_get, _rcss.server_params_t_prand_factor_l_set)
+    __swig_setmethods__["prand_factor_r"] = _rcss.server_params_t_prand_factor_r_set
+    __swig_getmethods__["prand_factor_r"] = _rcss.server_params_t_prand_factor_r_get
+    if _newclass:
+        prand_factor_r = _swig_property(_rcss.server_params_t_prand_factor_r_get, _rcss.server_params_t_prand_factor_r_set)
+    __swig_setmethods__["kick_rand_factor_l"] = _rcss.server_params_t_kick_rand_factor_l_set
+    __swig_getmethods__["kick_rand_factor_l"] = _rcss.server_params_t_kick_rand_factor_l_get
+    if _newclass:
+        kick_rand_factor_l = _swig_property(_rcss.server_params_t_kick_rand_factor_l_get, _rcss.server_params_t_kick_rand_factor_l_set)
+    __swig_setmethods__["kick_rand_factor_r"] = _rcss.server_params_t_kick_rand_factor_r_set
+    __swig_getmethods__["kick_rand_factor_r"] = _rcss.server_params_t_kick_rand_factor_r_get
+    if _newclass:
+        kick_rand_factor_r = _swig_property(_rcss.server_params_t_kick_rand_factor_r_get, _rcss.server_params_t_kick_rand_factor_r_set)
+    __swig_setmethods__["bsize"] = _rcss.server_params_t_bsize_set
+    __swig_getmethods__["bsize"] = _rcss.server_params_t_bsize_get
+    if _newclass:
+        bsize = _swig_property(_rcss.server_params_t_bsize_get, _rcss.server_params_t_bsize_set)
+    __swig_setmethods__["bdecay"] = _rcss.server_params_t_bdecay_set
+    __swig_getmethods__["bdecay"] = _rcss.server_params_t_bdecay_get
+    if _newclass:
+        bdecay = _swig_property(_rcss.server_params_t_bdecay_get, _rcss.server_params_t_bdecay_set)
+    __swig_setmethods__["brand"] = _rcss.server_params_t_brand_set
+    __swig_getmethods__["brand"] = _rcss.server_params_t_brand_get
+    if _newclass:
+        brand = _swig_property(_rcss.server_params_t_brand_get, _rcss.server_params_t_brand_set)
+    __swig_setmethods__["bweight"] = _rcss.server_params_t_bweight_set
+    __swig_getmethods__["bweight"] = _rcss.server_params_t_bweight_get
+    if _newclass:
+        bweight = _swig_property(_rcss.server_params_t_bweight_get, _rcss.server_params_t_bweight_set)
+    __swig_setmethods__["bspeed_max"] = _rcss.server_params_t_bspeed_max_set
+    __swig_getmethods__["bspeed_max"] = _rcss.server_params_t_bspeed_max_get
+    if _newclass:
+        bspeed_max = _swig_property(_rcss.server_params_t_bspeed_max_get, _rcss.server_params_t_bspeed_max_set)
+    __swig_setmethods__["baccel_max"] = _rcss.server_params_t_baccel_max_set
+    __swig_getmethods__["baccel_max"] = _rcss.server_params_t_baccel_max_get
+    if _newclass:
+        baccel_max = _swig_property(_rcss.server_params_t_baccel_max_get, _rcss.server_params_t_baccel_max_set)
+    __swig_setmethods__["dprate"] = _rcss.server_params_t_dprate_set
+    __swig_getmethods__["dprate"] = _rcss.server_params_t_dprate_get
+    if _newclass:
+        dprate = _swig_property(_rcss.server_params_t_dprate_get, _rcss.server_params_t_dprate_set)
+    __swig_setmethods__["kprate"] = _rcss.server_params_t_kprate_set
+    __swig_getmethods__["kprate"] = _rcss.server_params_t_kprate_get
+    if _newclass:
+        kprate = _swig_property(_rcss.server_params_t_kprate_get, _rcss.server_params_t_kprate_set)
+    __swig_setmethods__["kmargin"] = _rcss.server_params_t_kmargin_set
+    __swig_getmethods__["kmargin"] = _rcss.server_params_t_kmargin_get
+    if _newclass:
+        kmargin = _swig_property(_rcss.server_params_t_kmargin_get, _rcss.server_params_t_kmargin_set)
+    __swig_setmethods__["ctlradius"] = _rcss.server_params_t_ctlradius_set
+    __swig_getmethods__["ctlradius"] = _rcss.server_params_t_ctlradius_get
+    if _newclass:
+        ctlradius = _swig_property(_rcss.server_params_t_ctlradius_get, _rcss.server_params_t_ctlradius_set)
+    __swig_setmethods__["ctlradius_width"] = _rcss.server_params_t_ctlradius_width_set
+    __swig_getmethods__["ctlradius_width"] = _rcss.server_params_t_ctlradius_width_get
+    if _newclass:
+        ctlradius_width = _swig_property(_rcss.server_params_t_ctlradius_width_get, _rcss.server_params_t_ctlradius_width_set)
+    __swig_setmethods__["maxp"] = _rcss.server_params_t_maxp_set
+    __swig_getmethods__["maxp"] = _rcss.server_params_t_maxp_get
+    if _newclass:
+        maxp = _swig_property(_rcss.server_params_t_maxp_get, _rcss.server_params_t_maxp_set)
+    __swig_setmethods__["minp"] = _rcss.server_params_t_minp_set
+    __swig_getmethods__["minp"] = _rcss.server_params_t_minp_get
+    if _newclass:
+        minp = _swig_property(_rcss.server_params_t_minp_get, _rcss.server_params_t_minp_set)
+    __swig_setmethods__["maxm"] = _rcss.server_params_t_maxm_set
+    __swig_getmethods__["maxm"] = _rcss.server_params_t_maxm_get
+    if _newclass:
+        maxm = _swig_property(_rcss.server_params_t_maxm_get, _rcss.server_params_t_maxm_set)
+    __swig_setmethods__["minm"] = _rcss.server_params_t_minm_set
+    __swig_getmethods__["minm"] = _rcss.server_params_t_minm_get
+    if _newclass:
+        minm = _swig_property(_rcss.server_params_t_minm_get, _rcss.server_params_t_minm_set)
+    __swig_setmethods__["maxnm"] = _rcss.server_params_t_maxnm_set
+    __swig_getmethods__["maxnm"] = _rcss.server_params_t_maxnm_get
+    if _newclass:
+        maxnm = _swig_property(_rcss.server_params_t_maxnm_get, _rcss.server_params_t_maxnm_set)
+    __swig_setmethods__["minnm"] = _rcss.server_params_t_minnm_set
+    __swig_getmethods__["minnm"] = _rcss.server_params_t_minnm_get
+    if _newclass:
+        minnm = _swig_property(_rcss.server_params_t_minnm_get, _rcss.server_params_t_minnm_set)
+    __swig_setmethods__["maxn"] = _rcss.server_params_t_maxn_set
+    __swig_getmethods__["maxn"] = _rcss.server_params_t_maxn_get
+    if _newclass:
+        maxn = _swig_property(_rcss.server_params_t_maxn_get, _rcss.server_params_t_maxn_set)
+    __swig_setmethods__["minn"] = _rcss.server_params_t_minn_set
+    __swig_getmethods__["minn"] = _rcss.server_params_t_minn_get
+    if _newclass:
+        minn = _swig_property(_rcss.server_params_t_minn_get, _rcss.server_params_t_minn_set)
+    __swig_setmethods__["visangle"] = _rcss.server_params_t_visangle_set
+    __swig_getmethods__["visangle"] = _rcss.server_params_t_visangle_get
+    if _newclass:
+        visangle = _swig_property(_rcss.server_params_t_visangle_get, _rcss.server_params_t_visangle_set)
+    __swig_setmethods__["visdist"] = _rcss.server_params_t_visdist_set
+    __swig_getmethods__["visdist"] = _rcss.server_params_t_visdist_get
+    if _newclass:
+        visdist = _swig_property(_rcss.server_params_t_visdist_get, _rcss.server_params_t_visdist_set)
+    __swig_setmethods__["windir"] = _rcss.server_params_t_windir_set
+    __swig_getmethods__["windir"] = _rcss.server_params_t_windir_get
+    if _newclass:
+        windir = _swig_property(_rcss.server_params_t_windir_get, _rcss.server_params_t_windir_set)
+    __swig_setmethods__["winforce"] = _rcss.server_params_t_winforce_set
+    __swig_getmethods__["winforce"] = _rcss.server_params_t_winforce_get
+    if _newclass:
+        winforce = _swig_property(_rcss.server_params_t_winforce_get, _rcss.server_params_t_winforce_set)
+    __swig_setmethods__["winang"] = _rcss.server_params_t_winang_set
+    __swig_getmethods__["winang"] = _rcss.server_params_t_winang_get
+    if _newclass:
+        winang = _swig_property(_rcss.server_params_t_winang_get, _rcss.server_params_t_winang_set)
+    __swig_setmethods__["winrand"] = _rcss.server_params_t_winrand_set
+    __swig_getmethods__["winrand"] = _rcss.server_params_t_winrand_get
+    if _newclass:
+        winrand = _swig_property(_rcss.server_params_t_winrand_get, _rcss.server_params_t_winrand_set)
+    __swig_setmethods__["kickable_area"] = _rcss.server_params_t_kickable_area_set
+    __swig_getmethods__["kickable_area"] = _rcss.server_params_t_kickable_area_get
+    if _newclass:
+        kickable_area = _swig_property(_rcss.server_params_t_kickable_area_get, _rcss.server_params_t_kickable_area_set)
+    __swig_setmethods__["catch_area_l"] = _rcss.server_params_t_catch_area_l_set
+    __swig_getmethods__["catch_area_l"] = _rcss.server_params_t_catch_area_l_get
+    if _newclass:
+        catch_area_l = _swig_property(_rcss.server_params_t_catch_area_l_get, _rcss.server_params_t_catch_area_l_set)
+    __swig_setmethods__["catch_area_w"] = _rcss.server_params_t_catch_area_w_set
+    __swig_getmethods__["catch_area_w"] = _rcss.server_params_t_catch_area_w_get
+    if _newclass:
+        catch_area_w = _swig_property(_rcss.server_params_t_catch_area_w_get, _rcss.server_params_t_catch_area_w_set)
+    __swig_setmethods__["catch_prob"] = _rcss.server_params_t_catch_prob_set
+    __swig_getmethods__["catch_prob"] = _rcss.server_params_t_catch_prob_get
+    if _newclass:
+        catch_prob = _swig_property(_rcss.server_params_t_catch_prob_get, _rcss.server_params_t_catch_prob_set)
+    __swig_setmethods__["goalie_max_moves"] = _rcss.server_params_t_goalie_max_moves_set
+    __swig_getmethods__["goalie_max_moves"] = _rcss.server_params_t_goalie_max_moves_get
+    if _newclass:
+        goalie_max_moves = _swig_property(_rcss.server_params_t_goalie_max_moves_get, _rcss.server_params_t_goalie_max_moves_set)
+    __swig_setmethods__["ckmargin"] = _rcss.server_params_t_ckmargin_set
+    __swig_getmethods__["ckmargin"] = _rcss.server_params_t_ckmargin_get
+    if _newclass:
+        ckmargin = _swig_property(_rcss.server_params_t_ckmargin_get, _rcss.server_params_t_ckmargin_set)
+    __swig_setmethods__["offside_area"] = _rcss.server_params_t_offside_area_set
+    __swig_getmethods__["offside_area"] = _rcss.server_params_t_offside_area_get
+    if _newclass:
+        offside_area = _swig_property(_rcss.server_params_t_offside_area_get, _rcss.server_params_t_offside_area_set)
+    __swig_setmethods__["win_no"] = _rcss.server_params_t_win_no_set
+    __swig_getmethods__["win_no"] = _rcss.server_params_t_win_no_get
+    if _newclass:
+        win_no = _swig_property(_rcss.server_params_t_win_no_get, _rcss.server_params_t_win_no_set)
+    __swig_setmethods__["win_random"] = _rcss.server_params_t_win_random_set
+    __swig_getmethods__["win_random"] = _rcss.server_params_t_win_random_get
+    if _newclass:
+        win_random = _swig_property(_rcss.server_params_t_win_random_get, _rcss.server_params_t_win_random_set)
+    __swig_setmethods__["say_cnt_max"] = _rcss.server_params_t_say_cnt_max_set
+    __swig_getmethods__["say_cnt_max"] = _rcss.server_params_t_say_cnt_max_get
+    if _newclass:
+        say_cnt_max = _swig_property(_rcss.server_params_t_say_cnt_max_get, _rcss.server_params_t_say_cnt_max_set)
+    __swig_setmethods__["SayCoachMsgSize"] = _rcss.server_params_t_SayCoachMsgSize_set
+    __swig_getmethods__["SayCoachMsgSize"] = _rcss.server_params_t_SayCoachMsgSize_get
+    if _newclass:
+        SayCoachMsgSize = _swig_property(_rcss.server_params_t_SayCoachMsgSize_get, _rcss.server_params_t_SayCoachMsgSize_set)
+    __swig_setmethods__["clang_win_size"] = _rcss.server_params_t_clang_win_size_set
+    __swig_getmethods__["clang_win_size"] = _rcss.server_params_t_clang_win_size_get
+    if _newclass:
+        clang_win_size = _swig_property(_rcss.server_params_t_clang_win_size_get, _rcss.server_params_t_clang_win_size_set)
+    __swig_setmethods__["clang_define_win"] = _rcss.server_params_t_clang_define_win_set
+    __swig_getmethods__["clang_define_win"] = _rcss.server_params_t_clang_define_win_get
+    if _newclass:
+        clang_define_win = _swig_property(_rcss.server_params_t_clang_define_win_get, _rcss.server_params_t_clang_define_win_set)
+    __swig_setmethods__["clang_meta_win"] = _rcss.server_params_t_clang_meta_win_set
+    __swig_getmethods__["clang_meta_win"] = _rcss.server_params_t_clang_meta_win_get
+    if _newclass:
+        clang_meta_win = _swig_property(_rcss.server_params_t_clang_meta_win_get, _rcss.server_params_t_clang_meta_win_set)
+    __swig_setmethods__["clang_advice_win"] = _rcss.server_params_t_clang_advice_win_set
+    __swig_getmethods__["clang_advice_win"] = _rcss.server_params_t_clang_advice_win_get
+    if _newclass:
+        clang_advice_win = _swig_property(_rcss.server_params_t_clang_advice_win_get, _rcss.server_params_t_clang_advice_win_set)
+    __swig_setmethods__["clang_info_win"] = _rcss.server_params_t_clang_info_win_set
+    __swig_getmethods__["clang_info_win"] = _rcss.server_params_t_clang_info_win_get
+    if _newclass:
+        clang_info_win = _swig_property(_rcss.server_params_t_clang_info_win_get, _rcss.server_params_t_clang_info_win_set)
+    __swig_setmethods__["clang_mess_delay"] = _rcss.server_params_t_clang_mess_delay_set
+    __swig_getmethods__["clang_mess_delay"] = _rcss.server_params_t_clang_mess_delay_get
+    if _newclass:
+        clang_mess_delay = _swig_property(_rcss.server_params_t_clang_mess_delay_get, _rcss.server_params_t_clang_mess_delay_set)
+    __swig_setmethods__["clang_mess_per_cycle"] = _rcss.server_params_t_clang_mess_per_cycle_set
+    __swig_getmethods__["clang_mess_per_cycle"] = _rcss.server_params_t_clang_mess_per_cycle_get
+    if _newclass:
+        clang_mess_per_cycle = _swig_property(_rcss.server_params_t_clang_mess_per_cycle_get, _rcss.server_params_t_clang_mess_per_cycle_set)
+    __swig_setmethods__["half_time"] = _rcss.server_params_t_half_time_set
+    __swig_getmethods__["half_time"] = _rcss.server_params_t_half_time_get
+    if _newclass:
+        half_time = _swig_property(_rcss.server_params_t_half_time_get, _rcss.server_params_t_half_time_set)
+    __swig_setmethods__["sim_st"] = _rcss.server_params_t_sim_st_set
+    __swig_getmethods__["sim_st"] = _rcss.server_params_t_sim_st_get
+    if _newclass:
+        sim_st = _swig_property(_rcss.server_params_t_sim_st_get, _rcss.server_params_t_sim_st_set)
+    __swig_setmethods__["send_st"] = _rcss.server_params_t_send_st_set
+    __swig_getmethods__["send_st"] = _rcss.server_params_t_send_st_get
+    if _newclass:
+        send_st = _swig_property(_rcss.server_params_t_send_st_get, _rcss.server_params_t_send_st_set)
+    __swig_setmethods__["recv_st"] = _rcss.server_params_t_recv_st_set
+    __swig_getmethods__["recv_st"] = _rcss.server_params_t_recv_st_get
+    if _newclass:
+        recv_st = _swig_property(_rcss.server_params_t_recv_st_get, _rcss.server_params_t_recv_st_set)
+    __swig_setmethods__["sb_step"] = _rcss.server_params_t_sb_step_set
+    __swig_getmethods__["sb_step"] = _rcss.server_params_t_sb_step_get
+    if _newclass:
+        sb_step = _swig_property(_rcss.server_params_t_sb_step_get, _rcss.server_params_t_sb_step_set)
+    __swig_setmethods__["lcm_st"] = _rcss.server_params_t_lcm_st_set
+    __swig_getmethods__["lcm_st"] = _rcss.server_params_t_lcm_st_get
+    if _newclass:
+        lcm_st = _swig_property(_rcss.server_params_t_lcm_st_get, _rcss.server_params_t_lcm_st_set)
+    __swig_setmethods__["M_say_msg_size"] = _rcss.server_params_t_M_say_msg_size_set
+    __swig_getmethods__["M_say_msg_size"] = _rcss.server_params_t_M_say_msg_size_get
+    if _newclass:
+        M_say_msg_size = _swig_property(_rcss.server_params_t_M_say_msg_size_get, _rcss.server_params_t_M_say_msg_size_set)
+    __swig_setmethods__["M_hear_max"] = _rcss.server_params_t_M_hear_max_set
+    __swig_getmethods__["M_hear_max"] = _rcss.server_params_t_M_hear_max_get
+    if _newclass:
+        M_hear_max = _swig_property(_rcss.server_params_t_M_hear_max_get, _rcss.server_params_t_M_hear_max_set)
+    __swig_setmethods__["M_hear_inc"] = _rcss.server_params_t_M_hear_inc_set
+    __swig_getmethods__["M_hear_inc"] = _rcss.server_params_t_M_hear_inc_get
+    if _newclass:
+        M_hear_inc = _swig_property(_rcss.server_params_t_M_hear_inc_get, _rcss.server_params_t_M_hear_inc_set)
+    __swig_setmethods__["M_hear_decay"] = _rcss.server_params_t_M_hear_decay_set
+    __swig_getmethods__["M_hear_decay"] = _rcss.server_params_t_M_hear_decay_get
+    if _newclass:
+        M_hear_decay = _swig_property(_rcss.server_params_t_M_hear_decay_get, _rcss.server_params_t_M_hear_decay_set)
+    __swig_setmethods__["cban_cycle"] = _rcss.server_params_t_cban_cycle_set
+    __swig_getmethods__["cban_cycle"] = _rcss.server_params_t_cban_cycle_get
+    if _newclass:
+        cban_cycle = _swig_property(_rcss.server_params_t_cban_cycle_get, _rcss.server_params_t_cban_cycle_set)
+    __swig_setmethods__["slow_down_factor"] = _rcss.server_params_t_slow_down_factor_set
+    __swig_getmethods__["slow_down_factor"] = _rcss.server_params_t_slow_down_factor_get
+    if _newclass:
+        slow_down_factor = _swig_property(_rcss.server_params_t_slow_down_factor_get, _rcss.server_params_t_slow_down_factor_set)
+    __swig_setmethods__["useoffside"] = _rcss.server_params_t_useoffside_set
+    __swig_getmethods__["useoffside"] = _rcss.server_params_t_useoffside_get
+    if _newclass:
+        useoffside = _swig_property(_rcss.server_params_t_useoffside_get, _rcss.server_params_t_useoffside_set)
+    __swig_setmethods__["kickoffoffside"] = _rcss.server_params_t_kickoffoffside_set
+    __swig_getmethods__["kickoffoffside"] = _rcss.server_params_t_kickoffoffside_get
+    if _newclass:
+        kickoffoffside = _swig_property(_rcss.server_params_t_kickoffoffside_get, _rcss.server_params_t_kickoffoffside_set)
+    __swig_setmethods__["offside_kick_margin"] = _rcss.server_params_t_offside_kick_margin_set
+    __swig_getmethods__["offside_kick_margin"] = _rcss.server_params_t_offside_kick_margin_get
+    if _newclass:
+        offside_kick_margin = _swig_property(_rcss.server_params_t_offside_kick_margin_get, _rcss.server_params_t_offside_kick_margin_set)
+    __swig_setmethods__["audio_dist"] = _rcss.server_params_t_audio_dist_set
+    __swig_getmethods__["audio_dist"] = _rcss.server_params_t_audio_dist_get
+    if _newclass:
+        audio_dist = _swig_property(_rcss.server_params_t_audio_dist_get, _rcss.server_params_t_audio_dist_set)
+    __swig_setmethods__["dist_qstep"] = _rcss.server_params_t_dist_qstep_set
+    __swig_getmethods__["dist_qstep"] = _rcss.server_params_t_dist_qstep_get
+    if _newclass:
+        dist_qstep = _swig_property(_rcss.server_params_t_dist_qstep_get, _rcss.server_params_t_dist_qstep_set)
+    __swig_setmethods__["land_qstep"] = _rcss.server_params_t_land_qstep_set
+    __swig_getmethods__["land_qstep"] = _rcss.server_params_t_land_qstep_get
+    if _newclass:
+        land_qstep = _swig_property(_rcss.server_params_t_land_qstep_get, _rcss.server_params_t_land_qstep_set)
+    __swig_setmethods__["dir_qstep"] = _rcss.server_params_t_dir_qstep_set
+    __swig_getmethods__["dir_qstep"] = _rcss.server_params_t_dir_qstep_get
+    if _newclass:
+        dir_qstep = _swig_property(_rcss.server_params_t_dir_qstep_get, _rcss.server_params_t_dir_qstep_set)
+    __swig_setmethods__["dist_qstep_l"] = _rcss.server_params_t_dist_qstep_l_set
+    __swig_getmethods__["dist_qstep_l"] = _rcss.server_params_t_dist_qstep_l_get
+    if _newclass:
+        dist_qstep_l = _swig_property(_rcss.server_params_t_dist_qstep_l_get, _rcss.server_params_t_dist_qstep_l_set)
+    __swig_setmethods__["dist_qstep_r"] = _rcss.server_params_t_dist_qstep_r_set
+    __swig_getmethods__["dist_qstep_r"] = _rcss.server_params_t_dist_qstep_r_get
+    if _newclass:
+        dist_qstep_r = _swig_property(_rcss.server_params_t_dist_qstep_r_get, _rcss.server_params_t_dist_qstep_r_set)
+    __swig_setmethods__["land_qstep_l"] = _rcss.server_params_t_land_qstep_l_set
+    __swig_getmethods__["land_qstep_l"] = _rcss.server_params_t_land_qstep_l_get
+    if _newclass:
+        land_qstep_l = _swig_property(_rcss.server_params_t_land_qstep_l_get, _rcss.server_params_t_land_qstep_l_set)
+    __swig_setmethods__["land_qstep_r"] = _rcss.server_params_t_land_qstep_r_set
+    __swig_getmethods__["land_qstep_r"] = _rcss.server_params_t_land_qstep_r_get
+    if _newclass:
+        land_qstep_r = _swig_property(_rcss.server_params_t_land_qstep_r_get, _rcss.server_params_t_land_qstep_r_set)
+    __swig_setmethods__["dir_qstep_l"] = _rcss.server_params_t_dir_qstep_l_set
+    __swig_getmethods__["dir_qstep_l"] = _rcss.server_params_t_dir_qstep_l_get
+    if _newclass:
+        dir_qstep_l = _swig_property(_rcss.server_params_t_dir_qstep_l_get, _rcss.server_params_t_dir_qstep_l_set)
+    __swig_setmethods__["dir_qstep_r"] = _rcss.server_params_t_dir_qstep_r_set
+    __swig_getmethods__["dir_qstep_r"] = _rcss.server_params_t_dir_qstep_r_get
+    if _newclass:
+        dir_qstep_r = _swig_property(_rcss.server_params_t_dir_qstep_r_get, _rcss.server_params_t_dir_qstep_r_set)
+    __swig_setmethods__["CoachMode"] = _rcss.server_params_t_CoachMode_set
+    __swig_getmethods__["CoachMode"] = _rcss.server_params_t_CoachMode_get
+    if _newclass:
+        CoachMode = _swig_property(_rcss.server_params_t_CoachMode_get, _rcss.server_params_t_CoachMode_set)
+    __swig_setmethods__["CwRMode"] = _rcss.server_params_t_CwRMode_set
+    __swig_getmethods__["CwRMode"] = _rcss.server_params_t_CwRMode_get
+    if _newclass:
+        CwRMode = _swig_property(_rcss.server_params_t_CwRMode_get, _rcss.server_params_t_CwRMode_set)
+    __swig_setmethods__["old_hear"] = _rcss.server_params_t_old_hear_set
+    __swig_getmethods__["old_hear"] = _rcss.server_params_t_old_hear_get
+    if _newclass:
+        old_hear = _swig_property(_rcss.server_params_t_old_hear_get, _rcss.server_params_t_old_hear_set)
+    __swig_setmethods__["sv_st"] = _rcss.server_params_t_sv_st_set
+    __swig_getmethods__["sv_st"] = _rcss.server_params_t_sv_st_get
+    if _newclass:
+        sv_st = _swig_property(_rcss.server_params_t_sv_st_get, _rcss.server_params_t_sv_st_set)
+    __swig_setmethods__["slowness_on_top_for_left_team"] = _rcss.server_params_t_slowness_on_top_for_left_team_set
+    __swig_getmethods__["slowness_on_top_for_left_team"] = _rcss.server_params_t_slowness_on_top_for_left_team_get
+    if _newclass:
+        slowness_on_top_for_left_team = _swig_property(_rcss.server_params_t_slowness_on_top_for_left_team_get, _rcss.server_params_t_slowness_on_top_for_left_team_set)
+    __swig_setmethods__["slowness_on_top_for_right_team"] = _rcss.server_params_t_slowness_on_top_for_right_team_set
+    __swig_getmethods__["slowness_on_top_for_right_team"] = _rcss.server_params_t_slowness_on_top_for_right_team_get
+    if _newclass:
+        slowness_on_top_for_right_team = _swig_property(_rcss.server_params_t_slowness_on_top_for_right_team_get, _rcss.server_params_t_slowness_on_top_for_right_team_set)
+    __swig_setmethods__["ka_length"] = _rcss.server_params_t_ka_length_set
+    __swig_getmethods__["ka_length"] = _rcss.server_params_t_ka_length_get
+    if _newclass:
+        ka_length = _swig_property(_rcss.server_params_t_ka_length_get, _rcss.server_params_t_ka_length_set)
+    __swig_setmethods__["ka_width"] = _rcss.server_params_t_ka_width_set
+    __swig_getmethods__["ka_width"] = _rcss.server_params_t_ka_width_get
+    if _newclass:
+        ka_width = _swig_property(_rcss.server_params_t_ka_width_get, _rcss.server_params_t_ka_width_set)
+    __swig_setmethods__["ball_stuck_area"] = _rcss.server_params_t_ball_stuck_area_set
+    __swig_getmethods__["ball_stuck_area"] = _rcss.server_params_t_ball_stuck_area_get
+    if _newclass:
+        ball_stuck_area = _swig_property(_rcss.server_params_t_ball_stuck_area_get, _rcss.server_params_t_ball_stuck_area_set)
+    __swig_setmethods__["max_tackle_power"] = _rcss.server_params_t_max_tackle_power_set
+    __swig_getmethods__["max_tackle_power"] = _rcss.server_params_t_max_tackle_power_get
+    if _newclass:
+        max_tackle_power = _swig_property(_rcss.server_params_t_max_tackle_power_get, _rcss.server_params_t_max_tackle_power_set)
+    __swig_setmethods__["max_back_tackle_power"] = _rcss.server_params_t_max_back_tackle_power_set
+    __swig_getmethods__["max_back_tackle_power"] = _rcss.server_params_t_max_back_tackle_power_get
+    if _newclass:
+        max_back_tackle_power = _swig_property(_rcss.server_params_t_max_back_tackle_power_get, _rcss.server_params_t_max_back_tackle_power_set)
+    __swig_setmethods__["tackle_dist"] = _rcss.server_params_t_tackle_dist_set
+    __swig_getmethods__["tackle_dist"] = _rcss.server_params_t_tackle_dist_get
+    if _newclass:
+        tackle_dist = _swig_property(_rcss.server_params_t_tackle_dist_get, _rcss.server_params_t_tackle_dist_set)
+    __swig_setmethods__["tackle_back_dist"] = _rcss.server_params_t_tackle_back_dist_set
+    __swig_getmethods__["tackle_back_dist"] = _rcss.server_params_t_tackle_back_dist_get
+    if _newclass:
+        tackle_back_dist = _swig_property(_rcss.server_params_t_tackle_back_dist_get, _rcss.server_params_t_tackle_back_dist_set)
+    __swig_setmethods__["tackle_width"] = _rcss.server_params_t_tackle_width_set
+    __swig_getmethods__["tackle_width"] = _rcss.server_params_t_tackle_width_get
+    if _newclass:
+        tackle_width = _swig_property(_rcss.server_params_t_tackle_width_get, _rcss.server_params_t_tackle_width_set)
+    __swig_setmethods__["start_goal_l"] = _rcss.server_params_t_start_goal_l_set
+    __swig_getmethods__["start_goal_l"] = _rcss.server_params_t_start_goal_l_get
+    if _newclass:
+        start_goal_l = _swig_property(_rcss.server_params_t_start_goal_l_get, _rcss.server_params_t_start_goal_l_set)
+    __swig_setmethods__["start_goal_r"] = _rcss.server_params_t_start_goal_r_set
+    __swig_getmethods__["start_goal_r"] = _rcss.server_params_t_start_goal_r_get
+    if _newclass:
+        start_goal_r = _swig_property(_rcss.server_params_t_start_goal_r_get, _rcss.server_params_t_start_goal_r_set)
+    __swig_setmethods__["fullstate_l"] = _rcss.server_params_t_fullstate_l_set
+    __swig_getmethods__["fullstate_l"] = _rcss.server_params_t_fullstate_l_get
+    if _newclass:
+        fullstate_l = _swig_property(_rcss.server_params_t_fullstate_l_get, _rcss.server_params_t_fullstate_l_set)
+    __swig_setmethods__["fullstate_r"] = _rcss.server_params_t_fullstate_r_set
+    __swig_getmethods__["fullstate_r"] = _rcss.server_params_t_fullstate_r_get
+    if _newclass:
+        fullstate_r = _swig_property(_rcss.server_params_t_fullstate_r_get, _rcss.server_params_t_fullstate_r_set)
+    __swig_setmethods__["drop_time"] = _rcss.server_params_t_drop_time_set
+    __swig_getmethods__["drop_time"] = _rcss.server_params_t_drop_time_get
+    if _newclass:
+        drop_time = _swig_property(_rcss.server_params_t_drop_time_get, _rcss.server_params_t_drop_time_set)
+    __swig_setmethods__["synch_mode"] = _rcss.server_params_t_synch_mode_set
+    __swig_getmethods__["synch_mode"] = _rcss.server_params_t_synch_mode_get
+    if _newclass:
+        synch_mode = _swig_property(_rcss.server_params_t_synch_mode_get, _rcss.server_params_t_synch_mode_set)
+    __swig_setmethods__["synch_offset"] = _rcss.server_params_t_synch_offset_set
+    __swig_getmethods__["synch_offset"] = _rcss.server_params_t_synch_offset_get
+    if _newclass:
+        synch_offset = _swig_property(_rcss.server_params_t_synch_offset_get, _rcss.server_params_t_synch_offset_set)
+    __swig_setmethods__["synch_micro_sleep"] = _rcss.server_params_t_synch_micro_sleep_set
+    __swig_getmethods__["synch_micro_sleep"] = _rcss.server_params_t_synch_micro_sleep_get
+    if _newclass:
+        synch_micro_sleep = _swig_property(_rcss.server_params_t_synch_micro_sleep_get, _rcss.server_params_t_synch_micro_sleep_set)
+    __swig_setmethods__["point_to_ban"] = _rcss.server_params_t_point_to_ban_set
+    __swig_getmethods__["point_to_ban"] = _rcss.server_params_t_point_to_ban_get
+    if _newclass:
+        point_to_ban = _swig_property(_rcss.server_params_t_point_to_ban_get, _rcss.server_params_t_point_to_ban_set)
+    __swig_setmethods__["point_to_duration"] = _rcss.server_params_t_point_to_duration_set
+    __swig_getmethods__["point_to_duration"] = _rcss.server_params_t_point_to_duration_get
+    if _newclass:
+        point_to_duration = _swig_property(_rcss.server_params_t_point_to_duration_get, _rcss.server_params_t_point_to_duration_set)
+
+    def __init__(self):
+        this = _rcss.new_server_params_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_server_params_t
+    __del__ = lambda self: None
+server_params_t_swigregister = _rcss.server_params_t_swigregister
+server_params_t_swigregister(server_params_t)
+
+class player_params_t(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, player_params_t, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, player_params_t, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["player_types"] = _rcss.player_params_t_player_types_set
+    __swig_getmethods__["player_types"] = _rcss.player_params_t_player_types_get
+    if _newclass:
+        player_types = _swig_property(_rcss.player_params_t_player_types_get, _rcss.player_params_t_player_types_set)
+    __swig_setmethods__["subs_max"] = _rcss.player_params_t_subs_max_set
+    __swig_getmethods__["subs_max"] = _rcss.player_params_t_subs_max_get
+    if _newclass:
+        subs_max = _swig_property(_rcss.player_params_t_subs_max_get, _rcss.player_params_t_subs_max_set)
+    __swig_setmethods__["pt_max"] = _rcss.player_params_t_pt_max_set
+    __swig_getmethods__["pt_max"] = _rcss.player_params_t_pt_max_get
+    if _newclass:
+        pt_max = _swig_property(_rcss.player_params_t_pt_max_get, _rcss.player_params_t_pt_max_set)
+    __swig_setmethods__["player_speed_max_delta_min"] = _rcss.player_params_t_player_speed_max_delta_min_set
+    __swig_getmethods__["player_speed_max_delta_min"] = _rcss.player_params_t_player_speed_max_delta_min_get
+    if _newclass:
+        player_speed_max_delta_min = _swig_property(_rcss.player_params_t_player_speed_max_delta_min_get, _rcss.player_params_t_player_speed_max_delta_min_set)
+    __swig_setmethods__["player_speed_max_delta_max"] = _rcss.player_params_t_player_speed_max_delta_max_set
+    __swig_getmethods__["player_speed_max_delta_max"] = _rcss.player_params_t_player_speed_max_delta_max_get
+    if _newclass:
+        player_speed_max_delta_max = _swig_property(_rcss.player_params_t_player_speed_max_delta_max_get, _rcss.player_params_t_player_speed_max_delta_max_set)
+    __swig_setmethods__["stamina_inc_max_delta_factor"] = _rcss.player_params_t_stamina_inc_max_delta_factor_set
+    __swig_getmethods__["stamina_inc_max_delta_factor"] = _rcss.player_params_t_stamina_inc_max_delta_factor_get
+    if _newclass:
+        stamina_inc_max_delta_factor = _swig_property(_rcss.player_params_t_stamina_inc_max_delta_factor_get, _rcss.player_params_t_stamina_inc_max_delta_factor_set)
+    __swig_setmethods__["player_decay_delta_min"] = _rcss.player_params_t_player_decay_delta_min_set
+    __swig_getmethods__["player_decay_delta_min"] = _rcss.player_params_t_player_decay_delta_min_get
+    if _newclass:
+        player_decay_delta_min = _swig_property(_rcss.player_params_t_player_decay_delta_min_get, _rcss.player_params_t_player_decay_delta_min_set)
+    __swig_setmethods__["player_decay_delta_max"] = _rcss.player_params_t_player_decay_delta_max_set
+    __swig_getmethods__["player_decay_delta_max"] = _rcss.player_params_t_player_decay_delta_max_get
+    if _newclass:
+        player_decay_delta_max = _swig_property(_rcss.player_params_t_player_decay_delta_max_get, _rcss.player_params_t_player_decay_delta_max_set)
+    __swig_setmethods__["inertia_moment_delta_factor"] = _rcss.player_params_t_inertia_moment_delta_factor_set
+    __swig_getmethods__["inertia_moment_delta_factor"] = _rcss.player_params_t_inertia_moment_delta_factor_get
+    if _newclass:
+        inertia_moment_delta_factor = _swig_property(_rcss.player_params_t_inertia_moment_delta_factor_get, _rcss.player_params_t_inertia_moment_delta_factor_set)
+    __swig_setmethods__["dash_power_rate_delta_min"] = _rcss.player_params_t_dash_power_rate_delta_min_set
+    __swig_getmethods__["dash_power_rate_delta_min"] = _rcss.player_params_t_dash_power_rate_delta_min_get
+    if _newclass:
+        dash_power_rate_delta_min = _swig_property(_rcss.player_params_t_dash_power_rate_delta_min_get, _rcss.player_params_t_dash_power_rate_delta_min_set)
+    __swig_setmethods__["dash_power_rate_delta_max"] = _rcss.player_params_t_dash_power_rate_delta_max_set
+    __swig_getmethods__["dash_power_rate_delta_max"] = _rcss.player_params_t_dash_power_rate_delta_max_get
+    if _newclass:
+        dash_power_rate_delta_max = _swig_property(_rcss.player_params_t_dash_power_rate_delta_max_get, _rcss.player_params_t_dash_power_rate_delta_max_set)
+    __swig_setmethods__["player_size_delta_factor"] = _rcss.player_params_t_player_size_delta_factor_set
+    __swig_getmethods__["player_size_delta_factor"] = _rcss.player_params_t_player_size_delta_factor_get
+    if _newclass:
+        player_size_delta_factor = _swig_property(_rcss.player_params_t_player_size_delta_factor_get, _rcss.player_params_t_player_size_delta_factor_set)
+    __swig_setmethods__["kickable_margin_delta_min"] = _rcss.player_params_t_kickable_margin_delta_min_set
+    __swig_getmethods__["kickable_margin_delta_min"] = _rcss.player_params_t_kickable_margin_delta_min_get
+    if _newclass:
+        kickable_margin_delta_min = _swig_property(_rcss.player_params_t_kickable_margin_delta_min_get, _rcss.player_params_t_kickable_margin_delta_min_set)
+    __swig_setmethods__["kickable_margin_delta_max"] = _rcss.player_params_t_kickable_margin_delta_max_set
+    __swig_getmethods__["kickable_margin_delta_max"] = _rcss.player_params_t_kickable_margin_delta_max_get
+    if _newclass:
+        kickable_margin_delta_max = _swig_property(_rcss.player_params_t_kickable_margin_delta_max_get, _rcss.player_params_t_kickable_margin_delta_max_set)
+    __swig_setmethods__["kick_rand_delta_factor"] = _rcss.player_params_t_kick_rand_delta_factor_set
+    __swig_getmethods__["kick_rand_delta_factor"] = _rcss.player_params_t_kick_rand_delta_factor_get
+    if _newclass:
+        kick_rand_delta_factor = _swig_property(_rcss.player_params_t_kick_rand_delta_factor_get, _rcss.player_params_t_kick_rand_delta_factor_set)
+    __swig_setmethods__["extra_stamina_delta_min"] = _rcss.player_params_t_extra_stamina_delta_min_set
+    __swig_getmethods__["extra_stamina_delta_min"] = _rcss.player_params_t_extra_stamina_delta_min_get
+    if _newclass:
+        extra_stamina_delta_min = _swig_property(_rcss.player_params_t_extra_stamina_delta_min_get, _rcss.player_params_t_extra_stamina_delta_min_set)
+    __swig_setmethods__["extra_stamina_delta_max"] = _rcss.player_params_t_extra_stamina_delta_max_set
+    __swig_getmethods__["extra_stamina_delta_max"] = _rcss.player_params_t_extra_stamina_delta_max_get
+    if _newclass:
+        extra_stamina_delta_max = _swig_property(_rcss.player_params_t_extra_stamina_delta_max_get, _rcss.player_params_t_extra_stamina_delta_max_set)
+    __swig_setmethods__["effort_max_delta_factor"] = _rcss.player_params_t_effort_max_delta_factor_set
+    __swig_getmethods__["effort_max_delta_factor"] = _rcss.player_params_t_effort_max_delta_factor_get
+    if _newclass:
+        effort_max_delta_factor = _swig_property(_rcss.player_params_t_effort_max_delta_factor_get, _rcss.player_params_t_effort_max_delta_factor_set)
+    __swig_setmethods__["effort_min_delta_factor"] = _rcss.player_params_t_effort_min_delta_factor_set
+    __swig_getmethods__["effort_min_delta_factor"] = _rcss.player_params_t_effort_min_delta_factor_get
+    if _newclass:
+        effort_min_delta_factor = _swig_property(_rcss.player_params_t_effort_min_delta_factor_get, _rcss.player_params_t_effort_min_delta_factor_set)
+    __swig_setmethods__["random_seed"] = _rcss.player_params_t_random_seed_set
+    __swig_getmethods__["random_seed"] = _rcss.player_params_t_random_seed_get
+    if _newclass:
+        random_seed = _swig_property(_rcss.player_params_t_random_seed_get, _rcss.player_params_t_random_seed_set)
+    __swig_setmethods__["new_dash_power_rate_delta_min"] = _rcss.player_params_t_new_dash_power_rate_delta_min_set
+    __swig_getmethods__["new_dash_power_rate_delta_min"] = _rcss.player_params_t_new_dash_power_rate_delta_min_get
+    if _newclass:
+        new_dash_power_rate_delta_min = _swig_property(_rcss.player_params_t_new_dash_power_rate_delta_min_get, _rcss.player_params_t_new_dash_power_rate_delta_min_set)
+    __swig_setmethods__["new_dash_power_rate_delta_max"] = _rcss.player_params_t_new_dash_power_rate_delta_max_set
+    __swig_getmethods__["new_dash_power_rate_delta_max"] = _rcss.player_params_t_new_dash_power_rate_delta_max_get
+    if _newclass:
+        new_dash_power_rate_delta_max = _swig_property(_rcss.player_params_t_new_dash_power_rate_delta_max_get, _rcss.player_params_t_new_dash_power_rate_delta_max_set)
+    __swig_setmethods__["new_stamina_inc_max_delta_factor"] = _rcss.player_params_t_new_stamina_inc_max_delta_factor_set
+    __swig_getmethods__["new_stamina_inc_max_delta_factor"] = _rcss.player_params_t_new_stamina_inc_max_delta_factor_get
+    if _newclass:
+        new_stamina_inc_max_delta_factor = _swig_property(_rcss.player_params_t_new_stamina_inc_max_delta_factor_get, _rcss.player_params_t_new_stamina_inc_max_delta_factor_set)
+    __swig_setmethods__["kick_power_rate_delta_min"] = _rcss.player_params_t_kick_power_rate_delta_min_set
+    __swig_getmethods__["kick_power_rate_delta_min"] = _rcss.player_params_t_kick_power_rate_delta_min_get
+    if _newclass:
+        kick_power_rate_delta_min = _swig_property(_rcss.player_params_t_kick_power_rate_delta_min_get, _rcss.player_params_t_kick_power_rate_delta_min_set)
+    __swig_setmethods__["kick_power_rate_delta_max"] = _rcss.player_params_t_kick_power_rate_delta_max_set
+    __swig_getmethods__["kick_power_rate_delta_max"] = _rcss.player_params_t_kick_power_rate_delta_max_get
+    if _newclass:
+        kick_power_rate_delta_max = _swig_property(_rcss.player_params_t_kick_power_rate_delta_max_get, _rcss.player_params_t_kick_power_rate_delta_max_set)
+    __swig_setmethods__["foul_detect_probability_delta_factor"] = _rcss.player_params_t_foul_detect_probability_delta_factor_set
+    __swig_getmethods__["foul_detect_probability_delta_factor"] = _rcss.player_params_t_foul_detect_probability_delta_factor_get
+    if _newclass:
+        foul_detect_probability_delta_factor = _swig_property(_rcss.player_params_t_foul_detect_probability_delta_factor_get, _rcss.player_params_t_foul_detect_probability_delta_factor_set)
+    __swig_setmethods__["catchable_area_l_stretch_min"] = _rcss.player_params_t_catchable_area_l_stretch_min_set
+    __swig_getmethods__["catchable_area_l_stretch_min"] = _rcss.player_params_t_catchable_area_l_stretch_min_get
+    if _newclass:
+        catchable_area_l_stretch_min = _swig_property(_rcss.player_params_t_catchable_area_l_stretch_min_get, _rcss.player_params_t_catchable_area_l_stretch_min_set)
+    __swig_setmethods__["catchable_area_l_stretch_max"] = _rcss.player_params_t_catchable_area_l_stretch_max_set
+    __swig_getmethods__["catchable_area_l_stretch_max"] = _rcss.player_params_t_catchable_area_l_stretch_max_get
+    if _newclass:
+        catchable_area_l_stretch_max = _swig_property(_rcss.player_params_t_catchable_area_l_stretch_max_get, _rcss.player_params_t_catchable_area_l_stretch_max_set)
+    __swig_setmethods__["sparelong10"] = _rcss.player_params_t_sparelong10_set
+    __swig_getmethods__["sparelong10"] = _rcss.player_params_t_sparelong10_get
+    if _newclass:
+        sparelong10 = _swig_property(_rcss.player_params_t_sparelong10_get, _rcss.player_params_t_sparelong10_set)
+    __swig_setmethods__["allow_mult_default_type"] = _rcss.player_params_t_allow_mult_default_type_set
+    __swig_getmethods__["allow_mult_default_type"] = _rcss.player_params_t_allow_mult_default_type_get
+    if _newclass:
+        allow_mult_default_type = _swig_property(_rcss.player_params_t_allow_mult_default_type_get, _rcss.player_params_t_allow_mult_default_type_set)
+    __swig_setmethods__["spareshort2"] = _rcss.player_params_t_spareshort2_set
+    __swig_getmethods__["spareshort2"] = _rcss.player_params_t_spareshort2_get
+    if _newclass:
+        spareshort2 = _swig_property(_rcss.player_params_t_spareshort2_get, _rcss.player_params_t_spareshort2_set)
+    __swig_setmethods__["spareshort3"] = _rcss.player_params_t_spareshort3_set
+    __swig_getmethods__["spareshort3"] = _rcss.player_params_t_spareshort3_get
+    if _newclass:
+        spareshort3 = _swig_property(_rcss.player_params_t_spareshort3_get, _rcss.player_params_t_spareshort3_set)
+    __swig_setmethods__["spareshort4"] = _rcss.player_params_t_spareshort4_set
+    __swig_getmethods__["spareshort4"] = _rcss.player_params_t_spareshort4_get
+    if _newclass:
+        spareshort4 = _swig_property(_rcss.player_params_t_spareshort4_get, _rcss.player_params_t_spareshort4_set)
+    __swig_setmethods__["spareshort5"] = _rcss.player_params_t_spareshort5_set
+    __swig_getmethods__["spareshort5"] = _rcss.player_params_t_spareshort5_get
+    if _newclass:
+        spareshort5 = _swig_property(_rcss.player_params_t_spareshort5_get, _rcss.player_params_t_spareshort5_set)
+    __swig_setmethods__["spareshort6"] = _rcss.player_params_t_spareshort6_set
+    __swig_getmethods__["spareshort6"] = _rcss.player_params_t_spareshort6_get
+    if _newclass:
+        spareshort6 = _swig_property(_rcss.player_params_t_spareshort6_get, _rcss.player_params_t_spareshort6_set)
+    __swig_setmethods__["spareshort7"] = _rcss.player_params_t_spareshort7_set
+    __swig_getmethods__["spareshort7"] = _rcss.player_params_t_spareshort7_get
+    if _newclass:
+        spareshort7 = _swig_property(_rcss.player_params_t_spareshort7_get, _rcss.player_params_t_spareshort7_set)
+    __swig_setmethods__["spareshort8"] = _rcss.player_params_t_spareshort8_set
+    __swig_getmethods__["spareshort8"] = _rcss.player_params_t_spareshort8_get
+    if _newclass:
+        spareshort8 = _swig_property(_rcss.player_params_t_spareshort8_get, _rcss.player_params_t_spareshort8_set)
+    __swig_setmethods__["spareshort9"] = _rcss.player_params_t_spareshort9_set
+    __swig_getmethods__["spareshort9"] = _rcss.player_params_t_spareshort9_get
+    if _newclass:
+        spareshort9 = _swig_property(_rcss.player_params_t_spareshort9_get, _rcss.player_params_t_spareshort9_set)
+    __swig_setmethods__["spareshort10"] = _rcss.player_params_t_spareshort10_set
+    __swig_getmethods__["spareshort10"] = _rcss.player_params_t_spareshort10_get
+    if _newclass:
+        spareshort10 = _swig_property(_rcss.player_params_t_spareshort10_get, _rcss.player_params_t_spareshort10_set)
+
+    def __init__(self):
+        this = _rcss.new_player_params_t()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_player_params_t
+    __del__ = lambda self: None
+player_params_t_swigregister = _rcss.player_params_t_swigregister
+player_params_t_swigregister(player_params_t)
+
+class dispinfo_t2(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, dispinfo_t2, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, dispinfo_t2, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["mode"] = _rcss.dispinfo_t2_mode_set
+    __swig_getmethods__["mode"] = _rcss.dispinfo_t2_mode_get
+    if _newclass:
+        mode = _swig_property(_rcss.dispinfo_t2_mode_get, _rcss.dispinfo_t2_mode_set)
+
+    def __init__(self):
+        this = _rcss.new_dispinfo_t2()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_dispinfo_t2
+    __del__ = lambda self: None
+dispinfo_t2_swigregister = _rcss.dispinfo_t2_swigregister
+dispinfo_t2_swigregister(dispinfo_t2)
+
+NARROW = _rcss.NARROW
+NORMAL = _rcss.NORMAL
+WIDE = _rcss.WIDE
+LOW = _rcss.LOW
+HIGH = _rcss.HIGH
+LEFT_SIDE = _rcss.LEFT_SIDE
+RIGHT_SIDE = _rcss.RIGHT_SIDE
+OUR = _rcss.OUR
+OPP = _rcss.OPP
+UNKNOWN_TEAM = _rcss.UNKNOWN_TEAM
+PARTIAL = _rcss.PARTIAL
+COMPLETE = _rcss.COMPLETE
+UNKNOWN_EAR_MODE = _rcss.UNKNOWN_EAR_MODE
+class Builder(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Builder, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Builder, name)
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _rcss.delete_Builder
+    __del__ = lambda self: None
+
+    def dash(self, *args):
+        return _rcss.Builder_dash(self, *args)
+
+    def turn(self, moment):
+        return _rcss.Builder_turn(self, moment)
+
+    def turn_neck(self, moment):
+        return _rcss.Builder_turn_neck(self, moment)
+
+    def kick(self, power, dir):
+        return _rcss.Builder_kick(self, power, dir)
+
+    def long_kick(self, power, dir):
+        return _rcss.Builder_long_kick(self, power, dir)
+
+    def goalieCatch(self, dir):
+        return _rcss.Builder_goalieCatch(self, dir)
+
+    def say(self, message):
+        return _rcss.Builder_say(self, message)
+
+    def sense_body(self):
+        return _rcss.Builder_sense_body(self)
+
+    def score(self):
+        return _rcss.Builder_score(self)
+
+    def move(self, x, y):
+        return _rcss.Builder_move(self, x, y)
+
+    def change_view(self, *args):
+        return _rcss.Builder_change_view(self, *args)
+
+    def compression(self, level):
+        return _rcss.Builder_compression(self, level)
+
+    def bye(self):
+        return _rcss.Builder_bye(self)
+
+    def done(self):
+        return _rcss.Builder_done(self)
+
+    def pointto(self, on, dist, head):
+        return _rcss.Builder_pointto(self, on, dist, head)
+
+    def attentionto(self, on, team_side, team_name, at_unum):
+        return _rcss.Builder_attentionto(self, on, team_side, team_name, at_unum)
+
+    def tackle(self, *args):
+        return _rcss.Builder_tackle(self, *args)
+
+    def clang(self, min, max):
+        return _rcss.Builder_clang(self, min, max)
+
+    def ear(self, on, team_side, team_name, mode):
+        return _rcss.Builder_ear(self, on, team_side, team_name, mode)
+
+    def synch_see(self):
+        return _rcss.Builder_synch_see(self)
+Builder_swigregister = _rcss.Builder_swigregister
+Builder_swigregister(Builder)
+
+class BuilderErr(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BuilderErr, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BuilderErr, name)
+    __repr__ = _swig_repr
+
+    def __init__(self, file, line, msg):
+        this = _rcss.new_BuilderErr(file, line, msg)
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _rcss.delete_BuilderErr
+    __del__ = lambda self: None
+
+    def what(self):
+        return _rcss.BuilderErr_what(self)
+BuilderErr_swigregister = _rcss.BuilderErr_swigregister
+BuilderErr_swigregister(BuilderErr)
 
 # This file is compatible with both classic and new-style classes.
 

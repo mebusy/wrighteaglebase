@@ -21,12 +21,6 @@ if __name__ == '__main__':
     # must init before use ServerParam and PlayerParam 
     serverparam.ServerParam.init( 1 , ["rcss"] )
 
-    # extend PlayerParam
-    from rcss import PlayerParam
-    inst = PlayerParam.instance() 
-    inst.isCoach = lambda o :  False 
-    print dir( PlayerParam.instance()  )
-    
     # start 
     send2server  = udpClient.startUDP() 
 

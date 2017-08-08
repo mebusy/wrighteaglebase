@@ -2,6 +2,7 @@
 %{
 #include "playerparam.h"
 #include "serverparam.h"
+#include "pcombuilder.h"
 %}
 
 // This tells SWIG to treat char ** as a special case
@@ -34,6 +35,17 @@
 }
 
 
+%rename(rcssServerParam) ServerParam;
+%rename(rcssPlayerParam) PlayerParam;
+
 
 %include "playerparam.h"
 %include "serverparam.h"
+%include "types.h"
+
+
+%include "exception.i"
+%include "pcombuilder.h"
+
+
+
