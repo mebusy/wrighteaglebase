@@ -23,9 +23,6 @@ class PlayerParam( object ):
         else:
             return item 
 
-    # @classmethod 
-    # def init( cls,  *arg ) :
-    #     return rcssPlayerParam.init( *arg ) 
 
     def isCoach(self):
         return False 
