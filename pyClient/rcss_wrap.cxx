@@ -3148,6 +3148,7 @@ namespace swig {
 #include "playerparam.h"
 #include "serverparam.h"
 #include "pcombuilder.h"
+#include "_Parser.h"
 
 
 SWIGINTERNINLINE PyObject*
@@ -27630,6 +27631,75 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "LOG_BOARD",SWIG_From_int(static_cast< int >(LOG_BOARD)));
   SWIG_addvarlink(SWIG_globals(),(char *)"max_message_length_for_display",Swig_var_max_message_length_for_display_get, Swig_var_max_message_length_for_display_set);
   SWIG_addvarlink(SWIG_globals(),(char *)"COLOR_NAME_MAX",Swig_var_COLOR_NAME_MAX_get, Swig_var_COLOR_NAME_MAX_set);
+  SWIG_Python_SetConstant(d, "OBJ_Line",SWIG_From_int(static_cast< int >(OBJ_Line)));
+  SWIG_Python_SetConstant(d, "OBJ_Ball",SWIG_From_int(static_cast< int >(OBJ_Ball)));
+  SWIG_Python_SetConstant(d, "OBJ_Marker",SWIG_From_int(static_cast< int >(OBJ_Marker)));
+  SWIG_Python_SetConstant(d, "OBJ_Marker_Behind",SWIG_From_int(static_cast< int >(OBJ_Marker_Behind)));
+  SWIG_Python_SetConstant(d, "OBJ_Player",SWIG_From_int(static_cast< int >(OBJ_Player)));
+  SWIG_Python_SetConstant(d, "OBJ_None",SWIG_From_int(static_cast< int >(OBJ_None)));
+  SWIG_Python_SetConstant(d, "SL_Left",SWIG_From_int(static_cast< int >(SL_Left)));
+  SWIG_Python_SetConstant(d, "SL_Right",SWIG_From_int(static_cast< int >(SL_Right)));
+  SWIG_Python_SetConstant(d, "SL_Top",SWIG_From_int(static_cast< int >(SL_Top)));
+  SWIG_Python_SetConstant(d, "SL_Bottom",SWIG_From_int(static_cast< int >(SL_Bottom)));
+  SWIG_Python_SetConstant(d, "SL_MAX",SWIG_From_int(static_cast< int >(SL_MAX)));
+  SWIG_Python_SetConstant(d, "SL_NONE",SWIG_From_int(static_cast< int >(SL_NONE)));
+  SWIG_Python_SetConstant(d, "Goal_L",SWIG_From_int(static_cast< int >(Goal_L)));
+  SWIG_Python_SetConstant(d, "Goal_R",SWIG_From_int(static_cast< int >(Goal_R)));
+  SWIG_Python_SetConstant(d, "Flag_C",SWIG_From_int(static_cast< int >(Flag_C)));
+  SWIG_Python_SetConstant(d, "Flag_CT",SWIG_From_int(static_cast< int >(Flag_CT)));
+  SWIG_Python_SetConstant(d, "Flag_CB",SWIG_From_int(static_cast< int >(Flag_CB)));
+  SWIG_Python_SetConstant(d, "Flag_LT",SWIG_From_int(static_cast< int >(Flag_LT)));
+  SWIG_Python_SetConstant(d, "Flag_LB",SWIG_From_int(static_cast< int >(Flag_LB)));
+  SWIG_Python_SetConstant(d, "Flag_RT",SWIG_From_int(static_cast< int >(Flag_RT)));
+  SWIG_Python_SetConstant(d, "Flag_RB",SWIG_From_int(static_cast< int >(Flag_RB)));
+  SWIG_Python_SetConstant(d, "Flag_PLT",SWIG_From_int(static_cast< int >(Flag_PLT)));
+  SWIG_Python_SetConstant(d, "Flag_PLC",SWIG_From_int(static_cast< int >(Flag_PLC)));
+  SWIG_Python_SetConstant(d, "Flag_PLB",SWIG_From_int(static_cast< int >(Flag_PLB)));
+  SWIG_Python_SetConstant(d, "Flag_PRT",SWIG_From_int(static_cast< int >(Flag_PRT)));
+  SWIG_Python_SetConstant(d, "Flag_PRC",SWIG_From_int(static_cast< int >(Flag_PRC)));
+  SWIG_Python_SetConstant(d, "Flag_PRB",SWIG_From_int(static_cast< int >(Flag_PRB)));
+  SWIG_Python_SetConstant(d, "Flag_GLT",SWIG_From_int(static_cast< int >(Flag_GLT)));
+  SWIG_Python_SetConstant(d, "Flag_GLB",SWIG_From_int(static_cast< int >(Flag_GLB)));
+  SWIG_Python_SetConstant(d, "Flag_GRT",SWIG_From_int(static_cast< int >(Flag_GRT)));
+  SWIG_Python_SetConstant(d, "Flag_GRB",SWIG_From_int(static_cast< int >(Flag_GRB)));
+  SWIG_Python_SetConstant(d, "Flag_TL50",SWIG_From_int(static_cast< int >(Flag_TL50)));
+  SWIG_Python_SetConstant(d, "Flag_TL40",SWIG_From_int(static_cast< int >(Flag_TL40)));
+  SWIG_Python_SetConstant(d, "Flag_TL30",SWIG_From_int(static_cast< int >(Flag_TL30)));
+  SWIG_Python_SetConstant(d, "Flag_TL20",SWIG_From_int(static_cast< int >(Flag_TL20)));
+  SWIG_Python_SetConstant(d, "Flag_TL10",SWIG_From_int(static_cast< int >(Flag_TL10)));
+  SWIG_Python_SetConstant(d, "Flag_T0",SWIG_From_int(static_cast< int >(Flag_T0)));
+  SWIG_Python_SetConstant(d, "Flag_TR10",SWIG_From_int(static_cast< int >(Flag_TR10)));
+  SWIG_Python_SetConstant(d, "Flag_TR20",SWIG_From_int(static_cast< int >(Flag_TR20)));
+  SWIG_Python_SetConstant(d, "Flag_TR30",SWIG_From_int(static_cast< int >(Flag_TR30)));
+  SWIG_Python_SetConstant(d, "Flag_TR40",SWIG_From_int(static_cast< int >(Flag_TR40)));
+  SWIG_Python_SetConstant(d, "Flag_TR50",SWIG_From_int(static_cast< int >(Flag_TR50)));
+  SWIG_Python_SetConstant(d, "Flag_BL50",SWIG_From_int(static_cast< int >(Flag_BL50)));
+  SWIG_Python_SetConstant(d, "Flag_BL40",SWIG_From_int(static_cast< int >(Flag_BL40)));
+  SWIG_Python_SetConstant(d, "Flag_BL30",SWIG_From_int(static_cast< int >(Flag_BL30)));
+  SWIG_Python_SetConstant(d, "Flag_BL20",SWIG_From_int(static_cast< int >(Flag_BL20)));
+  SWIG_Python_SetConstant(d, "Flag_BL10",SWIG_From_int(static_cast< int >(Flag_BL10)));
+  SWIG_Python_SetConstant(d, "Flag_B0",SWIG_From_int(static_cast< int >(Flag_B0)));
+  SWIG_Python_SetConstant(d, "Flag_BR10",SWIG_From_int(static_cast< int >(Flag_BR10)));
+  SWIG_Python_SetConstant(d, "Flag_BR20",SWIG_From_int(static_cast< int >(Flag_BR20)));
+  SWIG_Python_SetConstant(d, "Flag_BR30",SWIG_From_int(static_cast< int >(Flag_BR30)));
+  SWIG_Python_SetConstant(d, "Flag_BR40",SWIG_From_int(static_cast< int >(Flag_BR40)));
+  SWIG_Python_SetConstant(d, "Flag_BR50",SWIG_From_int(static_cast< int >(Flag_BR50)));
+  SWIG_Python_SetConstant(d, "Flag_LT30",SWIG_From_int(static_cast< int >(Flag_LT30)));
+  SWIG_Python_SetConstant(d, "Flag_LT20",SWIG_From_int(static_cast< int >(Flag_LT20)));
+  SWIG_Python_SetConstant(d, "Flag_LT10",SWIG_From_int(static_cast< int >(Flag_LT10)));
+  SWIG_Python_SetConstant(d, "Flag_L0",SWIG_From_int(static_cast< int >(Flag_L0)));
+  SWIG_Python_SetConstant(d, "Flag_LB10",SWIG_From_int(static_cast< int >(Flag_LB10)));
+  SWIG_Python_SetConstant(d, "Flag_LB20",SWIG_From_int(static_cast< int >(Flag_LB20)));
+  SWIG_Python_SetConstant(d, "Flag_LB30",SWIG_From_int(static_cast< int >(Flag_LB30)));
+  SWIG_Python_SetConstant(d, "Flag_RT30",SWIG_From_int(static_cast< int >(Flag_RT30)));
+  SWIG_Python_SetConstant(d, "Flag_RT20",SWIG_From_int(static_cast< int >(Flag_RT20)));
+  SWIG_Python_SetConstant(d, "Flag_RT10",SWIG_From_int(static_cast< int >(Flag_RT10)));
+  SWIG_Python_SetConstant(d, "Flag_R0",SWIG_From_int(static_cast< int >(Flag_R0)));
+  SWIG_Python_SetConstant(d, "Flag_RB10",SWIG_From_int(static_cast< int >(Flag_RB10)));
+  SWIG_Python_SetConstant(d, "Flag_RB20",SWIG_From_int(static_cast< int >(Flag_RB20)));
+  SWIG_Python_SetConstant(d, "Flag_RB30",SWIG_From_int(static_cast< int >(Flag_RB30)));
+  SWIG_Python_SetConstant(d, "FLAG_MAX",SWIG_From_int(static_cast< int >(FLAG_MAX)));
+  SWIG_Python_SetConstant(d, "FLAG_NONE",SWIG_From_int(static_cast< int >(FLAG_NONE)));
   SWIG_Python_SetConstant(d, "NARROW",SWIG_From_int(static_cast< int >(rcss::pcom::NARROW)));
   SWIG_Python_SetConstant(d, "NORMAL",SWIG_From_int(static_cast< int >(rcss::pcom::NORMAL)));
   SWIG_Python_SetConstant(d, "WIDE",SWIG_From_int(static_cast< int >(rcss::pcom::WIDE)));
