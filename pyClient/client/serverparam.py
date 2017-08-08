@@ -13,6 +13,7 @@ class ServerParam( object ):
 
     def __init__(self):
         self.playerTypes = {} 
+        self.paramsFromServer = None 
 
     @classmethod
     def instance(cls):
@@ -32,14 +33,29 @@ class ServerParam( object ):
     def init( cls,  *arg ) :
         return rcssServerParam.init( *arg ) 
         
+    def initParamFromServer(self ) :
+        from playerparam import PlayerParam
+        allParams = [ "rcss_app" ]
+        allParams.extend( ServerParam.instance().paramsFromServer  )
+        allParams.extend( PlayerParam.instance().paramsFromServer ) 
+        # print allParams 
+        ServerParam.init( len( allParams  ) , allParams    ) 
+        print "init server / player param . from " , self.__class__
+          
 
     def ParseFromServerMsg(self, msg) :
+        from playerparam import PlayerParam
         result = RE_SERVERPARAM.findall( msg ) 
-        args = ["rcss_app" , ] 
+        args = [] 
         for k, v in result :
             args.append(  "server::{0}={1}".format( k,v ) )
         
         self.paramsFromServer = args 
+        
+        if PlayerParam.instance().paramsFromServer is not None:
+            self.initParamFromServer()
+
+        
                 
     def ParsePlayerType(self, msg) :
         result = RE_SERVERPARAM.findall( msg ) 

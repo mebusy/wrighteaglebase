@@ -41,7 +41,7 @@ class Parser(object) :
         else:
             pass 
 
-        print my_side , my_unum , play_mode  , str2PlayMode( "penalty_score_r" ) == PM_PenaltyScore_Right 
+        # print my_side , my_unum , play_mode  , str2PlayMode( "penalty_score_r" ) == PM_PenaltyScore_Right 
 
 
     def ParseSight(self, msg) :

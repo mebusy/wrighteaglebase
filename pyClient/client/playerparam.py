@@ -6,6 +6,9 @@ from serverparam import RE_SERVERPARAM , ServerParam
 class PlayerParam( object ):
     __metaclass__ = Singleton
 
+    def __init__(self) :
+        self.paramsFromServer = None
+
     @classmethod
     def instance(cls):
         return PlayerParam() 
@@ -36,11 +39,9 @@ class PlayerParam( object ):
         for k, v in result :
             args.append(  "player::{0}={1}".format( k,v ) )
 
-        allParams = []
-        allParams.extend( ServerParam.instance().paramsFromServer  )
-        allParams.extend( args ) 
-        # print allParams 
-        ServerParam.init( len( allParams  ) , allParams    ) 
+        self.paramsFromServer = args 
         
+        if ServerParam.instance().paramsFromServer is not None:
+            ServerParam.instance().initParamFromServer() 
 
 
