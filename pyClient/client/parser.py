@@ -12,7 +12,7 @@ TRAINER_UNUM = 12
 class Parser(object) :
 
     def __init__(self):
-        self.mpObserver = Observer() 
+        self.observer = Observer() 
 
     def ParseInitializeMsg(self,msg):
 
@@ -31,6 +31,7 @@ class Parser(object) :
         if _strPM : play_mode = str2PlayMode( _strPM ) 
 
 
+
         if PlayerParam.instance().isCoach() :
             pass
         elif PlayerParam.instance().isTrainer():
@@ -42,6 +43,7 @@ class Parser(object) :
             pass 
 
         # print my_side , my_unum , play_mode  , str2PlayMode( "penalty_score_r" ) == PM_PenaltyScore_Right 
+        self.observer.init( my_side , my_unum , play_mode )
 
     def ParseObjType(self, ObjName ) :
         return str2ObjType( ObjName[0].name ) 
@@ -74,6 +76,8 @@ class Parser(object) :
 
         d = {} 
         d["time"] = int( sight_data [1] ) 
+
+        self.observer.time = d["time"] 
         
         for ObjInfo in sight_data[2:]:
             ObjName = ObjInfo[0]
@@ -103,6 +107,9 @@ class Parser(object) :
 
             prop = self.ParseObjProperty( ObjInfo[1:] )
             # print prop
+
+            if objType == OBJ_Ball:
+                self.observer.ballObserver.update( d["time"] , prop  )
         
 
     def ParseSense( self, msg ) :
@@ -113,7 +120,9 @@ class Parser(object) :
         for item in sense_data[2:]:
             key = item[0]
             if key.name == "collision" :
-                d[ key.name ] = item[1].name  # (collision {none|[(ball)][(player)][(post)]})
+                # print 'collison  with ' , item[1]
+                # d[ key.name ] = item[1].name  # (collision {none|[(ball)][(player)][(post)]})
+                pass
             elif len(item) == 2:
                 d[ key.name ] = float( item[1]  ) 
             elif key.name == "view_mode":
@@ -158,6 +167,17 @@ class Parser(object) :
                         d[key.name][ subitem[0].name ] =  int(subitem[1] ) 
             else:
                 raise Exception( "unknow sense msg:" + key.name  )
+
+    def ParseSound(self ,msg) :
+        # (hear 3000 referee kick_off_r)
+        data =  readlisp( msg  )
+        
+        sender = data[2].name
+        message = data[3].name
+
+        if sender == 'referee' :
+            self.observer.serverPlayMode = str2PlayMode( message )
+            print message , self.observer.serverPlayMode 
 
 
 

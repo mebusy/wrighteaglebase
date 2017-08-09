@@ -38,7 +38,5 @@ class PlayerParam( object ):
 
         self.paramsFromServer = args 
         
-        if ServerParam.instance().paramsFromServer is not None:
-            ServerParam.instance().initParamFromServer() 
 
 

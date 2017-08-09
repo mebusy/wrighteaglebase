@@ -1,6 +1,6 @@
 from rcss import *
 
-_PLAYMODE_STRINGS = [
+__PLAYMODE_STRINGS = [
     "",                   
     "before_kick_off",                  
     "time_over",                        
@@ -54,14 +54,14 @@ _PLAYMODE_STRINGS = [
 ]
 
 def str2PlayMode(s) :
-    return _PLAYMODE_STRINGS.index(s) 
+    return __PLAYMODE_STRINGS.index(s) 
 
 
 KO_Ours = 0 
 KO_Opps = 1
 
 
-_LineType = {
+__LineType = {
     
     "(l l)"  : SL_Left , 
     "(l r)"  : SL_Right , 
@@ -69,7 +69,7 @@ _LineType = {
     "(l b)"  : SL_Bottom  , 
 }
 
-_MarkerTypes = {
+__MarkerTypes = {
     "(g l)"  : Goal_L , 
     "(g r)"  : Goal_R , 
 
@@ -137,7 +137,7 @@ _MarkerTypes = {
 
 }
    
-_ObjTypes = {
+__ObjTypes = {
     "l" : OBJ_Line ,
 
     "b" : OBJ_Ball ,
@@ -154,13 +154,13 @@ _ObjTypes = {
 }
 
 def str2ObjType( s ) :
-    return _ObjTypes[s] 
+    return __ObjTypes[s] 
 
 def str2LineType(s) :
-    return _LineType[s] 
+    return __LineType[s] 
 
 def str2MarkerType(s) :
-    return _MarkerTypes[s] 
+    return __MarkerTypes[s] 
 
 
     

@@ -3,12 +3,9 @@
 from twisted.internet import task
 from twisted.internet import reactor
 
-def runEvery100ms():
-    # print "runEvery100ms"
-    pass
 
-def startTask():
-    l = task.LoopingCall( runEvery100ms )
+def startTask( callback ):
+    l = task.LoopingCall( callback )
     l.start( 0.1 ) # call every 0.1 sec
 
 
@@ -28,7 +25,7 @@ if __name__ == '__main__':
     udpClient.setDataReceiveCallback( player.receiveFromServer )
     player.SendInitialLizeMsg()
 
-    startTask() 
+    startTask( player.plan ) 
 
     reactor.run()
     print 'done'

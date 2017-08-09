@@ -1,7 +1,7 @@
 
 from rcss import rcssServerParam
 from utils import Singleton
-import types
+import types  # used to bind a instance to a classmethod 
 import re 
 
 RE_SERVERPARAM = re.compile( r"\((\w+)\s+([^)]+)\)" )
@@ -40,11 +40,10 @@ class ServerParam( object ):
         allParams.extend( PlayerParam.instance().paramsFromServer ) 
         # print allParams 
         ServerParam.init( len( allParams  ) , allParams    ) 
-        print "init server / player param . from " , self.__class__
+        # print "init server / player param . from " , self.__class__
           
 
     def ParseFromServerMsg(self, msg) :
-        from playerparam import PlayerParam
         result = RE_SERVERPARAM.findall( msg ) 
         args = [] 
         for k, v in result :
@@ -52,8 +51,6 @@ class ServerParam( object ):
         
         self.paramsFromServer = args 
         
-        if PlayerParam.instance().paramsFromServer is not None:
-            self.initParamFromServer()
 
         
                 

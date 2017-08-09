@@ -16,6 +16,13 @@ import types
 EOF = ''
 END_PAREN = ')'
 
+
+__dict_cmd_symbol = { } 
+def getCmdSymbol( cmd ) :
+    if cmd not in __dict_cmd_symbol :
+        __dict_cmd_symbol[cmd] = LispSymbol( cmd )
+    return __dict_cmd_symbol[cmd]
+
 class CharFile:
     def __init__(self, file):
         self.file = file
@@ -40,7 +47,7 @@ class LispSymbol:
         self.name = name
 
     def __repr__(self):
-        return self.name   # 'LispSymbol(%s)' % repr(self.name)
+        return 'LispSymbol(%s)' % repr(self.name)
 
     def __str__(self):
         return self.name
@@ -74,7 +81,7 @@ class LispReader:
             try:
                 return float(atom)
             except ValueError:
-                return LispSymbol(atom)
+                return getCmdSymbol( atom  )  #  LispSymbol(atom)
 
     def _read_atom(self):
         """Read a symbol or number"""
@@ -152,7 +159,7 @@ class LispReader:
 def writelisp(obj):
     """Convert a python object into an equivalent lisp expression."""
 
-    if type(obj) is types.ListType:
+    if type(obj) is types.ListType or type(obj) is types.TupleType   :
 	return '(%s)' % ' '.join(map(writelisp, obj))
     elif type(obj) is types.StringType:
         out = '"'
@@ -169,7 +176,7 @@ def writelisp(obj):
     elif obj == None:
 	return 'nil'
     else:
-	return repr(obj)
+	return str(obj)
 
 def readlisp(text):
     """Read the first lisp expression in the string"""

@@ -7,6 +7,8 @@ server_host = '127.0.0.1'
 server_port = 6000 
 
 _callback_datagramReceived = None
+_server_addr = None 
+
 
 class Echo(DatagramProtocol):
     def startProtocol(self):
@@ -18,13 +20,18 @@ class Echo(DatagramProtocol):
         if _callback_datagramReceived  :
             _callback_datagramReceived( data  )
 
+        global _server_addr 
+        if _server_addr is None :
+            _server_addr = addr 
+
 
 def startUDP():
     # 0 means any port, we don't care in this case
     t = reactor.listenUDP(0, Echo())
     
     def sendMsg( msg ) : 
-        t.protocol.transport.write(  msg,  ( server_host , server_port  )  )
+        # global _server_addr 
+        t.protocol.transport.write(  msg, ( server_host , server_port  ) if _server_addr is None else _server_addr   )
     return sendMsg 
     
 def setDataReceiveCallback( callback  ):
