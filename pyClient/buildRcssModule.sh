@@ -13,7 +13,7 @@ CXXFLAGS="-g -O2"
 
 SRC_FILES="rcss_wrap.cxx ${SRC_PATH}/*.cpp ${SRC_PATH}/clang*.cpp  ${SRC_PATH}/../rcssbase/conf/*.cpp ${SRC_PATH}/../rcssbase/gzip/*.cpp ${SRC_PATH}/../rcssbase/net/*.cpp "   # ${SRC_PATH}/serverparam.cpp  ${SRC_PATH}/playerparam.cpp ${SRC_PATH}/utility.cpp ${SRC_PATH}/csvsaver.cpp"
 
-${CXX} -c -fPIC  ${DEFS} ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
+${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
 
 #link
 
