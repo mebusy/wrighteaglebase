@@ -23,8 +23,9 @@ class Client(Parser) :
             ServerParam.instance().ParsePlayerType(  msg[ len( "(player_type " ): -1 ]  )
         elif msg.startswith( "(sense_body " ) :
             self.ParseSense( msg  )
-        else:
+        elif msg.startswith( "(see " ) :
             self.ParseSight( msg  )
+        else:
             # print ServerParam.instance().playerTypes 
             import udpClient 
             udpClient.setDataReceiveCallback( None ) 

@@ -40,7 +40,7 @@ class LispSymbol:
         self.name = name
 
     def __repr__(self):
-        return 'LispSymbol(%s)' % repr(self.name)
+        return self.name   # 'LispSymbol(%s)' % repr(self.name)
 
     def __str__(self):
         return self.name

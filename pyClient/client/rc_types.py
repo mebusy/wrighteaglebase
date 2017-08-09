@@ -1,3 +1,4 @@
+from rcss import *
 
 _PLAYMODE_STRINGS = [
     "",                   
@@ -60,5 +61,107 @@ KO_Ours = 0
 KO_Opps = 1
 
 
+_LineType = {
+    
+    "(l l)"  : SL_Left , 
+    "(l r)"  : SL_Right , 
+    "(l t)"  : SL_Top , 
+    "(l b)"  : SL_Bottom  , 
+}
 
+_MarkerTypes = {
+    "(g l)"  : Goal_L , 
+    "(g r)"  : Goal_R , 
+
+
+    "(f c)"  : Flag_C , 
+    "(f c t)"  : Flag_CT , 
+    "(f c b)"  : Flag_CB , 
+    "(f l t)"  : Flag_LT , 
+    "(f l b)"  : Flag_LB , 
+    "(f r t)"  : Flag_RT , 
+    "(f r b)"  : Flag_RB , 
+
+    "(f p l t)"  : Flag_PLT , 
+    "(f p l c)"  : Flag_PLC , 
+    "(f p l b)"  : Flag_PLB , 
+    "(f p r t)"  : Flag_PRT , 
+    "(f p r c)"  : Flag_PRC , 
+    "(f p r b)"  : Flag_PRB , 
+
+    "(f g l t)"  : Flag_GLT , 
+    "(f g l b)"  : Flag_GLB , 
+    "(f g r t)"  : Flag_GRT , 
+    "(f g r b)"  : Flag_GRB , 
+
+    "(f t l 50)"  : Flag_TL50 , 
+    "(f t l 40)"  : Flag_TL40 , 
+    "(f t l 30)"  : Flag_TL30 , 
+    "(f t l 20)"  : Flag_TL20 , 
+    "(f t l 10)"  : Flag_TL10 , 
+    "(f t 0)"  : Flag_T0 , 
+    "(f t r 10)"  : Flag_TR10 , 
+    "(f t r 20)"  : Flag_TR20 , 
+    "(f t r 30)"  : Flag_TR30 , 
+    "(f t r 40)"  : Flag_TR40 , 
+    "(f t r 50)"  : Flag_TR50 , 
+
+    "(f b l 50)"  : Flag_BL50 , 
+    "(f b l 40)"  : Flag_BL40 , 
+    "(f b l 30)"  : Flag_BL30 , 
+    "(f b l 20)"  : Flag_BL20 , 
+    "(f b l 10)"  : Flag_BL10 , 
+    "(f b 0)"  : Flag_B0 , 
+    "(f b r 10)"  : Flag_BR10 , 
+    "(f b r 20)"  : Flag_BR20 , 
+    "(f b r 30)"  : Flag_BR30 , 
+    "(f b r 40)"  : Flag_BR40 , 
+    "(f b r 50)"  : Flag_BR50 , 
+
+    "(f l t 30)"  : Flag_LT30 , 
+    "(f l t 20)"  : Flag_LT20 , 
+    "(f l t 10)"  : Flag_LT10 , 
+    "(f l 0)"  : Flag_L0 , 
+    "(f l b 10)"  : Flag_LB10 , 
+    "(f l b 20)"  : Flag_LB20 , 
+    "(f l b 30)"  : Flag_LB30 , 
+
+    "(f r t 30)"  : Flag_RT30 , 
+    "(f r t 20)"  : Flag_RT20 , 
+    "(f r t 10)"  : Flag_RT10 , 
+    "(f r 0)"  : Flag_R0 , 
+    "(f r b 10)"  : Flag_RB10 , 
+    "(f r b 20)"  : Flag_RB20 , 
+    "(f r b 30)"  : Flag_RB30 ,  
+
+
+}
+   
+_ObjTypes = {
+    "l" : OBJ_Line ,
+
+    "b" : OBJ_Ball ,
+    "B" : OBJ_Ball ,
+
+    "f" : OBJ_Marker ,
+    "g" : OBJ_Marker  ,   
+
+    "F" : OBJ_Marker_Behind ,
+    "G" : OBJ_Marker_Behind ,
+   
+    "p" : OBJ_Player ,
+    "P"  : OBJ_Player ,
+}
+
+def str2ObjType( s ) :
+    return _ObjTypes[s] 
+
+def str2LineType(s) :
+    return _LineType[s] 
+
+def str2MarkerType(s) :
+    return _MarkerTypes[s] 
+
+
+    
 
