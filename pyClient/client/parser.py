@@ -74,7 +74,6 @@ class Parser(object) :
         # (see 0 ((f c t) 30.3 6 0 0) ((f r t) 82.3 2) ((f r b) 108.9 41) ((f g r b) 93.7 28) ((g r) 90 24) ((f g r t) 87.4 20) ((f p r b) 87.4 41) ((f p r c) 75.9 29) ((f p r t) 68 14) ((f t 0) 30 -4) ((f t r 10) 40 -3) ((f t r 20) 49.9 -2) ((f t r 30) 59.7 -2) ((f t r 40) 70.1 -2) ((f t r 50) 79.8 -1) ((f t l 10) 20.1 -6 0 0) ((f t l 20) 10.2 -11 0 0) ((F) 2 -90) ((f b r 50) 109.9 44) ((f r 0) 94.6 23) ((f r t 10) 91.8 17) ((f r t 20) 89.1 11) ((f r t 30) 87.4 5) ((f r b 10) 99.5 28) ((f r b 20) 104.6 33) ((f r b 30) 109.9 37) ((p "teamname" 8) 6 0 0 0 0 0))
         sight_data =  readlisp( msg  )
 
-        d = {} 
         time  = int( sight_data [1] ) 
         if time <= self.observer.sight_time :
             return 
@@ -117,11 +116,13 @@ class Parser(object) :
     def ParseSense( self, msg ) :
         # sense_body 0 (view_mode high normal) (stamina 8000 1 130600) (speed 0 0) (head_angle 0) (kick 0) (dash 0) (turn 0) (say 0) (turn_neck 0) (catch 0) (move 0) (change_view 0) (arm (movable 0) (expires 0) (target 0 0) (count 0)) (focus (target none) (count 0)) (tackle (expires 0) (count 0)) (collision none) (foul  (charged 0) (card none)))
         sense_data =  readlisp( msg  )
-        d = {}
         time  = int( sense_data [1] )
         if time <= self.observer.sense_body_time :
             return 
         self.observer.sense_body_time = time 
+         
+        d = {}
+        d["time"] = time 
 
 
         for item in sense_data[2:]:
@@ -174,6 +175,8 @@ class Parser(object) :
                         d[key.name][ subitem[0].name ] =  int(subitem[1] ) 
             else:
                 raise Exception( "unknow sense msg:" + key.name  )
+
+            self.observer.recordBodyInfo(d) 
 
     def ParseSound(self ,msg) :
         # (hear 3000 referee kick_off_r)

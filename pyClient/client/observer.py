@@ -69,8 +69,9 @@ class Player( MobileObject ) :   # ====================================
 
 class Observer(cUnDelete):
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
-        "__time" , "__sight_time" , "__sense_body_time" , 
-        "ballObserver" , "mLineObservers" , "mMarkerObservers" , }
+        "__time" , "__sight_time" , "__sense_body_time" , "__bodyInfo", "__bodyFutureInfo" , 
+        "ballObserver" , "mLineObservers" , "mMarkerObservers" , 
+        }
     
     def __init__(self) :
         super(Observer,self).__init__()
@@ -89,6 +90,9 @@ class Observer(cUnDelete):
         self.ballObserver = Ball() 
         self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
         self.mMarkerObservers =  tuple( [ Marker() for i in xrange(FLAG_MAX ) ]  )  
+
+        self.__bodyInfo = {}
+        self.__bodyFutureInfo = []
 
     # handel init msg
     def init(self, my_side , my_unum , play_mode ):
@@ -118,6 +122,8 @@ class Observer(cUnDelete):
         self.__sight_time = value 
         self.updateWorldStateTime()
 
+        self.__syncBodyInfo2WorldState()  
+
     @property 
     def sense_body_time( self ):
         return self.__sense_body_time
@@ -125,18 +131,43 @@ class Observer(cUnDelete):
     @sense_body_time.setter
     def sense_body_time(self, value):
         self.__sense_body_time = value 
-        self.updateWorldStateTime()
+
 
     @property
     def worldstate_time(self) :
         return self.__time
 
     def updateWorldStateTime(self):
-        self.__time = max( self.__sense_body_time , self.__sight_time , self.__time   )
+        self.__time = max( self.__sight_time , self.__time   )
 
     @property
     def initSide(self) :
         return __initSide 
+
+    def recordBodyInfo(self, d) :
+        from copy import deepcopy 
+        dup = deepcopy(d) 
+        self.__bodyFutureInfo.insert( 0, dup )
+
+        self.__syncBodyInfo2WorldState()  
+
+    def __syncBodyInfo2WorldState(self) :
+        while len( self.__bodyFutureInfo ) > 0:
+            info =  self.__bodyFutureInfo[-1]
+            if info["time"] <= self.__time:
+                self.__bodyInfo.update( info ) 
+                self.__bodyFutureInfo.pop()
+            else:
+                break 
+
+
+    # body infos
+    @property
+    def agentBodyDirection( self ):
+        return self.__bodyInfo[ "speed_dir" ] + self.__bodyInfo[ "head_angle" ]   
+    @property
+    def agentHeadDirection( self ):
+        return self.__bodyInfo[ "head_angle" ]
 
 
     def Initialize(self) :

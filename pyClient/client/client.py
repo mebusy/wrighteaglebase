@@ -4,6 +4,7 @@ from playerparam import PlayerParam
 from rcss import PM_BeforeKickOff  , PM_PlayOn , PM_KickOff_Left
 from readlisp import writelisp ,  getCmdSymbol
 import random  , math 
+from utility import *
 
 
 class Client(Parser) :
@@ -80,6 +81,24 @@ class Client(Parser) :
         self.__debugTick += 1 
         
     def planScore(self) :
+        bodyDir = self.observer.agentBodyDirection
+        headDir = self.observer.agentHeadDirection 
+
+        ballRelDir = self.observer.ballObserver.direction.value 
+        
+        print bodyDir , headDir , ballRelDir 
+        dir2ball = normalize_angle(  headDir + ballRelDir - bodyDir )
+
+        if abs( dir2ball ) > 2 :
+            print dir2ball
+            # self.exec_turn( dir2ball ) 
+            return
+        else :
+            pass 
+            # exec_dash( ServerParam.instance().maxpower()  )
+
+        
+
         pass  
 
     def swingNeck( self ) :       
@@ -109,5 +128,11 @@ class Client(Parser) :
         cmd = getCmdSymbol( 'kick' )  
         s = writelisp( ( cmd , power , angle  )  )
         self.sendMsg( s ) 
+
+    def exec_turn( self , angle  ):
+        cmd = getCmdSymbol( 'turn' )  
+        s = writelisp( ( cmd , 0  )  )
+        self.sendMsg( s ) 
+
         
 
