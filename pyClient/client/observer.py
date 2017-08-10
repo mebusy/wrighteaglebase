@@ -2,6 +2,8 @@ from serverparam import ServerParam
 from rcss import PM_BeforeKickOff , PM_PlayOn 
 from rc_types import *
 from utils import cUnDelete 
+import sys , math
+from utility import *
 
 class ObserverRecord(cUnDelete) :
     __slots__ = { "time" , "value" }
@@ -24,33 +26,39 @@ class GameObject( cUnDelete ) :
     # def __setitem__(self,key, value) :
     #     print "set like dict"
 
-class Line( GameObject ) :  # ====================================
-    __slots__ = ()
+    def update(self, time , prop):
+        for k,v in prop.iteritems():
+            self[k].update( time, v  )
 
 class FieldObject( GameObject ) :
-    __slots__ = { "position" } 
+    __slots__ = { "position" , "direction_change" , "distance_change"  } 
     def __init__(self) :
         super( FieldObject , self ).__init__()
         self.position = ObserverRecord()  
+        self.direction_change = ObserverRecord()
+        self.distance_change = ObserverRecord()
+
+    def Initialize( self , field_type, pos , rotation ) :
+        # If on the right side of the field, flip all coords
+        self.position.update( sys.maxint , pos if not rotation else ( -pos[0] , -pos[1]  )  ) 
+
+class Line( FieldObject ) :    # ====================================   
+    # must explictly define __slots__ even if it is empty
+    __slots__ = {}
 
 class Marker( FieldObject ) :    # ====================================   
     # must explictly define __slots__ even if it is empty
     __slots__ = {}
 
 class MobileObject( FieldObject ) :
-    __slots__ = { "direction_change" , "distance_change" , "speed_vector" } 
+    __slots__ = { "speed_vector" } 
     def __init__(self) :
         super( MobileObject, self ).__init__() 
-        self.direction_change = ObserverRecord()
-        self.distance_change = ObserverRecord()
         self.speed_vector = ObserverRecord()
 
 class Ball( MobileObject ) :   # ====================================  
     __slots__ = {} 
 
-    def update(self, time , prop):
-        for k,v in prop.iteritems():
-            self[k].update( time, v  )
 
 class Player( MobileObject ) :   # ====================================  
     __slots__ = {"team","side","unum", "body_direction" , "face_direction" , "neck_direction" } 
@@ -71,6 +79,7 @@ class Observer(cUnDelete):
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
         "__time" , "__sight_time" , "__sense_body_time" , "__bodyInfo", "__bodyFutureInfo" , 
         "ballObserver" , "mLineObservers" , "mMarkerObservers" , 
+        "locateMarker"
         }
     
     def __init__(self) :
@@ -90,9 +99,15 @@ class Observer(cUnDelete):
         self.ballObserver = Ball() 
         self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
         self.mMarkerObservers =  tuple( [ Marker() for i in xrange(FLAG_MAX ) ]  )  
+        self.mSelfPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
+        self.mOppPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
 
         self.__bodyInfo = {}
         self.__bodyFutureInfo = []
+
+        # one should be a line , another should be a  marker 
+        # we can locate self players position , when only all( __locateMarker  ) == True
+        self.locateMarker = [None,None] 
 
     # handel init msg
     def init(self, my_side , my_unum , play_mode ):
@@ -144,6 +159,9 @@ class Observer(cUnDelete):
     def initSide(self) :
         return __initSide 
 
+    def selfAgentObserver( self ) :
+        return self.mSelfPlayerObservers[ self.unum ]
+
     def recordBodyInfo(self, d) :
         from copy import deepcopy 
         dup = deepcopy(d) 
@@ -155,16 +173,33 @@ class Observer(cUnDelete):
         while len( self.__bodyFutureInfo ) > 0:
             info =  self.__bodyFutureInfo[-1]
             if info["time"] <= self.__time:
-                self.__bodyInfo.update( info ) 
+
+                # update self player
+                # calc self agent's global absolute direction 
+                if all( self.locateMarker ) and info["time"] == self.__time :
+                    line_locate , marker_locate = self.locateMarker
+                    # print "you can locate youself now !"
+                    line = self.mLineObservers[ line_locate ]
+                    alpha = line.direction.value
+                    beta = -math.copysign( 1.0,alpha ) * ( 90 - abs(alpha) ) 
+                    
+                    line_global_angles = ( -180,0,-90,90 ) 
+                    global_head_dir = line_global_angles[ line_locate ] - beta 
+                    global_body_dir = global_head_dir - self.agentHeadDirection 
+                    # print 'global_body_dir' , global_body_dir 
+                    info[ "global_body_dir" ] = normalize_angle( global_body_dir ) 
+
+                self.__bodyInfo =  info 
                 self.__bodyFutureInfo.pop()
+
             else:
                 break 
 
 
     # body infos
     @property
-    def agentBodyDirection( self ):
-        return self.__bodyInfo[ "speed_dir" ] + self.__bodyInfo[ "head_angle" ]   
+    def agentGlobalBodyDirection( self ):
+        return self.__bodyInfo[ "global_body_dir" ] if "global_body_dir" in self.__bodyInfo else None 
     @property
     def agentHeadDirection( self ):
         return self.__bodyInfo[ "head_angle" ]
@@ -179,5 +214,88 @@ class Observer(cUnDelete):
         self.initialized = True 
 
     def InitializeFlags(self, rotation ) :
-        pass 
+        pitch_length = ServerParam.instance().PITCH_LENGTH
+        pitch_width  = ServerParam.instance().PITCH_WIDTH
+        pitch_margin = ServerParam.instance().PITCH_MARGIN
+        goal_width   = ServerParam.instance().goalWidth()
+        penalty_area_length = ServerParam.instance().PENALTY_AREA_LENGTH
+        penalty_area_width  = ServerParam.instance().PENALTY_AREA_WIDTH
+
+        # goals
+        self.mMarkerObservers[Goal_L ].Initialize(Goal_L,  ( -pitch_length/2.0, 0.0 ), rotation)  # Goal_L 
+        self.mMarkerObservers[Goal_R ].Initialize(Goal_R,  ( pitch_length/2.0, 0.0 ), rotation)  # Goal_R 
+
+        # center
+        self.mMarkerObservers[Flag_C ].Initialize(Flag_C,  ( 0.0, 0.0 ), rotation)  # Flag_C 
+        self.mMarkerObservers[Flag_CT].Initialize(Flag_CT, ( 0.0, -pitch_width/2.0 ), rotation)  # Flag_CT 
+        self.mMarkerObservers[Flag_CB].Initialize(Flag_CB, ( 0.0, pitch_width/2.0 ), rotation)  # Flag_CB 
+
+        # field corner
+        self.mMarkerObservers[Flag_LT].Initialize(Flag_LT, ( -pitch_length/2.0, -pitch_width/2.0 ), rotation)  # Flag_LT 
+        self.mMarkerObservers[Flag_LB].Initialize(Flag_LB, ( -pitch_length/2.0,  pitch_width/2.0 ), rotation)  # Flag_LB 
+        self.mMarkerObservers[Flag_RT].Initialize(Flag_RT, (  pitch_length/2.0, -pitch_width/2.0 ), rotation)  # Flag_RT 
+        self.mMarkerObservers[Flag_RB].Initialize(Flag_RB, (  pitch_length/2.0,  pitch_width/2.0 ), rotation)  # Flag_RB 
+
+        # penalty area
+        self.mMarkerObservers[Flag_PLT].Initialize(Flag_PLT, ( -pitch_length/2.0+penalty_area_length,-penalty_area_width/2.0 ), rotation)  # Flag_PLT 
+        self.mMarkerObservers[Flag_PLC].Initialize(Flag_PLC, ( -pitch_length/2.0+penalty_area_length, 0 ), rotation)  # Flag_PLC 
+        self.mMarkerObservers[Flag_PLB].Initialize(Flag_PLB, ( -pitch_length/2.0+penalty_area_length, penalty_area_width/2.0 ), rotation)  # Flag_PLB 
+        self.mMarkerObservers[Flag_PRT].Initialize(Flag_PRT, (  pitch_length/2.0-penalty_area_length,-penalty_area_width/2.0 ), rotation)  # Flag_PRT 
+        self.mMarkerObservers[Flag_PRC].Initialize(Flag_PRC, (  pitch_length/2.0-penalty_area_length, 0 ), rotation)  # Flag_PRC 
+        self.mMarkerObservers[Flag_PRB].Initialize(Flag_PRB, (  pitch_length/2.0-penalty_area_length, penalty_area_width/2.0 ), rotation)  # Flag_PRB 
+
+        # goal area
+        self.mMarkerObservers[Flag_GLT].Initialize(Flag_GLT, ( -pitch_length/2.0, -goal_width/2.0 ), rotation)  # Flag_GLT 
+        self.mMarkerObservers[Flag_GLB].Initialize(Flag_GLB, ( -pitch_length/2.0,  goal_width/2.0 ), rotation)  # Flag_GLB 
+        self.mMarkerObservers[Flag_GRT].Initialize(Flag_GRT, (  pitch_length/2.0, -goal_width/2.0 ), rotation)  # Flag_GRT 
+        self.mMarkerObservers[Flag_GRB].Initialize(Flag_GRB, (  pitch_length/2.0,  goal_width/2.0 ), rotation)  # Flag_GRB 
+
+        # top field flags
+        self.mMarkerObservers[Flag_TL50].Initialize(Flag_TL50, ( -50.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TL50 
+        self.mMarkerObservers[Flag_TL40].Initialize(Flag_TL40, ( -40.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TL40 
+        self.mMarkerObservers[Flag_TL30].Initialize(Flag_TL30, ( -30.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TL30 
+        self.mMarkerObservers[Flag_TL20].Initialize(Flag_TL20, ( -20.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TL20 
+        self.mMarkerObservers[Flag_TL10].Initialize(Flag_TL10, ( -10.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TL10 
+        self.mMarkerObservers[Flag_T0  ].Initialize(Flag_T0  , (   0.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_T0   
+        self.mMarkerObservers[Flag_TR10].Initialize(Flag_TR10, (  10.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TR10 
+        self.mMarkerObservers[Flag_TR20].Initialize(Flag_TR20, (  20.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TR20 
+        self.mMarkerObservers[Flag_TR30].Initialize(Flag_TR30, (  30.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TR30 
+        self.mMarkerObservers[Flag_TR40].Initialize(Flag_TR40, (  40.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TR40 
+        self.mMarkerObservers[Flag_TR50].Initialize(Flag_TR50, (  50.0, -pitch_width/2.0-pitch_margin ), rotation)  # Flag_TR50 
+
+        # bottom field flags
+        self.mMarkerObservers[Flag_BL50].Initialize(Flag_BL50, ( -50.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BL50 
+        self.mMarkerObservers[Flag_BL40].Initialize(Flag_BL40, ( -40.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BL40 
+        self.mMarkerObservers[Flag_BL30].Initialize(Flag_BL30, ( -30.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BL30 
+        self.mMarkerObservers[Flag_BL20].Initialize(Flag_BL20, ( -20.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BL20 
+        self.mMarkerObservers[Flag_BL10].Initialize(Flag_BL10, ( -10.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BL10 
+        self.mMarkerObservers[Flag_B0  ].Initialize(Flag_B0  , (   0.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_B0 
+        self.mMarkerObservers[Flag_BR10].Initialize(Flag_BR10, (  10.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BR10 
+        self.mMarkerObservers[Flag_BR20].Initialize(Flag_BR20, (  20.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BR20 
+        self.mMarkerObservers[Flag_BR30].Initialize(Flag_BR30, (  30.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BR30 
+        self.mMarkerObservers[Flag_BR40].Initialize(Flag_BR40, (  40.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BR40 
+        self.mMarkerObservers[Flag_BR50].Initialize(Flag_BR50, (  50.0, pitch_width/2.0+pitch_margin ), rotation)  # Flag_BR50 
+
+        # left field flags
+        self.mMarkerObservers[Flag_LT30].Initialize(Flag_LT30, ( -pitch_length/2.0-pitch_margin, -30 ), rotation)  # Flag_LT30 
+        self.mMarkerObservers[Flag_LT20].Initialize(Flag_LT20, ( -pitch_length/2.0-pitch_margin, -20 ), rotation)  # Flag_LT20 
+        self.mMarkerObservers[Flag_LT10].Initialize(Flag_LT10, ( -pitch_length/2.0-pitch_margin, -10 ), rotation)  # Flag_LT10 
+        self.mMarkerObservers[Flag_L0  ].Initialize(Flag_L0  , ( -pitch_length/2.0-pitch_margin,   0 ), rotation)  # Flag_L0 
+        self.mMarkerObservers[Flag_LB10].Initialize(Flag_LB10, ( -pitch_length/2.0-pitch_margin,  10 ), rotation)  # Flag_LB10 
+        self.mMarkerObservers[Flag_LB20].Initialize(Flag_LB20, ( -pitch_length/2.0-pitch_margin,  20 ), rotation)  # Flag_LB20 
+        self.mMarkerObservers[Flag_LB30].Initialize(Flag_LB30, ( -pitch_length/2.0-pitch_margin,  30 ), rotation)  # Flag_LB30 
+
+        # right field flags
+        self.mMarkerObservers[Flag_RT30].Initialize(Flag_RT30, ( pitch_length/2.0+pitch_margin, -30 ), rotation)  # Flag_RT30 
+        self.mMarkerObservers[Flag_RT20].Initialize(Flag_RT20, ( pitch_length/2.0+pitch_margin, -20 ), rotation)  # Flag_RT20 
+        self.mMarkerObservers[Flag_RT10].Initialize(Flag_RT10, ( pitch_length/2.0+pitch_margin, -10 ), rotation)  # Flag_RT10 
+        self.mMarkerObservers[Flag_R0  ].Initialize(Flag_R0  , ( pitch_length/2.0+pitch_margin,   0 ), rotation)  # Flag_R0 
+        self.mMarkerObservers[Flag_RB10].Initialize(Flag_RB10, ( pitch_length/2.0+pitch_margin,  10 ), rotation)  # Flag_RB10 
+        self.mMarkerObservers[Flag_RB20].Initialize(Flag_RB20, ( pitch_length/2.0+pitch_margin,  20 ), rotation)  # Flag_RB20 
+        self.mMarkerObservers[Flag_RB30].Initialize(Flag_RB30, ( pitch_length/2.0+pitch_margin,  30 ), rotation) # Flag_RB30 
+
+        self.mLineObservers[SL_Left  ].Initialize(SL_Left  , ( -pitch_length/2.0,  0.0 ), rotation) # SL_Left 
+        self.mLineObservers[SL_Right ].Initialize(SL_Right , ( pitch_length/2.0,  0.0 ), rotation) # SL_Right 
+        self.mLineObservers[SL_Top   ].Initialize(SL_Top   , ( 0.0, -pitch_width/2.0 ), rotation) # SL_Top 
+        self.mLineObservers[SL_Bottom].Initialize(SL_Bottom, ( 0.0,  pitch_width/2.0 ), rotation) # SL_Bottom 
 

@@ -17,7 +17,7 @@ class Echo(DatagramProtocol):
     def datagramReceived(self, data, addr):
         # print("received %r from %s" % (data, addr))
         # print( _callback_datagramReceived  )
-        if _callback_datagramReceived  :
+        if _callback_datagramReceived is not None  :
             _callback_datagramReceived( data  )
 
         global _server_addr 

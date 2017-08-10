@@ -76,33 +76,37 @@ class Client(Parser) :
 
         # self.exec_dash( 100 )
 
-        self.planScore()
+        try:
+            self.planScore()
+        except Exception as err:
+            print err
 
         self.__debugTick += 1 
         
     def planScore(self) :
-        bodyDir = self.observer.agentBodyDirection
-        headDir = self.observer.agentHeadDirection 
-
-        ballRelDir = self.observer.ballObserver.direction.value 
         
-        print bodyDir , headDir , ballRelDir 
-        dir2ball = normalize_angle(  headDir + ballRelDir - bodyDir )
+        bodyDir = self.observer.agentGlobalBodyDirection
+        print bodyDir , self.observer.ballObserver.direction.time , self.observer.worldstate_time  , self.observer.ballObserver.direction.time == self.observer.worldstate_time
+        if bodyDir is not None and self.observer.ballObserver.direction.time == self.observer.worldstate_time :
+            ballRelDir = self.observer.ballObserver.direction.value 
+            headDir = self.observer.agentHeadDirection 
+            dir2ball = normalize_angle(  headDir + ballRelDir - bodyDir )
+            print "aaaa", bodyDir , ballRelDir , headDir , dir2ball 
 
-        if abs( dir2ball ) > 2 :
-            print dir2ball
-            # self.exec_turn( dir2ball ) 
-            return
-        else :
-            pass 
-            # exec_dash( ServerParam.instance().maxpower()  )
+            if abs( dir2ball ) > 2 :
+                # self.exec_turn( dir2ball ) 
+                return
+            else :
+                pass 
+                # exec_dash( ServerParam.instance().maxpower()  )
 
         
 
         pass  
 
     def swingNeck( self ) :       
-        angle = math.sin( math.pi/2.0 * self.__debugTick  ) * 90
+        angs = ( -90, 90, 90 ,-90 )
+        angle = angs[ self.__debugTick % len( angs ) ]
         self.exec_turnNeck( angle) 
 
 
@@ -111,7 +115,6 @@ class Client(Parser) :
     def exec_moveTo( self, x,y ) :
         cmd = getCmdSymbol( 'move' )
         s = writelisp( ( cmd , x, y   )  )
-        # if True: return 
         self.sendMsg( s )
 
     def exec_turnNeck( self, angle  ) :
@@ -131,7 +134,7 @@ class Client(Parser) :
 
     def exec_turn( self , angle  ):
         cmd = getCmdSymbol( 'turn' )  
-        s = writelisp( ( cmd , 0  )  )
+        s = writelisp( ( cmd , angle  )  )
         self.sendMsg( s ) 
 
         

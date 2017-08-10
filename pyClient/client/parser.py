@@ -26,9 +26,9 @@ class Parser(object) :
 
         _side , _unum , _strPM = r.groups()  
 
-        if _side :  my_side = _side 
-        if _unum :  my_unum = _unum 
-        if _strPM : play_mode = str2PlayMode( _strPM ) 
+        if _side is not None :  my_side = _side 
+        if _unum is not None:  my_unum = _unum 
+        if _strPM is not None: play_mode = str2PlayMode( _strPM ) 
 
 
 
@@ -79,7 +79,13 @@ class Parser(object) :
             return 
         self.observer.sight_time = time 
 
-        
+         
+        line_locate = None 
+        marker_locate = None
+
+        self.observer.locateMarker[0] = line_locate 
+        self.observer.locateMarker[1] = marker_locate
+
         for ObjInfo in sight_data[2:]:
             ObjName = ObjInfo[0]
 
@@ -111,7 +117,24 @@ class Parser(object) :
 
             if objType == OBJ_Ball:
                 self.observer.ballObserver.update( time  , prop  )
+            elif objType == OBJ_Line:
+                self.observer.mLineObservers[ lineType ].update( time  , prop  )
+                if len( prop ) >= 2:
+                    if line_locate is None \
+                            or self.observer.mLineObservers[ lineType ].distance.value < self.observer.mLineObservers[ line_locate ].distance.value :
+                        line_locate = lineType 
+            elif objType == OBJ_Marker:
+                self.observer.mMarkerObservers[ markerType ].update( time  , prop  )
+                if len( prop ) >= 2:
+                    if marker_locate is None \
+                            or self.observer.mMarkerObservers[ markerType ].distance.value < self.observer.mMarkerObservers[ marker_locate ].distance.value :
+                        marker_locate = markerType 
+                    
         
+        self.observer.locateMarker[0] = line_locate 
+        self.observer.locateMarker[1] = marker_locate
+        
+
 
     def ParseSense( self, msg ) :
         # sense_body 0 (view_mode high normal) (stamina 8000 1 130600) (speed 0 0) (head_angle 0) (kick 0) (dash 0) (turn 0) (say 0) (turn_neck 0) (catch 0) (move 0) (change_view 0) (arm (movable 0) (expires 0) (target 0 0) (count 0)) (focus (target none) (count 0)) (tackle (expires 0) (count 0)) (collision none) (foul  (charged 0) (card none)))
@@ -176,7 +199,7 @@ class Parser(object) :
             else:
                 raise Exception( "unknow sense msg:" + key.name  )
 
-            self.observer.recordBodyInfo(d) 
+        self.observer.recordBodyInfo(d) 
 
     def ParseSound(self ,msg) :
         # (hear 3000 referee kick_off_r)
