@@ -54,17 +54,17 @@ class Parser(object) :
         n = len( objInfo )
 
         if n == 1: # direction only
-            prop[ 'Direction' ] = objInfo[0]
+            prop[ 'direction' ] = objInfo[0]
         else:
-            prop[ 'Distance' ] = objInfo[0]
-            prop[ 'Direction' ] = objInfo[1]
+            prop[ 'distance' ] = objInfo[0]
+            prop[ 'direction' ] = objInfo[1]
 
         if n > 2 :
-            prop[ 'DistChange' ] = objInfo[2]
-            prop[ 'DirChange' ] = objInfo[3]
+            prop[ 'distance_change' ] = objInfo[2]
+            prop[ 'direction_change' ] = objInfo[3]
         if n > 4 : 
-            prop[ 'BodyFacingDir' ] = objInfo[4]
-            prop[ 'HeadFacingDir' ] = objInfo[5]
+            prop[ 'body_direction' ] = objInfo[4]
+            prop[ 'face_direction' ] = objInfo[5]
 
         return prop 
 
@@ -75,7 +75,10 @@ class Parser(object) :
         sight_data =  readlisp( msg  )
 
         d = {} 
-        d["time"] = int( sight_data [1] ) 
+        time  = int( sight_data [1] ) 
+        if time <= self.observer.sight_time :
+            return 
+        self.observer.sight_time = time 
 
         
         for ObjInfo in sight_data[2:]:
@@ -116,10 +119,10 @@ class Parser(object) :
         sense_data =  readlisp( msg  )
         d = {}
         time  = int( sense_data [1] )
-        if time <= self.observer.worldstate_time :
+        if time <= self.observer.sense_body_time :
             return 
+        self.observer.sense_body_time = time 
 
-        self.observer.update( time  ) 
 
         for item in sense_data[2:]:
             key = item[0]

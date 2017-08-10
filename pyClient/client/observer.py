@@ -9,6 +9,9 @@ class ObserverRecord(cUnDelete) :
         super( ObserverRecord , self ).__init__()
         self.time = -1
         self.value = 0
+    def update( self, time, value  ) :
+        self.time = time 
+        self.value = value 
 
 class GameObject( cUnDelete ) :
     __slots__ = { "distance" , "direction" }  
@@ -16,6 +19,8 @@ class GameObject( cUnDelete ) :
         super(GameObject,self ).__init__()
         self.distance = ObserverRecord()
         self.direction = ObserverRecord()
+    def __setitem__(self,key, value) :
+        print "set like dict"
 
 class Line( GameObject ) :  # ====================================
     __slots__ = ()
@@ -42,7 +47,8 @@ class Ball( MobileObject ) :   # ====================================
     __slots__ = {} 
 
     def update(self, time , prop):
-        pass
+        for k,v in prop.iteritems():
+            self[i].update( time, v  )
 
 class Player( MobileObject ) :   # ====================================  
     __slots__ = {"team","side","unum", "body_direction" , "face_direction" , "neck_direction" } 
@@ -73,6 +79,8 @@ class Observer(cUnDelete):
         self.needRotate = False 
 
         self.__time = -1
+        self.__sight_time = -1
+        self.__sense_body_time = -1
 
         self.ballObserver = Ball() 
         self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
@@ -95,11 +103,32 @@ class Observer(cUnDelete):
 
     def update( self, time , *prop ):
         self.__time = time 
-        print "sense body" , time 
+        # print "sense body" , time 
+
+    @property 
+    def sight_time( self ):
+        return self.__sight_time 
+    
+    @sight_time.setter
+    def sight_time(self, value):
+        self.__sight_time = value 
+        self.updateWorldStateTime()
+
+    @property 
+    def sense_body_time( self ):
+        return self.__sense_body_time
+    
+    @sense_body_time.setter
+    def sense_body_time(self, value):
+        self.__sense_body_time = value 
+        self.updateWorldStateTime()
 
     @property
     def worldstate_time(self) :
         return self.__time
+
+    def updateWorldStateTime(self):
+        self.__time = max( self.__sense_body_time , self.__sight_time , self.__time   )
 
     @property
     def initSide(self) :
