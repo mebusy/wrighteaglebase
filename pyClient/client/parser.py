@@ -4,6 +4,7 @@ from rc_types import *
 from rcss import *
 import re
 from readlisp import readlisp  , writelisp
+from worldstate import WorldState 
 
 RE_INIT = re.compile( r"\(init\s+(\w+)(?:\s+(\d+))?(?:\s+(\w+))?\)" )
 
@@ -75,16 +76,20 @@ class Parser(object) :
         sight_data =  readlisp( msg  )
 
         time  = int( sight_data [1] ) 
-        if time <= self.observer.sight_time :
-            return 
-        self.observer.sight_time = time 
+        WorldState.instance().updateServerWorldStateTime( time ) 
+        
+        # record latest sight time 
+        self.observer.lastest_sight_time = max( self.observer.lastest_sight_time, time) 
 
          
+        # sight info will update anyways 
+        # value will decide whether to update according to update time
         line_locate = None 
         marker_locate = None
 
-        self.observer.locateMarker[0] = line_locate 
-        self.observer.locateMarker[1] = marker_locate
+        if self.observer.lastest_sight_time == time :
+            self.observer.locateMarker[0] = line_locate 
+            self.observer.locateMarker[1] = marker_locate
 
         for ObjInfo in sight_data[2:]:
             ObjName = ObjInfo[0]
@@ -130,19 +135,24 @@ class Parser(object) :
                             or self.observer.mMarkerObservers[ markerType ].distance.value < self.observer.mMarkerObservers[ marker_locate ].distance.value :
                         marker_locate = markerType 
                     
+        if self.observer.lastest_sight_time == time : 
+            self.observer.locateMarker[0] = line_locate 
+            self.observer.locateMarker[1] = marker_locate
         
-        self.observer.locateMarker[0] = line_locate 
-        self.observer.locateMarker[1] = marker_locate
-        
+            # debug
+            # if all( self.observer.locateMarker ):
+            #     print "get location marker at " , time 
 
 
     def ParseSense( self, msg ) :
         # sense_body 0 (view_mode high normal) (stamina 8000 1 130600) (speed 0 0) (head_angle 0) (kick 0) (dash 0) (turn 0) (say 0) (turn_neck 0) (catch 0) (move 0) (change_view 0) (arm (movable 0) (expires 0) (target 0 0) (count 0)) (focus (target none) (count 0)) (tackle (expires 0) (count 0)) (collision none) (foul  (charged 0) (card none)))
         sense_data =  readlisp( msg  )
         time  = int( sense_data [1] )
-        if time <= self.observer.sense_body_time :
+        WorldState.instance().updateServerWorldStateTime( time ) 
+
+        # for body data , only un-updated data will be handled
+        if time < WorldState.instance().timeUpdated :
             return 
-        self.observer.sense_body_time = time 
          
         d = {}
         d["time"] = time 

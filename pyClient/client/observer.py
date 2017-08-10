@@ -12,6 +12,8 @@ class ObserverRecord(cUnDelete) :
         self.time = -1
         self.value = 0
     def update( self, time, value  ) :
+        if time < self.time :
+            return 
         self.time = time 
         self.value = value 
 
@@ -77,7 +79,7 @@ class Player( MobileObject ) :   # ====================================
 
 class Observer(cUnDelete):
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
-        "__time" , "__sight_time" , "__sense_body_time" , "__bodyInfo", "__bodyFutureInfo" , 
+        "__time" , "__sight_time" ,  "__bodyInfo", "__bodyFutureInfo" , 
         "ballObserver" , "mLineObservers" , "mMarkerObservers" , 
         "locateMarker"
         }
@@ -94,7 +96,6 @@ class Observer(cUnDelete):
 
         self.__time = -1
         self.__sight_time = -1
-        self.__sense_body_time = -1
 
         self.ballObserver = Ball() 
         self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
@@ -129,50 +130,35 @@ class Observer(cUnDelete):
         # print "sense body" , time 
 
     @property 
-    def sight_time( self ):
+    def lastest_sight_time( self ):
         return self.__sight_time 
     
-    @sight_time.setter
-    def sight_time(self, value):
+    @lastest_sight_time.setter
+    def lastest_sight_time(self, value):
         self.__sight_time = value 
-        self.updateWorldStateTime()
-
-        self.__syncBodyInfo2WorldState()  
-
-    @property 
-    def sense_body_time( self ):
-        return self.__sense_body_time
-    
-    @sense_body_time.setter
-    def sense_body_time(self, value):
-        self.__sense_body_time = value 
 
 
-    @property
-    def worldstate_time(self) :
-        return self.__time
 
-    def updateWorldStateTime(self):
-        self.__time = max( self.__sight_time , self.__time   )
+
+
 
     @property
     def initSide(self) :
-        return __initSide 
+        return self.__initSide 
 
     def selfAgentObserver( self ) :
         return self.mSelfPlayerObservers[ self.unum ]
 
     def recordBodyInfo(self, d) :
-        from copy import deepcopy 
-        dup = deepcopy(d) 
-        self.__bodyFutureInfo.insert( 0, dup )
+        self.__bodyFutureInfo.append(d)
 
-        self.__syncBodyInfo2WorldState()  
 
-    def __syncBodyInfo2WorldState(self) :
+    def __syncBodyInfo2WorldState(self) : # unsed now 
         while len( self.__bodyFutureInfo ) > 0:
             info =  self.__bodyFutureInfo[-1]
             if info["time"] <= self.__time:
+                self.__bodyInfo =  info 
+                self.__bodyFutureInfo.pop()
 
                 # update self player
                 # calc self agent's global absolute direction 
@@ -186,11 +172,11 @@ class Observer(cUnDelete):
                     line_global_angles = ( -180,0,-90,90 ) 
                     global_head_dir = line_global_angles[ line_locate ] - beta 
                     global_body_dir = global_head_dir - self.agentHeadDirection 
-                    # print 'global_body_dir' , global_body_dir 
+
+                    print line_locate, alpha , self.agentHeadDirection  , line.direction.time , self.__time 
+                    print 'global_body_dir' , global_body_dir 
                     info[ "global_body_dir" ] = normalize_angle( global_body_dir ) 
 
-                self.__bodyInfo =  info 
-                self.__bodyFutureInfo.pop()
 
             else:
                 break 

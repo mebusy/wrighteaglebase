@@ -3,9 +3,10 @@ from serverparam import ServerParam
 from playerparam import PlayerParam 
 from rcss import PM_BeforeKickOff  , PM_PlayOn , PM_KickOff_Left
 from readlisp import writelisp ,  getCmdSymbol
-import random  , math 
+import random  
+import math 
 from utility import *
-
+from worldstate import WorldState 
 
 class Client(Parser) :
     def __init__( self, send2server ):
@@ -59,6 +60,10 @@ class Client(Parser) :
         if not self.observer.initialized:
             return 
 
+        # update world state before do decision
+        WorldState.instance().update( self.observer )
+
+
         if self.observer.serverPlayMode == PM_BeforeKickOff  : 
             # x = random.uniform( 0, ServerParam.instance().PITCH_LENGTH/2.0 ) 
             # y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
@@ -77,7 +82,8 @@ class Client(Parser) :
         # self.exec_dash( 100 )
 
         try:
-            self.planScore()
+            # self.planScore()
+            pass
         except Exception as err:
             print err
 
@@ -86,12 +92,13 @@ class Client(Parser) :
     def planScore(self) :
         
         bodyDir = self.observer.agentGlobalBodyDirection
-        print bodyDir , self.observer.ballObserver.direction.time , self.observer.worldstate_time  , self.observer.ballObserver.direction.time == self.observer.worldstate_time
-        if bodyDir is not None and self.observer.ballObserver.direction.time == self.observer.worldstate_time :
+        if bodyDir is not None:
             ballRelDir = self.observer.ballObserver.direction.value 
             headDir = self.observer.agentHeadDirection 
             dir2ball = normalize_angle(  headDir + ballRelDir - bodyDir )
-            print "aaaa", bodyDir , ballRelDir , headDir , dir2ball 
+            
+            if bodyDir != 0:
+                print "aaaa", bodyDir , ballRelDir , headDir , dir2ball 
 
             if abs( dir2ball ) > 2 :
                 # self.exec_turn( dir2ball ) 
