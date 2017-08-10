@@ -77,7 +77,6 @@ class Parser(object) :
         d = {} 
         d["time"] = int( sight_data [1] ) 
 
-        self.observer.time = d["time"] 
         
         for ObjInfo in sight_data[2:]:
             ObjName = ObjInfo[0]
@@ -116,7 +115,12 @@ class Parser(object) :
         # sense_body 0 (view_mode high normal) (stamina 8000 1 130600) (speed 0 0) (head_angle 0) (kick 0) (dash 0) (turn 0) (say 0) (turn_neck 0) (catch 0) (move 0) (change_view 0) (arm (movable 0) (expires 0) (target 0 0) (count 0)) (focus (target none) (count 0)) (tackle (expires 0) (count 0)) (collision none) (foul  (charged 0) (card none)))
         sense_data =  readlisp( msg  )
         d = {}
-        d["time"] = int( sense_data [1] )
+        time  = int( sense_data [1] )
+        if time <= self.observer.worldstate_time :
+            return 
+
+        self.observer.update( time  ) 
+
         for item in sense_data[2:]:
             key = item[0]
             if key.name == "collision" :

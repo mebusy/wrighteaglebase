@@ -1,23 +1,70 @@
 from serverparam import ServerParam 
 from rcss import PM_BeforeKickOff , PM_PlayOn 
 from rc_types import *
+from utils import cUnDelete 
 
-class objObserver( object ) :
+class ObserverRecord(cUnDelete) :
+    __slots__ = { "time" , "value" }
     def __init__(self) :
+        super( ObserverRecord , self ).__init__()
         self.time = -1
+        self.value = 0
 
-    def update( self, time, prop  ):
-        # if time <= self.time :
-        #     return 
-        # print 'update obj observer' 
+class GameObject( cUnDelete ) :
+    __slots__ = { "distance" , "direction" }  
+    def __init__( self ) :
+        super(GameObject,self ).__init__()
+        self.distance = ObserverRecord()
+        self.direction = ObserverRecord()
+
+class Line( GameObject ) :  # ====================================
+    __slots__ = ()
+
+class FieldObject( GameObject ) :
+    __slots__ = { "position" } 
+    def __init__(self) :
+        super( FieldObject , self ).__init__()
+        self.position = ObserverRecord()  
+
+class Marker( FieldObject ) :    # ====================================   
+    # must explictly define __slots__ even if it is empty
+    __slots__ = {}
+
+class MobileObject( FieldObject ) :
+    __slots__ = { "direction_change" , "distance_change" , "speed_vector" } 
+    def __init__(self) :
+        super( MobileObject, self ).__init__() 
+        self.direction_change = ObserverRecord()
+        self.distance_change = ObserverRecord()
+        self.speed_vector = ObserverRecord()
+
+class Ball( MobileObject ) :   # ====================================  
+    __slots__ = {} 
+
+    def update(self, time , prop):
         pass
+
+class Player( MobileObject ) :   # ====================================  
+    __slots__ = {"team","side","unum", "body_direction" , "face_direction" , "neck_direction" } 
+    def __init__(self) :
+        super( Player, self ).__init__() 
+        self.team = ""
+        self.side = "?"
+        self.unum = -1 
+        self.body_direction = ObserverRecord()
+        self.face_direction = ObserverRecord()
+        self.neck_direction = ObserverRecord()
+
+
+
          
 
-class Observer(object):
+class Observer(cUnDelete):
     
     def __init__(self) :
+        super(Observer,self).__init__()
         self.initialized = False 
-        self.initSide = None 
+        self.__initSide = None 
         self.side = None 
         self.unum = None
         self.serverPlayMode = None 
@@ -25,16 +72,15 @@ class Observer(object):
 
         self.needRotate = False 
 
-        self.time = -1
+        self.__time = -1
 
-        self.ballObserver = objObserver() 
-        self.mLineObservers = tuple( [ objObserver() for i in xrange(SL_MAX) ]  )  
-        self.mMarkerObservers =  tuple( [ objObserver() for i in xrange(FLAG_MAX ) ]  )  
-    pass
+        self.ballObserver = Ball() 
+        self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
+        self.mMarkerObservers =  tuple( [ Marker() for i in xrange(FLAG_MAX ) ]  )  
 
     # handel init msg
     def init(self, my_side , my_unum , play_mode ):
-        self.initSide = my_side 
+        self.__initSide = my_side 
         self.side = my_side 
         self.unum = my_unum
 
@@ -42,10 +88,23 @@ class Observer(object):
             self.serverPlayMode = play_mode
             self.playMode = play_mode 
 
-            self.kickoffMode = KO_Ours if self.initSide == 'r' else KO_Opps 
+            self.kickoffMode = KO_Ours if self.__initSide == 'r' else KO_Opps 
         else:
             self.serverPlayMode = PM_PlayOn 
             self.serverPlayMode = PM_PlayOn 
+
+    def update( self, time , *prop ):
+        self.__time = time 
+        print "sense body" , time 
+
+    @property
+    def worldstate_time(self) :
+        return self.__time
+
+    @property
+    def initSide(self) :
+        return __initSide 
+
 
     def Initialize(self) :
         assert self.side is not None

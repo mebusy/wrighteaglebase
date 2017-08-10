@@ -73,13 +73,17 @@ class Client(Parser) :
 
         self.swingNeck() 
 
-        self.exec_dash( 100 )
+        # self.exec_dash( 100 )
+
+        self.planScore()
 
         self.__debugTick += 1 
         
+    def planScore(self) :
+        pass  
 
     def swingNeck( self ) :       
-        angle = math.sin( math.pi/2.0 * self.observer.time ) * 90
+        angle = math.sin( math.pi/2.0 * self.__debugTick  ) * 90
         self.exec_turnNeck( angle) 
 
 
