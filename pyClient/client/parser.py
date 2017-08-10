@@ -111,7 +111,7 @@ class Parser(object) :
             # print prop
 
             if objType == OBJ_Ball:
-                self.observer.ballObserver.update( d["time"] , prop  )
+                self.observer.ballObserver.update( time  , prop  )
         
 
     def ParseSense( self, msg ) :
@@ -184,7 +184,7 @@ class Parser(object) :
 
         if sender == 'referee' :
             self.observer.serverPlayMode = str2PlayMode( message )
-            print message , self.observer.serverPlayMode 
+            print "from ", sender , message , self.observer.serverPlayMode 
 
 
 

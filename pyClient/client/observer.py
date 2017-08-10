@@ -19,8 +19,10 @@ class GameObject( cUnDelete ) :
         super(GameObject,self ).__init__()
         self.distance = ObserverRecord()
         self.direction = ObserverRecord()
-    def __setitem__(self,key, value) :
-        print "set like dict"
+    def __getitem__(self, key) :
+        return getattr( self, key  )
+    # def __setitem__(self,key, value) :
+    #     print "set like dict"
 
 class Line( GameObject ) :  # ====================================
     __slots__ = ()
@@ -48,7 +50,7 @@ class Ball( MobileObject ) :   # ====================================
 
     def update(self, time , prop):
         for k,v in prop.iteritems():
-            self[i].update( time, v  )
+            self[k].update( time, v  )
 
 class Player( MobileObject ) :   # ====================================  
     __slots__ = {"team","side","unum", "body_direction" , "face_direction" , "neck_direction" } 
@@ -66,6 +68,9 @@ class Player( MobileObject ) :   # ====================================
          
 
 class Observer(cUnDelete):
+    __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
+        "__time" , "__sight_time" , "__sense_body_time" , 
+        "ballObserver" , "mLineObservers" , "mMarkerObservers" , }
     
     def __init__(self) :
         super(Observer,self).__init__()
@@ -74,7 +79,6 @@ class Observer(cUnDelete):
         self.side = None 
         self.unum = None
         self.serverPlayMode = None 
-        self.playMode = None
 
         self.needRotate = False 
 
