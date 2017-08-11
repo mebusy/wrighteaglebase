@@ -136,7 +136,9 @@ __MarkerTypes = {
 
 
 }
-   
+
+__MarkerTypesReverse = {v: k for k, v in __MarkerTypes.iteritems()}   
+
 __ObjTypes = {
     "l" : OBJ_Line ,
 
@@ -162,6 +164,7 @@ def str2LineType(s) :
 def str2MarkerType(s) :
     return __MarkerTypes[s] 
 
-
+def markerType2str(t):
+    return __MarkerTypesReverse[t]
     
 

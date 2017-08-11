@@ -4,6 +4,7 @@ from rc_types import *
 from utils import cUnDelete 
 import sys , math
 from utility import *
+from euclid import Vector2
 
 class ObserverRecord(cUnDelete) :
     __slots__ = { "time" , "value" }
@@ -33,16 +34,20 @@ class GameObject( cUnDelete ) :
             self[k].update( time, v  )
 
 class FieldObject( GameObject ) :
-    __slots__ = { "position" , "direction_change" , "distance_change"  } 
+    __slots__ = { "marker_position" , "direction_change" , "distance_change" , "field_type" } 
     def __init__(self) :
         super( FieldObject , self ).__init__()
-        self.position = ObserverRecord()  
+        self.marker_position = None
         self.direction_change = ObserverRecord()
         self.distance_change = ObserverRecord()
+        self.field_type = -1
 
     def Initialize( self , field_type, pos , rotation ) :
         # If on the right side of the field, flip all coords
-        self.position.update( sys.maxint , pos if not rotation else ( -pos[0] , -pos[1]  )  ) 
+        pos = Vector2( *pos )
+        self.marker_position = pos if not rotation else -pos 
+        self.field_type = field_type
+
 
 class Line( FieldObject ) :    # ====================================   
     # must explictly define __slots__ even if it is empty
@@ -63,14 +68,14 @@ class Ball( MobileObject ) :   # ====================================
 
 
 class Player( MobileObject ) :   # ====================================  
-    __slots__ = {"team","side","unum", "body_direction" , "face_direction" , "neck_direction" } 
+    __slots__ = {"team","side","unum", "body_direction" , "neck_direction" } # "face_direction"  
     def __init__(self) :
         super( Player, self ).__init__() 
         self.team = ""
         self.side = "?"
         self.unum = -1 
         self.body_direction = ObserverRecord()
-        self.face_direction = ObserverRecord()
+        # self.face_direction = ObserverRecord()
         self.neck_direction = ObserverRecord()
 
 
@@ -79,9 +84,8 @@ class Player( MobileObject ) :   # ====================================
 
 class Observer(cUnDelete):
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
-        "__time" , "__sight_time" ,  "__bodyInfo", "__bodyFutureInfo" , 
-        "ballObserver" , "mLineObservers" , "mMarkerObservers" , 
-        "locateMarker"
+        "__time" , "__sight_time" , "__sensebody_time" , "bodyFutureInfo" , 
+        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "mobileObservers", 
         }
     
     def __init__(self) :
@@ -96,6 +100,7 @@ class Observer(cUnDelete):
 
         self.__time = -1
         self.__sight_time = -1
+        self.__sensebody_time = -1
 
         self.ballObserver = Ball() 
         self.mLineObservers = tuple( [ Line() for i in xrange(SL_MAX) ]  )  
@@ -103,18 +108,19 @@ class Observer(cUnDelete):
         self.mSelfPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
         self.mOppPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
 
-        self.__bodyInfo = {}
-        self.__bodyFutureInfo = []
+        # must sync with worldstate's mobileObjects
+        self.mobileObservers = [ self.ballObserver ] 
+        self.mobileObservers.extend( self.mSelfPlayerObservers )
+        self.mobileObservers.extend( self.mOppPlayerObservers )
 
-        # one should be a line , another should be a  marker 
-        # we can locate self players position , when only all( __locateMarker  ) == True
-        self.locateMarker = [None,None] 
+        self.bodyFutureInfo = {}
+
 
     # handel init msg
     def init(self, my_side , my_unum , play_mode ):
         self.__initSide = my_side 
         self.side = my_side 
-        self.unum = my_unum
+        self.unum = int(my_unum)
 
         if play_mode == PM_BeforeKickOff :
             self.serverPlayMode = play_mode
@@ -138,6 +144,13 @@ class Observer(cUnDelete):
         self.__sight_time = value 
 
 
+    @property 
+    def lastest_sensebody_time( self ):
+        return self.__sensebody_time 
+    
+    @lastest_sensebody_time.setter
+    def lastest_sensebody_time(self, value):
+        self.__sensebody_time = value 
 
 
 
@@ -150,52 +163,17 @@ class Observer(cUnDelete):
         return self.mSelfPlayerObservers[ self.unum ]
 
     def recordBodyInfo(self, d) :
-        self.__bodyFutureInfo.append(d)
+        self.bodyFutureInfo[ d["time"] ] = d
 
 
-    def __syncBodyInfo2WorldState(self) : # unsed now 
-        while len( self.__bodyFutureInfo ) > 0:
-            info =  self.__bodyFutureInfo[-1]
-            if info["time"] <= self.__time:
-                self.__bodyInfo =  info 
-                self.__bodyFutureInfo.pop()
 
-                # update self player
-                # calc self agent's global absolute direction 
-                if all( self.locateMarker ) and info["time"] == self.__time :
-                    line_locate , marker_locate = self.locateMarker
-                    # print "you can locate youself now !"
-                    line = self.mLineObservers[ line_locate ]
-                    alpha = line.direction.value
-                    beta = -math.copysign( 1.0,alpha ) * ( 90 - abs(alpha) ) 
-                    
-                    line_global_angles = ( -180,0,-90,90 ) 
-                    global_head_dir = line_global_angles[ line_locate ] - beta 
-                    global_body_dir = global_head_dir - self.agentHeadDirection 
-
-                    print line_locate, alpha , self.agentHeadDirection  , line.direction.time , self.__time 
-                    print 'global_body_dir' , global_body_dir 
-                    info[ "global_body_dir" ] = normalize_angle( global_body_dir ) 
-
-
-            else:
-                break 
-
-
-    # body infos
-    @property
-    def agentGlobalBodyDirection( self ):
-        return self.__bodyInfo[ "global_body_dir" ] if "global_body_dir" in self.__bodyInfo else None 
-    @property
-    def agentHeadDirection( self ):
-        return self.__bodyInfo[ "head_angle" ]
 
 
     def Initialize(self) :
         assert self.side is not None
 
         # if true, multiply all coords by -1 inside initialize
-        self.needRotate  = False if self.side == 'r' else True 
+        self.needRotate  = False if self.side == 'l' else True 
         self.InitializeFlags( self.needRotate  ) 
         self.initialized = True 
 

@@ -7,6 +7,7 @@ import random
 import math 
 from utility import *
 from worldstate import WorldState 
+from euclid import Vector2
 
 class Client(Parser) :
     def __init__( self, send2server ):
@@ -56,12 +57,21 @@ class Client(Parser) :
             pass
             raise Exception ( "unknow server command: " +  msg  )
 
-    def plan( self ) :
+    def plan(self):
+        try:
+            self.plan2()
+        except:
+            import traceback
+            traceback.print_exc()
+            print err
+
+    def plan2( self ) :
         if not self.observer.initialized:
             return 
 
         # update world state before do decision
-        WorldState.instance().update( self.observer )
+        if not WorldState.instance().update( self.observer ):
+            return 
 
 
         if self.observer.serverPlayMode == PM_BeforeKickOff  : 
@@ -76,38 +86,29 @@ class Client(Parser) :
             self.exec_kick( 50 , 35  )
             return 
         
+        if self.observer.serverPlayMode == PM_PlayOn:
+            self.planScore()
 
         self.swingNeck() 
-
-        # self.exec_dash( 100 )
-
-        try:
-            # self.planScore()
-            pass
-        except Exception as err:
-            print err
-
         self.__debugTick += 1 
         
     def planScore(self) :
         
-        bodyDir = self.observer.agentGlobalBodyDirection
-        if bodyDir is not None:
-            ballRelDir = self.observer.ballObserver.direction.value 
-            headDir = self.observer.agentHeadDirection 
-            dir2ball = normalize_angle(  headDir + ballRelDir - bodyDir )
-            
-            if bodyDir != 0:
-                print "aaaa", bodyDir , ballRelDir , headDir , dir2ball 
+        ball = WorldState.instance().ball 
+        selfAgent = WorldState.instance().selfAgent  
 
-            if abs( dir2ball ) > 2 :
-                # self.exec_turn( dir2ball ) 
-                return
-            else :
-                pass 
-                # exec_dash( ServerParam.instance().maxpower()  )
+        vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
+        vec2ball = ball.position - selfAgent.position 
+        rad2ball = vecBody.signed_angle( vec2ball ) 
+        angle =  math.degrees ( rad2ball )
 
-        
+        if abs(angle) < 15 :
+            # print ServerParam.instance().maxPower() , ServerParam.instance().minPower()
+            self.exec_dash( ServerParam.instance().maxPower() ) 
+        else :
+            self.exec_turn( angle )
+
+
 
         pass  
 

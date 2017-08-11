@@ -1,4 +1,5 @@
 import math 
+from euclid import Vector2
 
 M_PI = 180.0
 TWO_PI = 360.0 
@@ -13,4 +14,8 @@ def normalize_angle( ang ):
         ang -= TWO_PI
 
     return ang
+
+def fromPolar( r, degree ) :
+    ang = math.radians( degree )
+    return Vector2( r * math.cos( ang ), r * math.sin( ang ) )
 
