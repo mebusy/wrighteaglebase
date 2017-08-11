@@ -99,12 +99,12 @@ class Client(Parser) :
 
         vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
         vec2ball = ball.position - selfAgent.position 
-        rad2ball = vecBody.signed_angle( vec2ball ) 
-        angle =  math.degrees ( rad2ball )
+        rad2Turn2ball = vecBody.signed_angle( vec2ball ) 
+        angle =  math.degrees ( rad2Turn2ball )
 
         if abs(angle) < 15 :
             # print ServerParam.instance().maxPower() , ServerParam.instance().minPower()
-            self.exec_dash( ServerParam.instance().maxPower() ) 
+            self.exec_dash( min( ServerParam.instance().maxPower() , vec2ball.magnitude() * 20   ) ) 
         else :
             self.exec_turn( angle )
 
