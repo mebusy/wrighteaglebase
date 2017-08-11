@@ -302,7 +302,7 @@ class Vector2:
 
     def cross(self, other):
         assert isinstance(other, Vector2)
-        return clamp ( self.x * other.y - self.y * other.x , -1,1 )
+        return self.x * other.y - self.y * other.x 
 
     def reflect(self, normal):
         # assume normal is normalized
@@ -316,7 +316,7 @@ class Vector2:
         # return math.acos(self.dot(other) / (self.magnitude()*other.magnitude()))
         costheta = self.normalized().dot( other.normalized() )
         # print costheta , type( costheta )
-        return math.acos( costheta )
+        return math.acos( clamp( costheta, -1,1) )
         
 
     def signed_angle( self, other ) :
@@ -601,7 +601,7 @@ class Vector3:
 
     def angle(self, other):
         """Return the angle to the vector other"""
-        return math.acos(self.dot(other) / (self.magnitude()*other.magnitude()))
+        return math.acos(  clamp( self.dot(other) / (self.magnitude()*other.magnitude()) , -1,1  ) )
 
     def project(self, other):
         """Return one vector projected on the vector other"""
