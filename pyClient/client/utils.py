@@ -10,3 +10,7 @@ class Singleton(type):
 class cUnDelete(object) :
     def __delattr__(self, key) :
         raise Exception( "can not delete "+key )
+
+class Dict( dict ):
+    def __getattr__(self,key):
+        return self[key] 

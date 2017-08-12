@@ -85,7 +85,7 @@ class Player( MobileObject ) :   # ====================================
 class Observer(cUnDelete):
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
         "__time" , "__sight_time" , "__sensebody_time" , "bodyFutureInfo" , 
-        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "mobileObservers", 
+        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "mobileObservers", "player_type" ,
         }
     
     def __init__(self) :
@@ -94,6 +94,8 @@ class Observer(cUnDelete):
         self.__initSide = None 
         self.side = None 
         self.unum = None
+        self.playerTypeID = 0
+
         self.serverPlayMode = None 
 
         self.needRotate = False 

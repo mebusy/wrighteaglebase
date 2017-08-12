@@ -1,6 +1,6 @@
 
 from rcss import rcssServerParam
-from utils import Singleton
+from utils import Singleton , Dict
 import types  # used to bind a instance to a classmethod 
 import re 
 
@@ -58,7 +58,7 @@ class ServerParam( object ):
         result = RE_SERVERPARAM.findall( msg ) 
 
         typeID = None
-        dict_type = {}
+        dict_type = Dict()
         for k,v in result:
             if k == 'id':
                 typeID = int(v) 

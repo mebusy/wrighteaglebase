@@ -8,6 +8,7 @@ import math
 from utility import *
 from worldstate import WorldState 
 from euclid import Vector2
+from rcss import *
 
 class Client(Parser) :
     def __init__( self, send2server ):
@@ -93,20 +94,20 @@ class Client(Parser) :
         self.__debugTick += 1 
         
     def planScore(self) :
-        
-        ball = WorldState.instance().ball 
         selfAgent = WorldState.instance().selfAgent  
+        ball = WorldState.instance().ball 
 
-        vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
-        vec2ball = ball.position - selfAgent.position 
-        rad2Turn2ball = vecBody.signed_angle( vec2ball ) 
-        angle =  math.degrees ( rad2Turn2ball )
+        relAngle2ball = self.relAngle2Point( ball.position )
 
-        if abs(angle) < 15 :
+        if self.ballKickable():
+            relAngle2OppGoal = self.relAngle2Point( self.observer.mMarkerObservers[Goal_R ].marker_position )
+            self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
+        elif abs(relAngle2ball) < 15 :
             # print ServerParam.instance().maxPower() , ServerParam.instance().minPower()
+            vec2ball = ball.position - selfAgent.position 
             self.exec_dash( min( ServerParam.instance().maxPower() , vec2ball.magnitude() * 20   ) ) 
         else :
-            self.exec_turn( angle )
+            self.exec_turn( relAngle2ball )
 
 
 
@@ -127,7 +128,7 @@ class Client(Parser) :
 
     def exec_turnNeck( self, angle  ) :
         cmd = getCmdSymbol( 'turn_neck' )  
-        s = writelisp( ( cmd , angle  )  )
+        s = writelisp( ( cmd , normalize_angle( angle )  )  )
         self.sendMsg( s ) 
 
     def exec_dash( self, power) :
@@ -137,13 +138,30 @@ class Client(Parser) :
         
     def exec_kick( self, power , angle ) :   
         cmd = getCmdSymbol( 'kick' )  
-        s = writelisp( ( cmd , power , angle  )  )
+        s = writelisp( ( cmd , power , normalize_angle( angle )  )  )
         self.sendMsg( s ) 
 
     def exec_turn( self , angle  ):
         cmd = getCmdSymbol( 'turn' )  
-        s = writelisp( ( cmd , angle  )  )
+        s = writelisp( ( cmd , normalize_angle( angle )   )  )
         self.sendMsg( s ) 
 
-        
+    # ==  player ================================
+    def relAngle2Point( self, targetPos ) :
+        selfAgent = WorldState.instance().selfAgent  
+
+        vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
+        vec2target = targetPos - selfAgent.position 
+        rad2Turn2ball = vecBody.signed_angle( vec2target ) 
+        angle =  math.degrees ( rad2Turn2ball )
+        return angle
+    
+    def kickableArea(self):
+        M_player_type = ServerParam.instance().playerTypes[ self.observer.playerTypeID  ]
+        return M_player_type.player_size + ServerParam.instance().ballSize() + M_player_type.kickable_margin
+                                    
+    def ballKickable(self):
+        ball = WorldState.instance().ball 
+        selfAgent = WorldState.instance().selfAgent
+        return selfAgent.position.distance2( ball.position)  <=  ( self.kickableArea() ** 2 )
 

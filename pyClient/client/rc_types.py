@@ -53,8 +53,6 @@ __PLAYMODE_STRINGS = [
     "penalty_score_r"                   
 ]
 
-def str2PlayMode(s) :
-    return __PLAYMODE_STRINGS.index(s) 
 
 
 KO_Ours = 0 
@@ -154,6 +152,11 @@ __ObjTypes = {
     "p" : OBJ_Player ,
     "P"  : OBJ_Player ,
 }
+
+def str2PlayMode(s) :
+    if s.startswith( "goal_l"  ) or s.startswith( "goal_r" ) :
+        s = s[ :6 ]
+    return __PLAYMODE_STRINGS.index(s) 
 
 def str2ObjType( s ) :
     return __ObjTypes[s] 

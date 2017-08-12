@@ -329,6 +329,9 @@ class Vector2:
         n = other.normalized()
         return self.dot(n)*n
 
+    def distance2( self,other ):
+        return (self - other).magnitude_squared()
+
 class Vector3:
     __slots__ = ['x', 'y', 'z']
     __hash__ = None
