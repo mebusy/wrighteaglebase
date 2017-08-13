@@ -99,9 +99,8 @@ class Client(Parser) :
         ball = WorldState.instance().ball 
 
         relAngle2ball = self.relAngle2Point( ball.position )
-        if self.observer.needRotate:
-            print selfAgent.position
 
+        print self.observer.mMarkerObservers[Goal_R ].marker_position , selfAgent.position , selfAgent.bodyDirection
         if self.ballKickable():
             relAngle2OppGoal = self.relAngle2Point( self.observer.mMarkerObservers[Goal_R ].marker_position )
             self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
