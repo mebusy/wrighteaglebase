@@ -319,7 +319,7 @@ class Vector2:
         return math.acos( clamp( costheta, -1,1) )
         
 
-    def signed_angle( self, other ) :
+    def signed_angle_to( self, other ) :
         """Return the signed angle to the vector other"""
         d = self.cross(other) 
         return math.copysign(1.0,d) * self.angle(other)

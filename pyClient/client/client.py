@@ -155,7 +155,7 @@ class Client(Parser) :
 
         vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
         vec2target = targetPos - selfAgent.position 
-        rad2Turn2ball = vecBody.signed_angle( vec2target ) 
+        rad2Turn2ball = vecBody.signed_angle_to( vec2target ) 
         angle =  math.degrees ( rad2Turn2ball )
         return angle
     

@@ -77,8 +77,7 @@ class WorldState( cUnDelete ):
         alpha = line.direction.value
         beta = -math.copysign( 1.0,alpha ) * ( 90 - abs(alpha) )
 
-        line_global_angles = ( -180,0,-90,90 )
-        global_head_dir = line_global_angles[ line.field_type  ] - beta 
+        global_head_dir = math.degrees(  Vector2(1,0).signed_angle_to( line.marker_position ))  - beta 
         theta = global_head_dir
         global_body_dir = global_head_dir - bodyInfo[ "head_angle" ]
 
