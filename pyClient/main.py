@@ -1,4 +1,5 @@
 
+import argparse
 
 from twisted.internet import task
 from twisted.internet import reactor
@@ -11,6 +12,11 @@ def startTask( callback ):
 
 if __name__ == '__main__':
     
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--teamname', help='set teamname')   
+    args = parser.parse_args()
+
+    # print args 
 
     from client import udpClient, client , serverparam 
 
@@ -21,7 +27,7 @@ if __name__ == '__main__':
     # start 
     send2server  = udpClient.startUDP() 
 
-    player = client.Client( send2server  )
+    player = client.Client( send2server ,args.teamname or "teamname" )
     udpClient.setDataReceiveCallback( player.receiveFromServer )
     player.SendInitialLizeMsg()
 

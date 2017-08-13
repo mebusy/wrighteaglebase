@@ -180,6 +180,7 @@ class Observer(cUnDelete):
         self.initialized = True 
 
     def InitializeFlags(self, rotation ) :
+
         pitch_length = ServerParam.instance().PITCH_LENGTH
         pitch_width  = ServerParam.instance().PITCH_WIDTH
         pitch_margin = ServerParam.instance().PITCH_MARGIN

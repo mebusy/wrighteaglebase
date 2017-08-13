@@ -11,9 +11,10 @@ from euclid import Vector2
 from rcss import *
 
 class Client(Parser) :
-    def __init__( self, send2server ):
+    def __init__( self, send2server , teamname):
         super( Client , self ).__init__() 
         self.__send2server = send2server 
+        self.__teamname = teamname 
         self.__debugTick = 0
 
     def sendMsg( self, msg ) :
@@ -21,7 +22,7 @@ class Client(Parser) :
 
 
     def SendInitialLizeMsg(self) :
-        helloMsg = b"(init teamname (version 15))" 
+        helloMsg = b"(init {0} (version 15))".format( self.__teamname ) 
         self.sendMsg( helloMsg  )
         
     def receiveFromServer(self, msg  ):
@@ -76,19 +77,19 @@ class Client(Parser) :
 
 
         if self.observer.serverPlayMode == PM_BeforeKickOff  : 
-            # x = random.uniform( 0, ServerParam.instance().PITCH_LENGTH/2.0 ) 
-            # y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
-            # if self.observer.needRotate:
-            #     x *= -1
-            # self.exec_moveTo( x,y )
-            self.exec_moveTo( -0.5 , 0 )
+            x = random.uniform( 0, ServerParam.instance().PITCH_LENGTH/2.0 ) 
+            y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
+            if self.observer.needRotate:
+                x *= -1
+            self.exec_moveTo( x,y )
             return 
-        if self.observer.serverPlayMode == PM_KickOff_Left :
-            self.exec_kick( 50 , 35  )
-            return 
-        
-        if self.observer.serverPlayMode == PM_PlayOn:
-            self.planScore()
+        # if self.observer.serverPlayMode == PM_KickOff_Left :
+        #     self.exec_kick( 50 , 35  )
+        #     return 
+        #
+        # if self.observer.serverPlayMode == PM_PlayOn:
+        #     self.planScore()
+        self.planScore()
 
         self.swingNeck() 
         self.__debugTick += 1 
@@ -98,6 +99,8 @@ class Client(Parser) :
         ball = WorldState.instance().ball 
 
         relAngle2ball = self.relAngle2Point( ball.position )
+        if self.observer.needRotate:
+            print selfAgent.position
 
         if self.ballKickable():
             relAngle2OppGoal = self.relAngle2Point( self.observer.mMarkerObservers[Goal_R ].marker_position )
