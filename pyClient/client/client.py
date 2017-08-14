@@ -77,16 +77,12 @@ class Client(Parser) :
 
 
         if self.observer.serverPlayMode == PM_BeforeKickOff  : 
-            x = random.uniform( 0, ServerParam.instance().PITCH_LENGTH/2.0 ) 
+            x = random.uniform( -ServerParam.instance().PITCH_LENGTH/2.0 , 0 ) 
             y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
             if self.observer.needRotate:
                 x *= -1
             self.exec_moveTo( x,y )
             return 
-        # if self.observer.serverPlayMode == PM_KickOff_Left :
-        #     self.exec_kick( 50 , 35  )
-        #     return 
-        #
         # if self.observer.serverPlayMode == PM_PlayOn:
         #     self.planScore()
         self.planScore()
@@ -98,11 +94,11 @@ class Client(Parser) :
         selfAgent = WorldState.instance().selfAgent  
         ball = WorldState.instance().ball 
 
-        relAngle2ball = self.relAngle2Point( ball.position )
+        relAngle2ball = selfAgent.relAngle2Point( ball.position )
         
-        if self.ballKickable():
-            oppGoal = WorldState.instance().getOppGoal()
-            relAngle2OppGoal = self.relAngle2Point( oppGoal.marker_position )
+        if selfAgent.ballKickable():
+            oppGoal = selfAgent.getOppGoal()
+            relAngle2OppGoal = selfAgent.relAngle2Point( oppGoal.marker_position )
             self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
         elif abs(relAngle2ball) < 15 :
             # print ServerParam.instance().maxPower() , ServerParam.instance().minPower()
@@ -124,6 +120,7 @@ class Client(Parser) :
     def sendCmd( self,cmd ):
         s = writelisp( cmd  )
         self.sendMsg( s )
+        WorldState.instance().recordActionCmd( str(cmd[0]) , cmd[1:] )
 
     def exec_moveTo( self, x,y ) :
         cmd = getCmdSymbol( 'move' )
@@ -145,23 +142,5 @@ class Client(Parser) :
         cmd = getCmdSymbol( 'turn' )  
         self.sendCmd( ( cmd , normalize_angle( angle )   )  )
 
-    # ==  player ================================
-    def relAngle2Point( self, targetPos ) :
-        selfAgent = WorldState.instance().selfAgent  
-
-        vecBody = fromPolar_degree( 1.0 , selfAgent.bodyDirection )
-        vec2target = targetPos - selfAgent.position 
-        rad2Turn2ball = vecBody.signed_angle_to( vec2target ) 
-        angle =  math.degrees ( rad2Turn2ball )
-        return angle
-    
-    def kickableArea(self):
-        M_player_type = ServerParam.instance().playerTypes[ self.observer.playerTypeID  ]
-        return M_player_type.player_size + ServerParam.instance().ballSize() + M_player_type.kickable_margin
-                                    
-    def ballKickable(self):
-        ball = WorldState.instance().ball 
-        selfAgent = WorldState.instance().selfAgent
-        return selfAgent.position.distance2( ball.position)  <=  ( self.kickableArea() ** 2 )
 
 

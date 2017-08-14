@@ -97,7 +97,6 @@ class Observer(cUnDelete):
         self.__initSide = None 
         self.side = None 
         self.unum = None
-        self.playerTypeID = 0
 
         self.serverPlayMode = None 
 
@@ -165,7 +164,7 @@ class Observer(cUnDelete):
         return self.__initSide 
 
     def selfAgentObserver( self ) :
-        return self.mSelfPlayerObservers[ self.unum ]
+        return self.mSelfPlayerObservers[ self.unum-1 ]
 
     def recordBodyInfo(self, d) :
         self.bodyFutureInfo[ d["time"] ] = d

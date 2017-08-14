@@ -5,9 +5,10 @@ from rc_types import *
 import operator
 import math
 from euclid import Vector2
+from collections import defaultdict
+from serverparam import ServerParam
 
 class WorldObject( cUnDelete) :
-    __slots__ = { "bodyDirection" , "neckDirection" , "position" }
     def __init__(self):
         super( WorldObject , self ).__init__()
         self.bodyDirection = 0
@@ -41,7 +42,38 @@ class WorldObject( cUnDelete) :
         else:
             self.__velocity.x = float(value[0]) 
             self.__velocity.y = float(value[1]) 
-        
+
+class WorldPlayer( WorldObject ) :
+    def __init__(self):
+        super( WorldPlayer, self ).__init__()
+        # initial setter !
+        self.player_type = 0 
+
+    @property
+    def player_type(self):
+        return self.__player_type 
+
+    @player_type.setter
+    def player_type(self, t): 
+        self.__player_type = t 
+        self.M_player_type = ServerParam.instance().playerTypes[ self.__player_type ] 
+    
+    def relAngle2Point( self, targetPos ) :
+        vecBody = fromPolar_degree( 1.0 , self.bodyDirection )
+        vec2target = targetPos - self.position 
+        rad2Turn2ball = vecBody.signed_angle_to( vec2target ) 
+        angle =  math.degrees ( rad2Turn2ball )
+        return angle
+    
+    def kickableArea(self):
+        return self.M_player_type.player_size + ServerParam.instance().ballSize() + self.M_player_type.kickable_margin
+                                    
+    def ballKickable(self):
+        ball = WorldState.instance().ball
+        return self.position.distance2( ball.position)  <=  ( self.kickableArea() ** 2 )
+
+    def getOppGoal(self):
+        return self.__observer.mMarkerObservers[Goal_R ] if not self.__observer.needRotate  else self.__observer.mMarkerObservers[Goal_L ]
 
 class WorldState( cUnDelete ):
     __metaclass__ = Singleton
@@ -54,12 +86,13 @@ class WorldState( cUnDelete ):
 
 
         self.ball = WorldObject() 
-        self.teamPlayers = tuple( [ WorldObject() for i in xrange(11) ]  ) 
-        self.oppPlayers = tuple( [ WorldObject() for i in xrange(11) ]  ) 
+        self.teamPlayers = tuple( [ WorldPlayer() for i in xrange(11) ]  ) 
+        self.oppPlayers =  tuple( [ WorldPlayer() for i in xrange(11) ]  ) 
         
         # must sync with observer's mobleObserver
         self.mobileObjects = [ self.ball ]
 
+        self.__actionCmdHistory = defaultdict( dict )
         
 
     @classmethod
@@ -68,7 +101,7 @@ class WorldState( cUnDelete ):
 
     @property
     def selfAgent(self) :
-        return self.teamPlayers[ self.__observer.unum ]
+        return self.teamPlayers[ self.__observer.unum-1 ]
 
     def updateServerWorldStateTime( self, time ) :
         self.serverWorldStateTime = max( self.serverWorldStateTime , time  )
@@ -172,10 +205,14 @@ class WorldState( cUnDelete ):
             if time in observer.bodyFutureInfo and time+1 in observer.bodyFutureInfo :
                 bodyInfo_t = observer.bodyFutureInfo[time]
                 bodyInfo_tp1 = observer.bodyFutureInfo[time+1]
+
+                diff = { k:v-bodyInfo_t[k]  for k,v in bodyInfo_tp1.iteritems() if isinstance( v, int ) }
+
+
                 
-                # TODO
             else:
-                print 'can not prediction, short of body info histroy' 
+                # print 'can not prediction, short of body info histroy' , self.timeUpdated , observer.lastest_sensebody_time 
+                break 
         
 
     def update(self , observer ):
@@ -208,6 +245,8 @@ class WorldState( cUnDelete ):
 
         return True
 
-    def getOppGoal(self):
-        return self.__observer.mMarkerObservers[Goal_R ] if not self.__observer.needRotate  else self.__observer.mMarkerObservers[Goal_L ]
+    def recordActionCmd(self, cmd, param ):
+        if cmd not in self.__actionCmdHistory[ self.serverWorldStateTime ]: 
+            self.__actionCmdHistory[ self.serverWorldStateTime ][cmd] = param 
+
 

@@ -142,7 +142,7 @@ class Parser(object) :
                 # d[ key.name ] = item[1].name  # (collision {none|[(ball)][(player)][(post)]})
                 pass
             elif len(item) == 2:
-                d[ key.name ] = float( item[1]  ) 
+                d[ key.name ] = int( item[1]  ) 
             elif key.name == "view_mode":
                 d[ key.name ] = eval( item[2].name.upper()  )  # VIEW_QUALITY does not care
             elif key.name == "stamina" :
