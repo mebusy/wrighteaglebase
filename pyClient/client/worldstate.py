@@ -164,9 +164,9 @@ class WorldState( cUnDelete ):
         selfAgent = self.selfAgent  
         theta = selfAgent.neckDirection
         
-        objs = [(i,obj) for i,obj in enumerate( self.mobileObjects ) if obj is not selfAgent and observer.mobileObservers[i].direction.time == time and observer.mobileObservers[i].distance.time == time ]
-        for i, obj in objs:
-            objObserver = observer.mobileObservers[i]
+        objs = [obj for obj in self.mobileObjects if obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
+        for obj in objs:
+            objObserver = obj.obj_observer
             rpos = fromPolar_degree( objObserver.distance.value , objObserver.direction.value + theta )
             obj.position = selfAgent.position + rpos
 

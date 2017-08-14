@@ -90,7 +90,7 @@ class Observer(cUnDelete):
 
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
         "__time" , "__sight_time" , "__sensebody_time" , "bodyFutureInfo" , 
-        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "mobileObservers", "player_type" ,
+        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "player_type" ,
         }
 
     @classmethod
@@ -118,10 +118,6 @@ class Observer(cUnDelete):
         self.mSelfPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
         self.mOppPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
 
-        # must sync with worldstate's mobileObjects
-        self.mobileObservers = [ self.ballObserver ] 
-        self.mobileObservers.extend( self.mSelfPlayerObservers )
-        self.mobileObservers.extend( self.mOppPlayerObservers )
 
         self.bodyFutureInfo = {}
 
