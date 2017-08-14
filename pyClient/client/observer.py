@@ -1,7 +1,7 @@
 from serverparam import ServerParam 
 from rcss import PM_BeforeKickOff , PM_PlayOn 
 from rc_types import *
-from utils import cUnDelete 
+from utils import cUnDelete , Singleton 
 import sys , math
 from utility import *
 from euclid import Vector2
@@ -86,10 +86,16 @@ class Player( MobileObject ) :   # ====================================
          
 
 class Observer(cUnDelete):
+    __metaclass__ = Singleton
+
     __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
         "__time" , "__sight_time" , "__sensebody_time" , "bodyFutureInfo" , 
         "ballObserver" , "mLineObservers" , "mMarkerObservers" , "mobileObservers", "player_type" ,
         }
+
+    @classmethod
+    def instance(cls):
+        return Observer() 
     
     def __init__(self) :
         super(Observer,self).__init__()

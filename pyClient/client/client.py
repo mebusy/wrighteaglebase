@@ -97,7 +97,7 @@ class Client(Parser) :
         relAngle2ball = selfAgent.relAngle2Point( ball.position )
         
         if selfAgent.ballKickable():
-            oppGoal = selfAgent.getOppGoal()
+            oppGoal = self.getOppGoal()
             relAngle2OppGoal = selfAgent.relAngle2Point( oppGoal.marker_position )
             self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
         elif abs(relAngle2ball) < 15 :
@@ -143,4 +143,6 @@ class Client(Parser) :
         self.sendCmd( ( cmd , normalize_angle( angle )   )  )
 
 
-
+    # ========= desision =================
+    def getOppGoal(self):
+        return self.observer.mMarkerObservers[Goal_R ] if not self.observer.needRotate  else self.observer .mMarkerObservers[Goal_L ]

@@ -7,14 +7,16 @@ import math
 from euclid import Vector2
 from collections import defaultdict
 from serverparam import ServerParam
+from observer import Observer 
 
 class WorldObject( cUnDelete) :
-    def __init__(self):
+    def __init__(self, obj_observer ):
         super( WorldObject , self ).__init__()
         self.bodyDirection = 0
         self.neckDirection = 0
         self.__position = Vector2( -1, -1 )
         self.__velocity = Vector2( 0,0 )
+        self.obj_observer = obj_observer
 
     @property
     def position(self):
@@ -44,8 +46,8 @@ class WorldObject( cUnDelete) :
             self.__velocity.y = float(value[1]) 
 
 class WorldPlayer( WorldObject ) :
-    def __init__(self):
-        super( WorldPlayer, self ).__init__()
+    def __init__(self, obj_observer ):
+        super( WorldPlayer, self ).__init__( obj_observer )
         # initial setter !
         self.player_type = 0 
 
@@ -72,8 +74,6 @@ class WorldPlayer( WorldObject ) :
         ball = WorldState.instance().ball
         return self.position.distance2( ball.position)  <=  ( self.kickableArea() ** 2 )
 
-    def getOppGoal(self):
-        return self.__observer.mMarkerObservers[Goal_R ] if not self.__observer.needRotate  else self.__observer.mMarkerObservers[Goal_L ]
 
 class WorldState( cUnDelete ):
     __metaclass__ = Singleton
@@ -84,10 +84,9 @@ class WorldState( cUnDelete ):
         # don't use timeUpdated to do anything
         self.timeUpdated = -1  # the time agent last updated
 
-
-        self.ball = WorldObject() 
-        self.teamPlayers = tuple( [ WorldPlayer() for i in xrange(11) ]  ) 
-        self.oppPlayers =  tuple( [ WorldPlayer() for i in xrange(11) ]  ) 
+        self.ball = WorldObject( Observer.instance().ballObserver  ) 
+        self.teamPlayers = tuple( [ WorldPlayer( Observer.instance().mSelfPlayerObservers[i] ) for i in xrange(11) ]  ) 
+        self.oppPlayers =  tuple( [ WorldPlayer( Observer.instance().mOppPlayerObservers[i]  ) for i in xrange(11) ]  ) 
         
         # must sync with observer's mobleObserver
         self.mobileObjects = [ self.ball ]
@@ -101,7 +100,7 @@ class WorldState( cUnDelete ):
 
     @property
     def selfAgent(self) :
-        return self.teamPlayers[ self.__observer.unum-1 ]
+        return self.teamPlayers[ Observer.instance().unum-1 ]
 
     def updateServerWorldStateTime( self, time ) :
         self.serverWorldStateTime = max( self.serverWorldStateTime , time  )
@@ -216,7 +215,6 @@ class WorldState( cUnDelete ):
         
 
     def update(self , observer ):
-        self.__observer = observer 
         
         # print "last up t:{0},serv t:{1}, sight t:{2} , body t:{3}".format( self.timeUpdated ,self.serverWorldStateTime, observer.lastest_sight_time , observer.lastest_sensebody_time)
         # does not start yet , or no body sense info
