@@ -15,7 +15,7 @@ def normalize_angle( ang ):
 
     return ang
 
-def fromPolar( r, degree ) :
+def fromPolar_degree( r, degree ) :
     ang = math.radians( degree )
     return Vector2( r * math.cos( ang ), r * math.sin( ang ) )
 

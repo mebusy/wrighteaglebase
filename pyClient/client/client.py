@@ -121,38 +121,35 @@ class Client(Parser) :
         self.exec_turnNeck( angle) 
 
 
-
+    def sendCmd( self,cmd ):
+        s = writelisp( cmd  )
+        self.sendMsg( s )
 
     def exec_moveTo( self, x,y ) :
         cmd = getCmdSymbol( 'move' )
-        s = writelisp( ( cmd , x, y   )  )
-        self.sendMsg( s )
+        self.sendCmd( ( cmd , x, y   )  )
 
     def exec_turnNeck( self, angle  ) :
         cmd = getCmdSymbol( 'turn_neck' )  
-        s = writelisp( ( cmd , normalize_angle( angle )  )  )
-        self.sendMsg( s ) 
+        self.sendCmd( ( cmd , normalize_angle( angle )  )  )
 
     def exec_dash( self, power) :
         cmd = getCmdSymbol( 'dash' )  
-        s = writelisp( ( cmd , power  )  )
-        self.sendMsg( s ) 
+        self.sendCmd( ( cmd , power  )  )
         
     def exec_kick( self, power , angle ) :   
         cmd = getCmdSymbol( 'kick' )  
-        s = writelisp( ( cmd , power , normalize_angle( angle )  )  )
-        self.sendMsg( s ) 
+        self.sendCmd( ( cmd , power , normalize_angle( angle )  )  )
 
     def exec_turn( self , angle  ):
         cmd = getCmdSymbol( 'turn' )  
-        s = writelisp( ( cmd , normalize_angle( angle )   )  )
-        self.sendMsg( s ) 
+        self.sendCmd( ( cmd , normalize_angle( angle )   )  )
 
     # ==  player ================================
     def relAngle2Point( self, targetPos ) :
         selfAgent = WorldState.instance().selfAgent  
 
-        vecBody = fromPolar( 1.0 , selfAgent.bodyDirection )
+        vecBody = fromPolar_degree( 1.0 , selfAgent.bodyDirection )
         vec2target = targetPos - selfAgent.position 
         rad2Turn2ball = vecBody.signed_angle_to( vec2target ) 
         angle =  math.degrees ( rad2Turn2ball )
