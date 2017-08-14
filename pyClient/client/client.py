@@ -99,10 +99,10 @@ class Client(Parser) :
         ball = WorldState.instance().ball 
 
         relAngle2ball = self.relAngle2Point( ball.position )
-
-        print self.observer.mMarkerObservers[Goal_R ].marker_position , selfAgent.position , selfAgent.bodyDirection
+        
         if self.ballKickable():
-            relAngle2OppGoal = self.relAngle2Point( self.observer.mMarkerObservers[Goal_R ].marker_position )
+            oppGoal = WorldState.instance().getOppGoal()
+            relAngle2OppGoal = self.relAngle2Point( oppGoal.marker_position )
             self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
         elif abs(relAngle2ball) < 15 :
             # print ServerParam.instance().maxPower() , ServerParam.instance().minPower()
@@ -166,4 +166,5 @@ class Client(Parser) :
         ball = WorldState.instance().ball 
         selfAgent = WorldState.instance().selfAgent
         return selfAgent.position.distance2( ball.position)  <=  ( self.kickableArea() ** 2 )
+
 

@@ -332,6 +332,16 @@ class Vector2:
     def distance2( self,other ):
         return (self - other).magnitude_squared()
 
+    def rotate( self, angle ): 
+        """return a vector rotated by angle """
+        x = self.x
+        y = self.y
+        cs = math.cos(angle)
+        sn = math.sin(angle)
+        px = x * cs - y * sn  
+        py = x * sn + y * cs 
+        return Vector2( px, py )
+
 class Vector3:
     __slots__ = ['x', 'y', 'z']
     __hash__ = None

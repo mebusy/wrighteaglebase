@@ -7,25 +7,40 @@ import math
 from euclid import Vector2
 
 class WorldObject( cUnDelete) :
-    __slots__ = { "bodyDirection" , "headDirection" , "position" }
+    __slots__ = { "bodyDirection" , "neckDirection" , "position" }
     def __init__(self):
         super( WorldObject , self ).__init__()
         self.bodyDirection = 0
-        self.headDirection = 0
+        self.neckDirection = 0
         self.__position = Vector2( -1, -1 )
+        self.__velocity = Vector2( 0,0 )
 
     @property
     def position(self):
         return self.__position
 
+    # setter will not assign with new instance ,  copying content instead
     @position.setter
-    def position(self, value) :
+    def position(self, value):
         if isinstance(value, Vector2):
             self.__position.x = float(value.x) 
             self.__position.y = float(value.y) 
         else:
             self.__position.x = float(value[0]) 
             self.__position.y = float(value[1]) 
+
+    @property
+    def velocity(self):
+        return self.__velocity 
+
+    @velocity.setter
+    def velocity(self, value):
+        if isinstance(value, Vector2):
+            self.__velocity.x = float(value.x) 
+            self.__velocity.y = float(value.y) 
+        else:
+            self.__velocity.x = float(value[0]) 
+            self.__velocity.y = float(value[1]) 
         
 
 class WorldState( cUnDelete ):
@@ -62,6 +77,7 @@ class WorldState( cUnDelete ):
         selfAgent = self.selfAgent  
         bodyInfo = observer.bodyFutureInfo[time]
 
+        # rule 1: use nearest line
         lines = [ line for line in observer.mLineObservers if line.direction.time == time and line.distance.time == time ]
         if len( lines ) == 0:
             # print "no line for locating found" , time 
@@ -78,17 +94,26 @@ class WorldState( cUnDelete ):
         beta = -math.copysign( 1.0,alpha ) * ( 90 - abs(alpha) )
 
         global_head_dir = math.degrees(  Vector2(1,0).signed_angle_to( line.marker_position ))  - beta 
+        # rule 2: if agent see 2 lines , it means he is outside the pitch
+        if len(lines) >= 2:
+            global_head_dir += 180
+        global_head_dir = normalize_angle( global_head_dir )
         theta = global_head_dir
-        global_body_dir = global_head_dir - bodyInfo[ "head_angle" ]
+
+        global_body_dir = normalize_angle(  global_head_dir - bodyInfo[ "head_angle" ] )
 
         selfAgent.bodyDirection = global_body_dir 
-        selfAgent.headDirection = theta 
+        selfAgent.neckDirection = theta 
 
         # =======
         rpos = fromPolar( marker.distance.value , marker.direction.value + theta  )
         # print id( selfAgent.position ) , "~~~"
         selfAgent.position = marker.marker_position - rpos
         # print id( selfAgent.position  )
+
+
+        # === update self velocity ================
+        self.velocity = fromPolar( bodyInfo[ "speed" ] , bodyInfo[ "speed_dir"] + theta  )
 
 
         del observer.bodyFutureInfo[time]   
@@ -104,7 +129,7 @@ class WorldState( cUnDelete ):
 
     def updateOtherMobileObject( self , observer , time ):
         selfAgent = self.selfAgent  
-        theta = selfAgent.headDirection
+        theta = selfAgent.neckDirection
         
         objs = [(i,obj) for i,obj in enumerate( self.mobileObjects ) if obj is not selfAgent and observer.mobileObservers[i].direction.time == time and observer.mobileObservers[i].distance.time == time ]
         for i, obj in objs:
@@ -117,7 +142,22 @@ class WorldState( cUnDelete ):
                 obj.bodyDirection = objObserver.body_direction.value + theta  
 
             if hasattr( objObserver, "neck_direction" ) and objObserver.neck_direction.tiem == time :
-                obj.headDirection = objObserver.neck_direction.value + theta 
+                obj.neckDirection = objObserver.neck_direction.value + theta 
+            
+            # calc velocity
+            objAngle = objObserver.direction.value
+            relPos = fromPolar(1.0,  objAngle ) 
+
+            distChg = objObserver.distance_change.value 
+            dirChg = objObserver.direction_change.value 
+            objDist = objObserver.distance.value 
+
+            relVel = Vector2(distChg*relPos.x - (dirChg*math.pi/180*objDist * relPos.y) ,
+                             distChg*relPos.y + (dirChg*math.pi/180*objDist * relPos.x)  )
+            obj.velocity = selfAgent.velocity +  relVel.rotate( math.radians( selfAgent.neckDirection ) )
+
+            print "obj vel:",  obj.velocity 
+
 
             
 
@@ -152,4 +192,6 @@ class WorldState( cUnDelete ):
             return False 
 
 
+    def getOppGoal(self):
+        return self.__observer.mMarkerObservers[Goal_R ] if not self.__observer.needRotate  else self.__observer.mMarkerObservers[Goal_L ]
 
