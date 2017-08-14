@@ -145,18 +145,18 @@ class WorldState( cUnDelete ):
                 obj.neckDirection = objObserver.neck_direction.value + theta 
             
             # calc velocity
-            objAngle = objObserver.direction.value
-            relPos = fromPolar(1.0,  objAngle ) 
-
             distChg = objObserver.distance_change.value 
             dirChg = objObserver.direction_change.value 
             objDist = objObserver.distance.value 
+            objDir = objObserver.direction.value
+
+            relPos = fromPolar(1.0,  objDir ) 
 
             relVel = Vector2(distChg*relPos.x - (dirChg*math.pi/180*objDist * relPos.y) ,
                              distChg*relPos.y + (dirChg*math.pi/180*objDist * relPos.x)  )
             obj.velocity = selfAgent.velocity +  relVel.rotate( math.radians( selfAgent.neckDirection ) )
 
-            print "obj vel:",  obj.velocity 
+            # print "obj vel:",  obj.velocity 
 
 
             

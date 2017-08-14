@@ -6,6 +6,9 @@ import sys , math
 from utility import *
 from euclid import Vector2
 
+
+DELTA_TIME_EXPIRED = 30
+
 class ObserverRecord(cUnDelete) :
     __slots__ = { "time" , "value" }
     def __init__(self) :
@@ -265,4 +268,7 @@ class Observer(cUnDelete):
         self.mLineObservers[SL_Right ].Initialize(SL_Right , ( pitch_length/2.0,  0.0 ), rotation) # SL_Right 
         self.mLineObservers[SL_Top   ].Initialize(SL_Top   , ( 0.0, -pitch_width/2.0 ), rotation) # SL_Top 
         self.mLineObservers[SL_Bottom].Initialize(SL_Bottom, ( 0.0,  pitch_width/2.0 ), rotation) # SL_Bottom 
+
+    def isBallSightExpired(self):
+        return self.ballObserver.direction.time + DELTA_TIME_EXPIRED < self.__sensebody_time 
 
