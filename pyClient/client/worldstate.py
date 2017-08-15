@@ -51,6 +51,9 @@ class WorldObject( cUnDelete) :
     def sawBefore( self ) :
         return self.obj_observer.distance.time >= 0
 
+    def sawInLastSight(self) :
+        return self.obj_observer.distance.time >= 0 and self.obj_observer.distance.time == Observer.instance().lastest_sight_time 
+
 class WorldPlayer( WorldObject ) :
     def __init__(self, obj_observer ):
         super( WorldPlayer, self ).__init__( obj_observer )

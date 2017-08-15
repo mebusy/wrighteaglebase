@@ -43,12 +43,33 @@ class Client(Parser) :
             return 
 
 
-        # if self.observer.serverPlayMode == PM_PlayOn:
-        #     self.planScore()
         # self.planScore()
-        self.planPassing()
+        # self.planPassing()
+        self.planBallFacing()
 
         self.__debugTick += 1 
+
+    def planBallFacing(self):
+        if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
+            x = random.uniform( -ServerParam.instance().PITCH_LENGTH/2.0 , 0 ) 
+            y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
+            if self.observer.needRotate:
+                x *= -1
+            self.exec_moveTo( x,y )
+
+            self.observer.bDoneInState = True
+            return 
+
+        ball = WorldState.instance().ball 
+
+        if not ball.sawInLastSight():
+            self.searching()
+        else:
+            self.turnTo( ball.position )
+            self.swingNeck()
+            
+
+        pass
 
     def planPassing(self):
         if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
@@ -132,6 +153,12 @@ class Client(Parser) :
             self.exec_dash( min( ServerParam.instance().maxPower() , vec.magnitude() * 20   ) ) 
         else:
             self.exec_turn( relAng )
+
+    def turnTo( self, pos ) :
+        selfAgent = WorldState.instance().selfAgent
+        relAng = selfAgent.relAngle2Point( pos ) 
+        self.exec_turn( relAng ) 
+
 
 
     def swingNeck( self ) :       
