@@ -105,7 +105,7 @@ class Parser(object) :
             prop[ 'body_direction' ] = objInfo[4]
 
         if n > 5 :
-            prop[ 'neck_direction' ] = objInfo[5]
+            prop[ 'head_direction' ] = objInfo[5]
 
         return prop 
 

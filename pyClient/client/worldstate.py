@@ -13,7 +13,7 @@ class WorldObject( cUnDelete) :
     def __init__(self, obj_observer ):
         super( WorldObject , self ).__init__()
         self.bodyDirection = 0
-        self.neckDirection = 0
+        self.headDirection = 0
         self.__position = Vector2( -1, -1 )
         self.__velocity = Vector2( 0,0 )
         self.obj_observer = obj_observer
@@ -145,7 +145,7 @@ class WorldState( cUnDelete ):
         global_body_dir = normalize_angle(  global_head_dir - bodyInfo[ "head_angle" ] )
 
         selfAgent.bodyDirection = global_body_dir 
-        selfAgent.neckDirection = theta 
+        selfAgent.headDirection = theta 
 
         # =======
         rpos = fromPolar_degree( marker.distance.value , marker.direction.value + theta  )
@@ -172,7 +172,7 @@ class WorldState( cUnDelete ):
 
     def updateOtherMobileObject( self , observer , time ):
         selfAgent = self.selfAgent  
-        theta = selfAgent.neckDirection
+        theta = selfAgent.headDirection
         
         objs = [obj for obj in self.mobileObjects if obj.sawBefore() and obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
         for obj in objs:
@@ -184,8 +184,8 @@ class WorldState( cUnDelete ):
             if hasattr( objObserver, "body_direction" ) and objObserver.body_direction.time == time:
                 obj.bodyDirection = objObserver.body_direction.value + theta  
 
-            if hasattr( objObserver, "neck_direction" ) and objObserver.neck_direction.time == time :
-                obj.neckDirection = objObserver.neck_direction.value + theta 
+            if hasattr( objObserver, "head_direction" ) and objObserver.head_direction.time == time :
+                obj.headDirection = objObserver.head_direction.value + theta 
             
             if hasattr( objObserver, "distance_change" ) and objObserver.distance_change.time == time and \
                     hasattr( objObserver, "direction_change" ) and objObserver.direction_change.time == time :
@@ -200,7 +200,7 @@ class WorldState( cUnDelete ):
 
                 relVel = Vector2(distChg*relPos.x - (dirChg*math.pi/180*objDist * relPos.y) ,
                                  distChg*relPos.y + (dirChg*math.pi/180*objDist * relPos.x)  )
-                obj.velocity = selfAgent.velocity +  relVel.rotate( math.radians( selfAgent.neckDirection ) )
+                obj.velocity = selfAgent.velocity +  relVel.rotate( math.radians( selfAgent.headDirection ) )
 
                 # print "obj vel:",  obj.velocity 
 

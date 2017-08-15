@@ -71,7 +71,7 @@ class Ball( MobileObject ) :   # ====================================
 
 
 class Player( MobileObject ) :   # ====================================  
-    __slots__ = {"team","side","unum", "body_direction" , "neck_direction" } # "face_direction"  
+    __slots__ = {"team","side","unum", "body_direction" , "head_direction" } # "face_direction"  
     def __init__(self) :
         super( Player, self ).__init__() 
         self.team = ""
@@ -79,7 +79,7 @@ class Player( MobileObject ) :   # ====================================
         self.unum = -1 
         self.body_direction = ObserverRecord()
         # self.face_direction = ObserverRecord()
-        self.neck_direction = ObserverRecord()
+        self.head_direction = ObserverRecord()
 
 
 
