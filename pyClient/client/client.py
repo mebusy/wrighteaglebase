@@ -43,6 +43,14 @@ class Client(Parser) :
             return 
 
 
+        # if self.observer.serverPlayMode == PM_PlayOn:
+        #     self.planScore()
+        self.planScore()
+        # self.planPassing()
+
+        self.__debugTick += 1 
+
+    def planPassing(self):
         if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
             x = random.uniform( -ServerParam.instance().PITCH_LENGTH/2.0 , 0 ) 
             y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
@@ -52,20 +60,28 @@ class Client(Parser) :
 
             self.observer.bDoneInState = True
             return 
-        # if self.observer.serverPlayMode == PM_PlayOn:
-        #     self.planScore()
-        self.planScore()
-
-        self.swingNeck() 
-        self.__debugTick += 1 
         
     def planScore(self) :
+        if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
+            x = random.uniform( -ServerParam.instance().PITCH_LENGTH/2.0 , 0 ) 
+            y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
+            if self.observer.needRotate:
+                x *= -1
+            self.exec_moveTo( x,y )
+
+            self.observer.bDoneInState = True
+            return 
+
         selfAgent = WorldState.instance().selfAgent  
         ball = WorldState.instance().ball 
 
         relAngle2ball = selfAgent.relAngle2Point( ball.position )
         
-        if selfAgent.ballKickable():
+        if ball.isSightExpired():
+            self.exec_turn( 90 )
+            self.resetHeadAngle()
+        
+        elif selfAgent.ballKickable():
             oppGoal = self.getOppGoal()
             relAngle2OppGoal = selfAgent.relAngle2Point( oppGoal.marker_position )
             self.exec_kick( ServerParam.instance().maxPower() , relAngle2OppGoal )
@@ -76,15 +92,19 @@ class Client(Parser) :
         else :
             self.exec_turn( relAngle2ball )
 
+        self.swingNeck() 
 
 
         pass  
 
     def swingNeck( self ) :       
         angs = ( -90, 90, 90 ,-90 )
-        angle = angs[ self.__debugTick % len( angs ) ]
+        angle = angs[ self.__debugTick % len( angs ) ] / 2 
         self.exec_turnNeck( angle) 
 
+    def resetHeadAngle(self):
+        bodyInfo = self.observer.lastest_bodyInfo() 
+        self.exec_turnNeck( -bodyInfo[ "head_angle" ] ) 
 
     def sendCmd( self,cmd ):
         s = writelisp( cmd  )
@@ -115,3 +135,5 @@ class Client(Parser) :
     # ========= desision =================
     def getOppGoal(self):
         return self.observer.mMarkerObservers[Goal_R ] if not self.observer.needRotate  else self.observer .mMarkerObservers[Goal_L ]
+
+        

@@ -45,6 +45,9 @@ class WorldObject( cUnDelete) :
             self.__velocity.x = float(value[0]) 
             self.__velocity.y = float(value[1]) 
 
+    def isSightExpired( self ) :
+        return WorldState.instance().serverWorldStateTime - self.obj_observer.direction.time > 30
+
 class WorldPlayer( WorldObject ) :
     def __init__(self, obj_observer ):
         super( WorldPlayer, self ).__init__( obj_observer )
@@ -90,6 +93,8 @@ class WorldState( cUnDelete ):
         
         # must sync with observer's mobleObserver
         self.mobileObjects = [ self.ball ]
+        self.mobileObjects.extend( self.teamPlayers )
+        self.mobileObjects.extend( self.oppPlayers )
 
         self.__actionCmdHistory = defaultdict( dict )
         
@@ -164,7 +169,7 @@ class WorldState( cUnDelete ):
         selfAgent = self.selfAgent  
         theta = selfAgent.neckDirection
         
-        objs = [obj for obj in self.mobileObjects if obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
+        objs = [obj for obj in self.mobileObjects if obj.obj_observer.sawBefore() and obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
         for obj in objs:
             objObserver = obj.obj_observer
             rpos = fromPolar_degree( objObserver.distance.value , objObserver.direction.value + theta )

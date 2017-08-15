@@ -7,7 +7,6 @@ from utility import *
 from euclid import Vector2
 
 
-DELTA_TIME_EXPIRED = 30
 
 class ObserverRecord(cUnDelete) :
     __slots__ = { "time" , "value" }
@@ -35,6 +34,9 @@ class GameObject( cUnDelete ) :
     def update(self, time , prop):
         for k,v in prop.iteritems():
             self[k].update( time, v  )
+
+    def sawBefore( self ) :
+        return self.distance.time >= 0
 
 class FieldObject( GameObject ) :
     __slots__ = { "marker_position" , "direction_change" , "distance_change" , "field_type" } 
@@ -105,7 +107,6 @@ class Observer(cUnDelete):
 
         self.needRotate = False 
 
-        self.__time = -1
         self.__sight_time = -1
         self.__sensebody_time = -1
 
@@ -133,9 +134,6 @@ class Observer(cUnDelete):
             self.serverPlayMode = PM_PlayOn 
             self.serverPlayMode = PM_PlayOn 
 
-    def update( self, time , *prop ):
-        self.__time = time 
-        # print "sense body" , time 
 
     @property
     def serverPlayMode(self):
@@ -177,7 +175,8 @@ class Observer(cUnDelete):
         self.bodyFutureInfo[ d["time"] ] = d
 
 
-
+    def lastest_bodyInfo(self ):
+        return self.bodyFutureInfo[ self.lastest_sensebody_time  ]
 
 
     def Initialize(self) :
@@ -275,6 +274,4 @@ class Observer(cUnDelete):
         self.mLineObservers[SL_Top   ].Initialize(SL_Top   , ( 0.0, -pitch_width/2.0 ), rotation) # SL_Top 
         self.mLineObservers[SL_Bottom].Initialize(SL_Bottom, ( 0.0,  pitch_width/2.0 ), rotation) # SL_Bottom 
 
-    def isBallSightExpired(self):
-        return self.ballObserver.direction.time + DELTA_TIME_EXPIRED < self.__sensebody_time 
 
