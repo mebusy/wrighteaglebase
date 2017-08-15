@@ -88,10 +88,6 @@ class Player( MobileObject ) :   # ====================================
 class Observer(cUnDelete):
     __metaclass__ = Singleton
 
-    __slots__ = { "initialized" , "__initSide" , "side" , "unum" , "serverPlayMode" , "needRotate" , 
-        "__time" , "__sight_time" , "__sensebody_time" , "bodyFutureInfo" , 
-        "ballObserver" , "mLineObservers" , "mMarkerObservers" , "player_type" ,
-        }
 
     @classmethod
     def instance(cls):
@@ -104,7 +100,8 @@ class Observer(cUnDelete):
         self.side = None 
         self.unum = None
 
-        self.serverPlayMode = None 
+        self.__serverPlayMode = None 
+        self.bDoneInState = False
 
         self.needRotate = False 
 
@@ -130,7 +127,6 @@ class Observer(cUnDelete):
 
         if play_mode == PM_BeforeKickOff :
             self.serverPlayMode = play_mode
-            self.playMode = play_mode 
 
             self.kickoffMode = KO_Ours if self.__initSide == 'r' else KO_Opps 
         else:
@@ -140,6 +136,15 @@ class Observer(cUnDelete):
     def update( self, time , *prop ):
         self.__time = time 
         # print "sense body" , time 
+
+    @property
+    def serverPlayMode(self):
+        return self.__serverPlayMode 
+
+    @serverPlayMode.setter
+    def serverPlayMode(self, mode ):
+        self.__serverPlayMode = mode
+        self.bDoneInState = False 
 
     @property 
     def lastest_sight_time( self ):

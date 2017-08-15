@@ -43,12 +43,14 @@ class Client(Parser) :
             return 
 
 
-        if self.observer.serverPlayMode == PM_BeforeKickOff  : 
+        if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
             x = random.uniform( -ServerParam.instance().PITCH_LENGTH/2.0 , 0 ) 
             y = random.uniform( -ServerParam.instance().PITCH_WIDTH/2.0 , ServerParam.instance().PITCH_WIDTH/2.0 ) 
             if self.observer.needRotate:
                 x *= -1
             self.exec_moveTo( x,y )
+
+            self.observer.bDoneInState = True
             return 
         # if self.observer.serverPlayMode == PM_PlayOn:
         #     self.planScore()
