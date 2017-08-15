@@ -1,4 +1,5 @@
 from playerparam import PlayerParam 
+from serverparam import ServerParam
 from observer import Observer
 from rc_types import *
 from rcss import *
@@ -14,6 +15,38 @@ class Parser(object) :
 
     def __init__(self):
         self.observer = Observer() 
+    
+    def receiveFromServer(self, msg  ):
+        if msg.startswith( "(init " ):
+            self.ParseInitializeMsg( msg ) 
+        elif msg.startswith( "(server_param " ) or msg.startswith( "(player_param " ) :
+            if msg.startswith( "(server_param " ) :
+                ServerParam.instance().ParseFromServerMsg( msg[ len( "(server_param " ): -1 ]   ) 
+            else:
+                PlayerParam.instance().ParseFromServerMsg( msg[ len( "(player_param " ): -1 ]   ) 
+
+            if PlayerParam.instance().paramsFromServer is not None and ServerParam.instance().paramsFromServer is not None :   
+                ServerParam.instance().initParamFromServer()
+                self.observer.Initialize()
+                     
+
+        elif msg.startswith( "(player_type " ) : 
+            ServerParam.instance().ParsePlayerType(  msg[ len( "(player_type " ): -1 ]  )
+        elif msg.startswith( "(sense_body " ) :
+            self.ParseSense( msg  )
+        elif msg.startswith( "(see " ) :
+            self.ParseSight( msg  )
+        elif msg.startswith( "(hear " ):
+            self.ParseSound( msg )
+
+        elif msg.startswith( "(warning " ) :
+            print msg 
+        else:
+            # print ServerParam.instance().playerTypes 
+            import udpClient 
+            udpClient.setDataReceiveCallback( None ) 
+            pass
+            raise Exception ( "unknow server command: " +  msg  )
 
     def ParseInitializeMsg(self,msg):
 
