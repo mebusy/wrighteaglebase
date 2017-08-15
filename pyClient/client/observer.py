@@ -35,8 +35,6 @@ class GameObject( cUnDelete ) :
         for k,v in prop.iteritems():
             self[k].update( time, v  )
 
-    def sawBefore( self ) :
-        return self.distance.time >= 0
 
 class FieldObject( GameObject ) :
     __slots__ = { "marker_position" , "direction_change" , "distance_change" , "field_type" } 
@@ -99,6 +97,7 @@ class Observer(cUnDelete):
         super(Observer,self).__init__()
         self.initialized = False 
         self.__initSide = None 
+        self.teamname = ''
         self.side = None 
         self.unum = None
 
@@ -115,6 +114,8 @@ class Observer(cUnDelete):
         self.mMarkerObservers =  tuple( [ Marker() for i in xrange(FLAG_MAX ) ]  )  
         self.mSelfPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
         self.mOppPlayerObservers = tuple( [ Player() for i in xrange(11) ]  ) 
+
+        self.mUnknownPlayerObservers = tuple( [ Player() for i in xrange(11*2) ]  ) 
 
 
         self.bodyFutureInfo = {}
@@ -174,9 +175,18 @@ class Observer(cUnDelete):
     def recordBodyInfo(self, d) :
         self.bodyFutureInfo[ d["time"] ] = d
 
-
     def lastest_bodyInfo(self ):
         return self.bodyFutureInfo[ self.lastest_sensebody_time  ]
+
+    def resetUnknownPlayerObserver(self):
+        for obs in self.mUnknownPlayerObservers:
+            obs.distance.time = -1
+
+    def updateUnknownPlayerObserver(self ,time, prop ):
+        for obs in self.mUnknownPlayerObservers:
+            if obs.distance.time == -1:
+                obs.update( time , prop )
+                break 
 
 
     def Initialize(self) :

@@ -3,7 +3,7 @@ from utils import Singleton , cUnDelete
 from utility import *
 from rc_types import *
 import operator
-import math
+import math,random
 from euclid import Vector2
 from collections import defaultdict
 from serverparam import ServerParam
@@ -46,7 +46,10 @@ class WorldObject( cUnDelete) :
             self.__velocity.y = float(value[1]) 
 
     def isSightExpired( self ) :
-        return WorldState.instance().serverWorldStateTime - self.obj_observer.direction.time > 30
+        return not self.sawBefore() or WorldState.instance().serverWorldStateTime - self.obj_observer.direction.time > 50
+
+    def sawBefore( self ) :
+        return self.obj_observer.distance.time >= 0
 
 class WorldPlayer( WorldObject ) :
     def __init__(self, obj_observer ):
@@ -90,11 +93,13 @@ class WorldState( cUnDelete ):
         self.ball = WorldObject( Observer.instance().ballObserver  ) 
         self.teamPlayers = tuple( [ WorldPlayer( Observer.instance().mSelfPlayerObservers[i] ) for i in xrange(11) ]  ) 
         self.oppPlayers =  tuple( [ WorldPlayer( Observer.instance().mOppPlayerObservers[i]  ) for i in xrange(11) ]  ) 
+        self.unknownPlayers = tuple( [ WorldPlayer( Observer.instance().mUnknownPlayerObservers[i]  ) for i in xrange(22) ]  ) 
         
         # must sync with observer's mobleObserver
         self.mobileObjects = [ self.ball ]
         self.mobileObjects.extend( self.teamPlayers )
         self.mobileObjects.extend( self.oppPlayers )
+        self.mobileObjects.extend( self.unknownPlayers )
 
         self.__actionCmdHistory = defaultdict( dict )
         
@@ -169,7 +174,7 @@ class WorldState( cUnDelete ):
         selfAgent = self.selfAgent  
         theta = selfAgent.neckDirection
         
-        objs = [obj for obj in self.mobileObjects if obj.obj_observer.sawBefore() and obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
+        objs = [obj for obj in self.mobileObjects if obj.sawBefore() and obj is not selfAgent and obj.obj_observer.direction.time == time and obj.obj_observer.distance.time == time ]
         for obj in objs:
             objObserver = obj.obj_observer
             rpos = fromPolar_degree( objObserver.distance.value , objObserver.direction.value + theta )
@@ -251,5 +256,29 @@ class WorldState( cUnDelete ):
     def recordActionCmd(self, cmd, param ):
         if cmd not in self.__actionCmdHistory[ self.serverWorldStateTime ]: 
             self.__actionCmdHistory[ self.serverWorldStateTime ][cmd] = param 
+
+    def randomActiveTeammate(self):
+        activePlayers = [ p for p in self.teamPlayers if not p.isSightExpired() ]
+        if len( activePlayers ) == 0:
+            return None
+        else :
+            return random.choice( activePlayers  )
+
+    def anyPlayer(self):
+        p = self.randomActiveTeammate()
+        if p is not None:
+            return p 
+
+        unknowns = [p for p in self.unknownPlayers  if not p.isSightExpired()  ]
+        if len(unknowns) == 0:
+            return None
+
+        return random.choice( unknowns )
+
+    def activeBall(self):
+        if self.ball.isSightExpired():
+            return None
+        else:
+            return self.ball
 
 

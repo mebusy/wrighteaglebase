@@ -14,7 +14,7 @@ class Client(Parser) :
     def __init__( self, send2server , teamname):
         super( Client , self ).__init__() 
         self.__send2server = send2server 
-        self.__teamname = teamname 
+        self.observer.teamname = teamname 
         self.__debugTick = 0
 
     def sendMsg( self, msg ) :
@@ -22,7 +22,7 @@ class Client(Parser) :
 
 
     def SendInitialLizeMsg(self) :
-        helloMsg = b"(init {0} (version 15))".format( self.__teamname ) 
+        helloMsg = b"(init {0} (version 15))".format( self.observer.teamname ) 
         self.sendMsg( helloMsg  )
         
 
@@ -45,8 +45,8 @@ class Client(Parser) :
 
         # if self.observer.serverPlayMode == PM_PlayOn:
         #     self.planScore()
-        self.planScore()
-        # self.planPassing()
+        # self.planScore()
+        self.planPassing()
 
         self.__debugTick += 1 
 
@@ -60,6 +60,31 @@ class Client(Parser) :
 
             self.observer.bDoneInState = True
             return 
+
+        selfAgent = WorldState.instance().selfAgent
+        ball = WorldState.instance().activeBall()
+        mate = WorldState.instance().anyPlayer()
+
+        if ball is None :
+            self.searching()
+            return 
+
+        if selfAgent.ballKickable():
+            if mate is None:
+                self.searching()
+            else:
+                relAng = selfAgent.relAngle2Point( mate.position ) 
+                self.exec_kick( ServerParam.instance().maxPower() , relAng )
+        elif ball.velocity.magnitude_squared() < 0.25 : 
+            if mate is None:
+                self.searching()
+            elif selfAgent.position.distance2( ball.position ) <  mate.position.distance2( ball.position ) :
+                self.runTo( ball.position ) 
+            else:
+                self.searching()
+        else:
+            self.swingNeck() 
+
         
     def planScore(self) :
         if self.observer.serverPlayMode == PM_BeforeKickOff and not self.observer.bDoneInState : 
@@ -78,8 +103,7 @@ class Client(Parser) :
         relAngle2ball = selfAgent.relAngle2Point( ball.position )
         
         if ball.isSightExpired():
-            self.exec_turn( 90 )
-            self.resetHeadAngle()
+            self.searching()
         
         elif selfAgent.ballKickable():
             oppGoal = self.getOppGoal()
@@ -95,11 +119,24 @@ class Client(Parser) :
         self.swingNeck() 
 
 
+    def searching(self):
+        self.exec_turn( 90 )
+        self.resetHeadAngle()
         pass  
+    
+    def runTo( self, pos  ):
+        selfAgent = WorldState.instance().selfAgent
+        relAng = selfAgent.relAngle2Point( pos )
+        if abs(relAng) < 15:
+            vec = pos - selfAgent.position 
+            self.exec_dash( min( ServerParam.instance().maxPower() , vec.magnitude() * 20   ) ) 
+        else:
+            self.exec_turn( relAng )
+
 
     def swingNeck( self ) :       
         angs = ( -90, 90, 90 ,-90 )
-        angle = angs[ self.__debugTick % len( angs ) ] / 2 
+        angle = angs[ self.__debugTick % len( angs ) ] / 3 
         self.exec_turnNeck( angle) 
 
     def resetHeadAngle(self):

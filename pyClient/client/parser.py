@@ -38,6 +38,8 @@ class Parser(object) :
             self.ParseSight( msg  )
         elif msg.startswith( "(hear " ):
             self.ParseSound( msg )
+        elif msg.startswith( "(change_player_type " ):
+            self.ParseChangePlayerType( msg )
 
         elif msg.startswith( "(warning " ) :
             print msg 
@@ -95,10 +97,15 @@ class Parser(object) :
 
         if n > 2 :
             prop[ 'distance_change' ] = objInfo[2]
+
+        if n > 3:
             prop[ 'direction_change' ] = objInfo[3]
+
         if n > 4 : 
             prop[ 'body_direction' ] = objInfo[4]
-            prop[ 'face_direction' ] = objInfo[5]
+
+        if n > 5 :
+            prop[ 'neck_direction' ] = objInfo[5]
 
         return prop 
 
@@ -111,11 +118,13 @@ class Parser(object) :
         time  = int( sight_data [1] ) 
         WorldState.instance().updateServerWorldStateTime( time ) 
         
+        self.observer.resetUnknownPlayerObserver()
+        
         # record latest sight time 
         self.observer.lastest_sight_time = max( self.observer.lastest_sight_time, time) 
 
          
-        # sight info will update anyways 
+        # sight info will update anyway
         # value will decide whether to update according to update time
 
         for ObjInfo in sight_data[2:]:
@@ -149,6 +158,14 @@ class Parser(object) :
 
             if objType == OBJ_Ball:
                 self.observer.ballObserver.update( time  , prop  )
+            elif objType == OBJ_Player:
+                if teamname is not None and unum is not None:
+                    team = self.observer.mSelfPlayerObservers if teamname == self.observer.teamname else self.observer.mOppPlayerObservers
+                    team[unum-1].update( time, prop )
+                else:
+                    self.observer.updateUnknownPlayerObserver( time ,prop )
+                    
+                
             elif objType == OBJ_Line:
                 self.observer.mLineObservers[ lineType ].update( time  , prop  )
             elif objType == OBJ_Marker:
@@ -231,6 +248,13 @@ class Parser(object) :
         if sender == 'referee' :
             self.observer.serverPlayMode = str2PlayMode( message )
             print "from ", sender , message , self.observer.serverPlayMode 
-
+    
+    def ParseChangePlayerType(self, msg):
+        data = readlisp( msg ) 
+        player = int(data[1] )
+        player_type = int(data[2]) 
+        
+        WorldState.instance().teamPlayers[ player-1 ].player_type = player_type
+        print 'change team player{0} to type{1}'.format( player, player_type ) 
 
 
