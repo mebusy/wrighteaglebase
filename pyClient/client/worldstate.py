@@ -54,6 +54,10 @@ class WorldObject( cUnDelete) :
     def sawInLastSight(self) :
         return self.obj_observer.distance.time >= 0 and self.obj_observer.distance.time == Observer.instance().lastest_sight_time 
 
+    def sawInLastestServerTime(self):
+        return self.obj_observer.distance.time >= 0 and self.obj_observer.distance.time == WorldState.instance().serverWorldStateTime
+        
+
 class WorldPlayer( WorldObject ) :
     def __init__(self, obj_observer ):
         super( WorldPlayer, self ).__init__( obj_observer )
@@ -117,6 +121,10 @@ class WorldState( cUnDelete ):
 
     def updateServerWorldStateTime( self, time ) :
         self.serverWorldStateTime = max( self.serverWorldStateTime , time  )
+
+    def lastestSightInfoArrived(self):
+        """whether sight info just arrives in current cycle"""
+        return self.serverWorldStateTime  == Observer.instance().lastest_sight_time 
 
     def updateSelfAgent(self, observer , time ):
         selfAgent = self.selfAgent  

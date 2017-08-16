@@ -241,13 +241,19 @@ class Parser(object) :
     def ParseSound(self ,msg) :
         # (hear 3000 referee kick_off_r)
         data =  readlisp( msg  )
-        
+        time  = int(data [1] )        
         sender = data[2].name
-        message = data[3].name
+        message = data[3] if isinstance( data[3],str ) else data[3].name
 
         if sender == 'referee' :
             self.observer.serverPlayMode = str2PlayMode( message )
-            print "from ", sender , message , self.observer.serverPlayMode 
+            print "hear from ", sender , message , self.observer.serverPlayMode 
+        elif sender == 'self':
+            # print "hear from ", sender , message , time 
+            pass
+        else:
+            # print "hear from ", sender , message , time 
+            pass
     
     def ParseChangePlayerType(self, msg):
         data = readlisp( msg ) 

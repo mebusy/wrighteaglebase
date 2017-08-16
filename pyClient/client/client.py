@@ -66,7 +66,11 @@ class Client(Parser) :
             self.searching()
         else:
             self.turnTo( ball.position )
-            self.swingNeck()
+            # self.swingNeck()
+
+            if ball.sawInLastestServerTime():
+                # print 'say' ,  WorldState.instance().serverWorldStateTime 
+                self.exec_say( " ".join( map(str, ( 'b',0,int(ball.position.x),int(ball.position.y) ) ) ) ) 
             
 
         pass
@@ -141,7 +145,11 @@ class Client(Parser) :
 
 
     def searching(self):
-        self.exec_turn( 90 )
+        # from observer import Observer
+        # print WorldState.instance().serverWorldStateTime ,  Observer.instance().lastest_sight_time 
+        if WorldState.instance().lastestSightInfoArrived():
+            # print "turning " , WorldState.instance().serverWorldStateTime  
+            self.exec_turn( 90 )
         self.resetHeadAngle()
         pass  
     
@@ -170,30 +178,34 @@ class Client(Parser) :
         bodyInfo = self.observer.lastest_bodyInfo() 
         self.exec_turnNeck( -bodyInfo[ "head_angle" ] ) 
 
-    def sendCmd( self,cmd ):
+    def writeSendMsg( self,cmd ):
         s = writelisp( cmd  )
         self.sendMsg( s )
         WorldState.instance().recordActionCmd( str(cmd[0]) , cmd[1:] )
 
     def exec_moveTo( self, x,y ) :
         cmd = getCmdSymbol( 'move' )
-        self.sendCmd( ( cmd , x, y   )  )
+        self.writeSendMsg( ( cmd , x, y   )  )
 
     def exec_turnNeck( self, angle  ) :
         cmd = getCmdSymbol( 'turn_neck' )  
-        self.sendCmd( ( cmd , normalize_angle( angle )  )  )
+        self.writeSendMsg( ( cmd , normalize_angle( angle )  )  )
 
     def exec_dash( self, power) :
         cmd = getCmdSymbol( 'dash' )  
-        self.sendCmd( ( cmd , power  )  )
+        self.writeSendMsg( ( cmd , power  )  )
         
     def exec_kick( self, power , angle ) :   
         cmd = getCmdSymbol( 'kick' )  
-        self.sendCmd( ( cmd , power , normalize_angle( angle )  )  )
+        self.writeSendMsg( ( cmd , power , normalize_angle( angle )  )  )
 
     def exec_turn( self , angle  ):
         cmd = getCmdSymbol( 'turn' )  
-        self.sendCmd( ( cmd , normalize_angle( angle )   )  )
+        self.writeSendMsg( ( cmd , normalize_angle( angle )   )  )
+
+    def exec_say( self , msg  ):
+        cmd = getCmdSymbol( 'say' )
+        self.writeSendMsg(  ( cmd, msg ) )
 
 
     # ========= desision =================
