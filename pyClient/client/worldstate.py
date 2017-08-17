@@ -1,5 +1,5 @@
 
-from utils import Singleton , cUnDelete
+from utils import Singleton , cUnDelete , Dict
 from utility import *
 from rc_types import *
 import operator
@@ -17,10 +17,14 @@ class WorldObject( cUnDelete) :
         self.__position = Vector2( -1, -1 )
         self.__velocity = Vector2( 0,0 )
         self.obj_observer = obj_observer
+        self.__hearInfo = Dict(  time=-1, pos= Vector2( 0,0 ) )
 
     @property
     def position(self):
-        return self.__position
+        if self.__hearInfo.time > self.obj_observer.sightTime:
+            return self.__hearInfo.pos 
+        else:
+            return self.__position
 
     # setter will not assign with new instance ,  copying content instead
     @position.setter
@@ -45,17 +49,33 @@ class WorldObject( cUnDelete) :
             self.__velocity.x = float(value[0]) 
             self.__velocity.y = float(value[1]) 
 
-    def isSightExpired( self ) :
-        return not self.sawBefore() or WorldState.instance().serverWorldStateTime - self.obj_observer.direction.time > 50
+    def updateHearInfo(self, time, pos ) :
+        self.__hearInfo.time = time 
+        self.__hearInfo.pos = pos 
+
+    def isInfoExpired( self ) :
+        return not self.knownBefore() or WorldState.instance().serverWorldStateTime - self.__lastedHearSightTime() > 50
+
+    def __lastedHearSightTime(self):
+        return max( self.obj_observer.sightTime , self.__hearInfo.time )  
 
     def sawBefore( self ) :
-        return self.obj_observer.distance.time >= 0
+        return self.obj_observer.sightTime >= 0
 
     def sawInLastSight(self) :
-        return self.obj_observer.distance.time >= 0 and self.obj_observer.distance.time == Observer.instance().lastest_sight_time 
+        return self.sawBefore() and self.obj_observer.sightTime == Observer.instance().lastest_sight_time 
 
     def sawInLastestServerTime(self):
-        return self.obj_observer.distance.time >= 0 and self.obj_observer.distance.time == WorldState.instance().serverWorldStateTime
+        return self.sawBefore() and self.obj_observer.sightTime == WorldState.instance().serverWorldStateTime
+
+    def knownBefore(self):
+        return self.__lastedHearSightTime() >= 0 
+
+    def knownInLastSight(self):
+        return self.knownBefore() and self.__lastedHearSightTime() == Observer.instance().lastest_sight_time  
+
+    def knownInLastestServerTime(self):
+        return self.knownBefore() and self.__lastedHearSightTime == WorldState.instance().serverWorldStateTime 
         
 
 class WorldPlayer( WorldObject ) :
@@ -269,7 +289,7 @@ class WorldState( cUnDelete ):
             self.__actionCmdHistory[ self.serverWorldStateTime ][cmd] = param 
 
     def randomActiveTeammate(self):
-        activePlayers = [ p for p in self.teamPlayers if not p.isSightExpired() ]
+        activePlayers = [ p for p in self.teamPlayers if not p.isInfoExpired() ]
         if len( activePlayers ) == 0:
             return None
         else :
@@ -280,14 +300,14 @@ class WorldState( cUnDelete ):
         if p is not None:
             return p 
 
-        unknowns = [p for p in self.unknownPlayers  if not p.isSightExpired()  ]
+        unknowns = [p for p in self.unknownPlayers  if not p.isInfoExpired()  ]
         if len(unknowns) == 0:
             return None
 
         return random.choice( unknowns )
 
     def activeBall(self):
-        if self.ball.isSightExpired():
+        if self.ball.isInfoExpired():
             return None
         else:
             return self.ball

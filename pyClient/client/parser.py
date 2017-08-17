@@ -242,7 +242,7 @@ class Parser(object) :
         # (hear 3000 referee kick_off_r)
         data =  readlisp( msg  )
         time  = int(data [1] )        
-        sender = data[2].name
+        sender = data[2] if isinstance( data[2],int ) else data[2].name
         message = data[3] if isinstance( data[3],str ) else data[3].name
 
         if sender == 'referee' :
@@ -252,6 +252,12 @@ class Parser(object) :
             # print "hear from ", sender , message , time 
             pass
         else:
+            infos = message.strip().split( " " )
+            if infos[0] == 'b':
+                ball = WorldState.instance().ball 
+                pos = ( int( infos[1] ) , int( infos[2] )  )
+                ball.updateHearInfo( time-1,pos )
+            
             # print "hear from ", sender , message , time 
             pass
     

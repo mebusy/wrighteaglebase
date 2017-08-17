@@ -35,6 +35,10 @@ class GameObject( cUnDelete ) :
         for k,v in prop.iteritems():
             self[k].update( time, v  )
 
+    @property
+    def sightTime(self):
+        return self.direction.time 
+
 
 class FieldObject( GameObject ) :
     __slots__ = { "marker_position" , "direction_change" , "distance_change" , "field_type" } 
@@ -180,11 +184,11 @@ class Observer(cUnDelete):
 
     def resetUnknownPlayerObserver(self):
         for obs in self.mUnknownPlayerObservers:
-            obs.distance.time = -1
+            obs.direction.time = -1
 
     def updateUnknownPlayerObserver(self ,time, prop ):
         for obs in self.mUnknownPlayerObservers:
-            if obs.distance.time == -1:
+            if obs.direction.time == -1:
                 obs.update( time , prop )
                 break 
 

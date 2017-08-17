@@ -60,12 +60,15 @@ class Client(Parser) :
             self.observer.bDoneInState = True
             return 
 
+        selfAgent = WorldState.instance().selfAgent
         ball = WorldState.instance().ball 
 
-        if not ball.sawInLastSight():
+        if not ball.knownInLastSight():
             self.searching()
         else:
-            self.turnTo( ball.position )
+            relAng = selfAgent.relAngle2Point( ball.position )
+            if abs(relAng) > 10:
+                self.turnTo( ball.position )
             # self.swingNeck()
 
             if ball.sawInLastestServerTime():
@@ -127,7 +130,7 @@ class Client(Parser) :
 
         relAngle2ball = selfAgent.relAngle2Point( ball.position )
         
-        if ball.isSightExpired():
+        if ball.isInfoExpired():
             self.searching()
         
         elif selfAgent.ballKickable():
