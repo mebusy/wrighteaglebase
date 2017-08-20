@@ -12,6 +12,19 @@ BOOST_LDFLAGS="-L/usr/local/lib"
 BOOST_SYSTEM_LIB="-lboost_system"
 BOOST_LIB="${BOOST_FILESYSTEM_LIB} ${BOOST_LDFLAGS} ${BOOST_SYSTEM_LIB}"
 
+function necessaryObjFiles( )
+{
+    objfiles=""
+    for i in $@ ; do
+        # echo $i
+        bn=$(basename $i)
+        name="${bn%.*}"
+        # echo ${name}
+        objfiles="${objfiles} ${name}.o"
+    done;
+    echo ${objfiles}
+}
+
 #---------------------------------------------------------------
 
 # module
@@ -23,12 +36,13 @@ swig -Wall -python -c++  -I${SRC_PATH} -I${PYTHON_HEAD} ${moduleName}.i
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/ServerParam.cpp \
             ${SRC_PATH}/ParamEngine.cpp "
+objfiles=$(necessaryObjFiles ${SRC_FILES})
 
 # compile
 ${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
 
 # linking
-${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  *.o  -o _${moduleName}.so
+${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  ${objfiles}  -o _${moduleName}.so
 #---------------------------------------------------------------
 
 # module
@@ -38,13 +52,16 @@ swig -Wall -python -c++  -I${SRC_PATH} -I${PYTHON_HEAD} ${moduleName}.i
 
 # prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
-            ${SRC_PATH}/PlayerParam.cpp "
+            ${SRC_PATH}/ServerParam.cpp \
+            ${SRC_PATH}/PlayerParam.cpp \
+            ${SRC_PATH}/ParamEngine.cpp "
+objfiles=$(necessaryObjFiles ${SRC_FILES})
 
 # compile
 ${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} -I${SRC_PATH}"/.." ${SRC_FILES}
 
 # linking
-${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  *.o  -o _${moduleName}.so
+${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB} ${objfiles}  -o _${moduleName}.so
 
 
 
