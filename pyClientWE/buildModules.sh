@@ -3,7 +3,7 @@ SRC_PATH="../src"
 PYTHON_HEAD="/usr/include/python2.7"
 
 DEFS=-DHAVE_CONFIG_H 
-CXX=c++ 
+CXX=g++ 
 AM_CXXFLAGS="-W -Wall"
 CXXFLAGS="-g -O2"
 
@@ -153,9 +153,9 @@ SRC_FILES="${moduleName}_wrap.cxx \
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-moduleName="decisiondata"
+moduleName="observer"
 SRC_FILES="${moduleName}_wrap.cxx \
-            ${SRC_PATH}/DecisionData.cpp "
+            ${SRC_PATH}/Observer.cpp "
 buildModule ${moduleName} ${SRC_FILES}
 
 
@@ -201,7 +201,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/InterceptModel.cpp \
             ${SRC_PATH}/Kicker.cpp \
             ${SRC_PATH}/Logger.cpp \
-            ${SRC_PATH}/Observer.cpp \
             ${SRC_PATH}/Parser.cpp \
             ${SRC_PATH}/PlayerState.cpp \
             ${SRC_PATH}/Plotter.cpp \
@@ -214,7 +213,7 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Player.cpp "
 PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
-              ${so_networktest} ${so_basestate} "
+              ${so_networktest} ${so_basestate} ${so_observer}"
 buildModule ${moduleName} ${SRC_FILES}
 
 
