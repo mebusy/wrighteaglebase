@@ -134,6 +134,17 @@ SRC_FILES="${moduleName}_wrap.cxx \
 PRE_BUILT_SO="${so_playerparam} ${so_utilities}"
 buildModule ${moduleName} ${SRC_FILES}
 
+#---------------------------------------------------------------
+moduleName="net"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Net.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="networktest"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/NetworkTest.cpp "
+buildModule ${moduleName} ${SRC_FILES}
 
 
 # fi
@@ -178,8 +189,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/InterceptModel.cpp \
             ${SRC_PATH}/Kicker.cpp \
             ${SRC_PATH}/Logger.cpp \
-            ${SRC_PATH}/Net.cpp \
-            ${SRC_PATH}/NetworkTest.cpp \
             ${SRC_PATH}/Observer.cpp \
             ${SRC_PATH}/Parser.cpp \
             ${SRC_PATH}/PlayerState.cpp \
@@ -192,7 +201,8 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/WorldModel.cpp \
             ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Player.cpp "
-PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry}"
+PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
+              ${so_networktest} "
 buildModule ${moduleName} ${SRC_FILES}
 
 
