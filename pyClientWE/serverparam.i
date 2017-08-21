@@ -5,6 +5,7 @@
 
 %include "mymap.i"
 
+%include "ParamEngine.h"
 %include "ServerParam.h"
 
 

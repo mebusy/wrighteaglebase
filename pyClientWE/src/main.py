@@ -12,6 +12,7 @@ print "working dir:", os.getcwd()
 
 from serverparam import ServerParam
 from playerparam import PlayerParam 
+from player import Player
 
 
 if __name__ == '__main__':
@@ -31,4 +32,7 @@ if __name__ == '__main__':
 
     ServerParam.instance().init( len(cargv) , cargv )
     PlayerParam.instance().init( len(cargv) , cargv )
+
+    client = Player()
+    client.RunNormal()
     print 'done'
