@@ -61,35 +61,69 @@ function buildModule()
 
     # linking
     ${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  ${objfiles} ${PRE_BUILT_SO}  -o _${moduleName}.so
+
+    # for OSX rpath issue
+    install_name_tool -id ${PWD}/_${moduleName}.so _${moduleName}.so
+
     PRE_BUILT_SO="${PRE_BUILT_SO} _${moduleName}.so"
 }
 
 
 # if fales; then
 #---------------------------------------------------------------
-
 moduleName="paramengine"
-# prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/ParamEngine.cpp "
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-
 moduleName="serverparam"
-# prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/ServerParam.cpp "
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-
-# module
 moduleName="playerparam"
-# prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/PlayerParam.cpp "
 buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="plotter"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Plotter.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="geometry"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Geometry.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="rcsstypes"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Types.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="udpsocket"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/UDPSocket.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+# moduleName="rcssthread"
+# SRC_FILES="${moduleName}_wrap.cxx \
+#             ${SRC_PATH}/Thread.cpp "
+# buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+# moduleName="utilities"
+# SRC_FILES="${moduleName}_wrap.cxx \
+#             ${SRC_PATH}/Utilities.cpp "
+# buildModule ${moduleName} ${SRC_FILES}
+
 
 
 # fi
@@ -129,7 +163,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Evaluation.cpp \
             ${SRC_PATH}/Formation.cpp \
             ${SRC_PATH}/FormationTactics.cpp \
-            ${SRC_PATH}/Geometry.cpp \
             ${SRC_PATH}/InfoState.cpp \
             ${SRC_PATH}/InterceptInfo.cpp \
             ${SRC_PATH}/InterceptModel.cpp \
@@ -147,7 +180,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Tackler.cpp \
             ${SRC_PATH}/Thread.cpp \
             ${SRC_PATH}/TimeTest.cpp \
-            ${SRC_PATH}/UDPSocket.cpp \
             ${SRC_PATH}/Utilities.cpp \
             ${SRC_PATH}/VisualSystem.cpp \
             ${SRC_PATH}/WorldModel.cpp \

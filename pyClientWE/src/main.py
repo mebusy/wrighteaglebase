@@ -5,15 +5,15 @@ import argparse
 # add pyClientWE/ as python module search path
 src_path = os.path.dirname( os.path.abspath(  __file__ ) )
 sys.path.append( src_path )
-sys.path.append( os.path.join( src_path , ".." ))
+sys.path.append( os.path.normpath( os.path.join( src_path , ".." )) )
 
 os.chdir( os.path.join( os.path.join( src_path , "../.." )  )  )
 print "working dir:", os.getcwd()
+# print "sys path:" , sys.path
 
 from serverparam import ServerParam
 from playerparam import PlayerParam 
-from player import Player
-
+from Player import Player
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

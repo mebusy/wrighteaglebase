@@ -27,3 +27,8 @@
 %typemap(freearg) char ** {
   free((char *) $1);
 }
+
+
+// python has no "<<" operator for iostrea
+// this will SWIG to handle "operator<<" 
+%rename(cppoutput) operator<<;
