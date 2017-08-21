@@ -49,6 +49,7 @@ function buildModule()
 {
     # module
     moduleName=$1
+    echo building ${moduleName} 
     swig -Wall -python -c++  -I${SRC_PATH} -I${PYTHON_HEAD} ${moduleName}.i
     
     shift
@@ -60,12 +61,13 @@ function buildModule()
     ${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} ${srcFiles}
 
     # linking
-    ${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  ${objfiles} ${PRE_BUILT_SO}  -o _${moduleName}.so
+    ${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  ${objfiles} ${PRE_BUILT_SO}  -o _${moduleName}.so  
 
     # for OSX rpath issue
     install_name_tool -id ${PWD}/_${moduleName}.so _${moduleName}.so
 
-    PRE_BUILT_SO="${PRE_BUILT_SO} _${moduleName}.so"
+    eval so_${moduleName}=_${moduleName}.so
+    # PRE_BUILT_SO="${PRE_BUILT_SO} _${moduleName}.so"
 }
 
 
@@ -80,24 +82,28 @@ buildModule ${moduleName} ${SRC_FILES}
 moduleName="serverparam"
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/ServerParam.cpp "
+PRE_BUILT_SO="${so_paramengine}"
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
 moduleName="playerparam"
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/PlayerParam.cpp "
+PRE_BUILT_SO="${so_paramengine} ${so_serverparam}"
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
 moduleName="plotter"
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Plotter.cpp "
+PRE_BUILT_SO="${so_playerparam}"
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
 moduleName="geometry"
 SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Geometry.cpp "
+PRE_BUILT_SO="${so_plotter}"
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
@@ -113,16 +119,20 @@ SRC_FILES="${moduleName}_wrap.cxx \
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-# moduleName="rcssthread"
-# SRC_FILES="${moduleName}_wrap.cxx \
-#             ${SRC_PATH}/Thread.cpp "
-# buildModule ${moduleName} ${SRC_FILES}
+moduleName="utilities"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Thread.cpp \
+            ${SRC_PATH}/DynamicDebug.cpp \
+            ${SRC_PATH}/Utilities.cpp "
+PRE_BUILT_SO="${so_playerparam}"
+buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-# moduleName="utilities"
-# SRC_FILES="${moduleName}_wrap.cxx \
-#             ${SRC_PATH}/Utilities.cpp "
-# buildModule ${moduleName} ${SRC_FILES}
+moduleName="timetest"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/TimeTest.cpp "
+PRE_BUILT_SO="${so_playerparam} ${so_utilities}"
+buildModule ${moduleName} ${SRC_FILES}
 
 
 
@@ -178,13 +188,11 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Simulator.cpp \
             ${SRC_PATH}/Strategy.cpp \
             ${SRC_PATH}/Tackler.cpp \
-            ${SRC_PATH}/Thread.cpp \
-            ${SRC_PATH}/TimeTest.cpp \
-            ${SRC_PATH}/Utilities.cpp \
             ${SRC_PATH}/VisualSystem.cpp \
             ${SRC_PATH}/WorldModel.cpp \
             ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Player.cpp "
+PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry}"
 buildModule ${moduleName} ${SRC_FILES}
 
 
