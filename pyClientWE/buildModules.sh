@@ -146,6 +146,19 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/NetworkTest.cpp "
 buildModule ${moduleName} ${SRC_FILES}
 
+#---------------------------------------------------------------
+moduleName="basestate"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/BaseState.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="decisiondata"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/DecisionData.cpp "
+buildModule ${moduleName} ${SRC_FILES}
+
+
 
 # fi
 #---------------------------------------------------------------
@@ -157,7 +170,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/ActionEffector.cpp \
             ${SRC_PATH}/Analyser.cpp \
             ${SRC_PATH}/Agent.cpp \
-            ${SRC_PATH}/BaseState.cpp \
             ${SRC_PATH}/BasicCommand.cpp \
             ${SRC_PATH}/BehaviorAttack.cpp \
             ${SRC_PATH}/BehaviorBase.cpp \
@@ -202,7 +214,7 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Player.cpp "
 PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
-              ${so_networktest} "
+              ${so_networktest} ${so_basestate} "
 buildModule ${moduleName} ${SRC_FILES}
 
 
