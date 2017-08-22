@@ -952,9 +952,9 @@ void Formation::Rollback(std::string update_name)
 	Logger::instance().GetTextLogger("formation_update")<<mAgent.GetWorldState().CurrentTime() << ", " <<mAgent.GetAgentID() << ", -, " <<  mFormationTypeStack.size() << ": " << update_name <<endl;
 }
 
-Formation::Instance Formation::instance;
+Instance Formation::instance;
 
-Formation::Instance::Instance() :
+Instance::Instance() :
 	mpAgent(0)
 {
 	mpTeammateFormationsImp[0] = new TeammateFormation(FT_Attack_Forward, "formations/433_Attack");
@@ -971,7 +971,7 @@ Formation::Instance::Instance() :
 		SetOpponentFormation(FormationType(i), mpOpponentFormationsImp[i]);
 }
 
-Formation::Instance::~Instance()
+Instance::~Instance()
 {
 	for (int i=0; i<4; ++i)
 		delete mpOpponentFormationsImp[i];
@@ -979,12 +979,12 @@ Formation::Instance::~Instance()
 		delete mpTeammateFormationsImp[i];
 }
 
-void Formation::Instance::AssignWith(Agent * agent)
+void Instance::AssignWith(Agent * agent)
 {
 	mpAgent = agent;
 }
 
-void Formation::Instance::SetTeammateFormations()
+void Instance::SetTeammateFormations()
 {
 	mpTeammateFormations[FT_Attack_Forward] = mpTeammateFormationsImp[0];
 	mpTeammateFormations[FT_Attack_Midfield] = mpTeammateFormationsImp[0];
@@ -995,13 +995,13 @@ void Formation::Instance::SetTeammateFormations()
 /**
  * Get the Formation of the agent which represents this program.
  */
-Formation & Formation::Instance::operator ()()
+Formation & Instance::operator ()()
 {
 	Assert(mpAgent);
 	return mpAgent->GetFormation();
 }
 
-void Formation::Instance::UpdateOpponentRole()
+void Instance::UpdateOpponentRole()
 {
 	if (!mpAgent) {
 		Assert(0);
@@ -1107,7 +1107,7 @@ void Formation::Instance::UpdateOpponentRole()
 	}
 }
 
-void Formation::Instance::SetOpponentGoalieUnum(Unum goalie_unum)
+void Instance::SetOpponentGoalieUnum(Unum goalie_unum)
 {
 	for (int i = FT_Attack_Forward; i < FT_Max; ++i)
 		mpOpponentFormations[i]->SetGoalieUnum(goalie_unum);

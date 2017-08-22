@@ -210,6 +210,11 @@ public:
 
     virtual FormationTacticBase * GetTactic(FormationTacticType tactic) = 0;
 
+    // qibinyi , move up from protected area:
+
+    /** [2]表示2号阵位的RoleType信息 */
+    PlayerArray<RoleType> mPlayerRole;
+
 protected:
     FormationType mFormationType;
 
@@ -225,8 +230,7 @@ protected:
 	double      mHBallFactor;
 	double      mVBallFactor;
 
-	/** [2]表示2号阵位的RoleType信息 */
-	PlayerArray<RoleType> mPlayerRole;
+
 
 	/** 每名球员的有效区域 */
 	PlayerArray<Rectangular> mActiveField; //对于守门员未准确定义，不宜使用
@@ -308,7 +312,9 @@ public:
 
 	FormationTacticBase * GetTactic(FormationTacticType tactic) { return mTactics[tactic]; }
 
-private:
+//qibinyi, change to public , for flattening Formation::Instance
+//private:
+public:
     Array<std::vector<int>, 3> mLineMember; // 3锋线内部成员，0是后卫，1是中场，2是前锋
     unsigned long mUsedTimes; // 有效统计次数
     Array<int, 2> mHIntervalTimes; // HInterval的有效次数
@@ -358,7 +364,7 @@ public:
     };
 };
 
-
+class Instance;
 /**
  * 统一维护自己的阵形和对方的阵形，决策里面都使用这个类提供的接口
  */
@@ -530,42 +536,44 @@ private:
 
 public:
     friend class Instance;
-    static class Instance
-    {
-    	Array<TeammateFormation*, 4> mpTeammateFormationsImp;
-    	Array<OpponentFormation*, 4> mpOpponentFormationsImp;
-
-    	Array<TeammateFormation*, FT_Max> mpTeammateFormations;
-    	Array<OpponentFormation*, FT_Max> mpOpponentFormations;
-
-    public:
-    	Instance();
-    	~Instance();
-    	void AssignWith(Agent * agent);
-    	void SetTeammateFormations();
-
-    	Formation & operator ()();
-
-        /**
-         * The following 2 methods return the static member directly.
-         */
-        TeammateFormation & GetTeammateFormation(FormationType type) { return *mpTeammateFormations[type]; }
-        OpponentFormation & GetOpponentFormation(FormationType type) { return *mpOpponentFormations[type]; }
-
-        /**
-         * And the following methods set the static member directly.
-         */
-        void SetOpponentFormation(FormationType type, OpponentFormation * formation) { mpOpponentFormations[type] = formation; }
-
-    	/**
-         * 在教练发来信息之前由自己来粗略计算一下对手阵型，不涉及正算还是反算。
-         */
-        void UpdateOpponentRole();
-    	void SetOpponentGoalieUnum(Unum goalie_unum);
-
-    private:
-    	Agent * mpAgent;
-    } instance;
+    static Instance instance;
 };
+
+class Instance
+{
+    Array<TeammateFormation*, 4> mpTeammateFormationsImp;
+    Array<OpponentFormation*, 4> mpOpponentFormationsImp;
+
+    Array<TeammateFormation*, FT_Max> mpTeammateFormations;
+    Array<OpponentFormation*, FT_Max> mpOpponentFormations;
+
+public:
+    Instance();
+    ~Instance();
+    void AssignWith(Agent * agent);
+    void SetTeammateFormations();
+
+    Formation & operator ()();
+
+    /**
+     * The following 2 methods return the static member directly.
+     */
+    TeammateFormation & GetTeammateFormation(FormationType type) { return *mpTeammateFormations[type]; }
+    OpponentFormation & GetOpponentFormation(FormationType type) { return *mpOpponentFormations[type]; }
+
+    /**
+     * And the following methods set the static member directly.
+     */
+    void SetOpponentFormation(FormationType type, OpponentFormation * formation) { mpOpponentFormations[type] = formation; }
+
+    /**
+     * 在教练发来信息之前由自己来粗略计算一下对手阵型，不涉及正算还是反算。
+     */
+    void UpdateOpponentRole();
+    void SetOpponentGoalieUnum(Unum goalie_unum);
+
+private:
+    Agent * mpAgent;
+} ;
 
 #endif
