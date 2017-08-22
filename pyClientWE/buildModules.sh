@@ -6,6 +6,7 @@ DEFS="-DHAVE_CONFIG_H -DPYCLIENT"
 CXX=g++ 
 # AM_CXXFLAGS="-W -Wall"
 CXXFLAGS="-O3 -Wall -c -fmessage-length=0 -MMD -MP"
+# CXXFLAGS="-g -O2 -W -Wall"
 
 BOOST_FILESYSTEM_LIB="-lboost_filesystem"
 BOOST_LDFLAGS="-L/usr/local/lib"

@@ -3,6 +3,7 @@ from player import Player as cPlayer
 from utilities import Time 
 
 class Player( cPlayer ) :
+    pass
     def __init__(self):
         super(Player, self).__init__()
 
