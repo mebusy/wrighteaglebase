@@ -11,12 +11,14 @@ def listAllModules():
     allClass = set({})
 
     for f in files:
+        name , ext = os.path.splitext(f) 
+        if not os.path.exists( name.lower() + ".py" ):
+            print "moduel {0} error, check it!".format( name )
         with open( f ) as fp:
             data = fp.read()
             result = RE_MODULE_DEFINE.findall( data ) 
             result.sort()
         
-            name , ext = os.path.splitext(f) 
             print name
             for r in result :
                 if r in allClass :
