@@ -559,9 +559,9 @@ private:
 
 	std::list<CommandInfo> mCommandQueue;
 
-public:
-	static ThreadMutex CMD_QUEUE_MUTEX;
 
+protected:
+	
 	Turn        mTurn;
 	Dash        mDash;
 	TurnNeck    mTurnNeck;
@@ -591,6 +591,12 @@ public:
 	TeamNames	mTeamNames;
 	Recover		mRecover;
 	CheckBall	mCheckBall;
+
+
+public:
+	static ThreadMutex CMD_QUEUE_MUTEX;
+
+
 
 	int         mTurnCount;
 	int         mDashCount;

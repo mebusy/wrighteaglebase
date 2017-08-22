@@ -4,8 +4,8 @@ PYTHON_HEAD="/usr/include/python2.7"
 
 DEFS=-DHAVE_CONFIG_H 
 CXX=g++ 
-AM_CXXFLAGS="-W -Wall"
-CXXFLAGS="-g -O2"
+# AM_CXXFLAGS="-W -Wall"
+CXXFLAGS="-O3 -Wall -c -fmessage-length=0 -MMD -MP"
 
 BOOST_FILESYSTEM_LIB="-lboost_filesystem"
 BOOST_LDFLAGS="-L/usr/local/lib"
@@ -50,7 +50,7 @@ function buildModule()
     # module
     moduleName=$1
     echo building ${moduleName} 
-    swig -Wall -python -c++  -I${SRC_PATH} -I${PYTHON_HEAD} ${moduleName}.i
+    swig -Wall -python -c++ -I${SRC_PATH} -I${PYTHON_HEAD} ${moduleName}.i
     
     shift
 
@@ -58,7 +58,7 @@ function buildModule()
     srcFiles=$(necessarySrcFiles "$@")
 
     # compile
-    ${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  ${AM_CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} ${srcFiles}
+    ${CXX} -c -fPIC  ${DEFS} ${CXXFLAGS}  -I${PYTHON_HEAD}  -I${SRC_PATH} ${srcFiles}
 
     # linking
     ${CXX}  -dynamiclib -lpython -lz ${BOOST_LIB}  ${objfiles} ${PRE_BUILT_SO}  -o _${moduleName}.so  
@@ -153,24 +153,47 @@ SRC_FILES="${moduleName}_wrap.cxx \
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
+# fi
+
 moduleName="observer"
 SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Dasher.cpp \
+            ${SRC_PATH}/Tackler.cpp \
+            ${SRC_PATH}/BasicCommand.cpp \
+            ${SRC_PATH}/Simulator.cpp \
+            ${SRC_PATH}/PlayerState.cpp \
+            ${SRC_PATH}/DecisionData.cpp \
+            ${SRC_PATH}/Logger.cpp \
+            ${SRC_PATH}/Strategy.cpp \
+            ${SRC_PATH}/PositionInfo.cpp \
+            ${SRC_PATH}/Formation.cpp \
+            ${SRC_PATH}/FormationTactics.cpp \
+            ${SRC_PATH}/InfoState.cpp \
+            ${SRC_PATH}/InterceptInfo.cpp \
+            ${SRC_PATH}/InterceptModel.cpp \
+            ${SRC_PATH}/ActionEffector.cpp \
+            ${SRC_PATH}/VisualSystem.cpp \
+            ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Observer.cpp "
+PRE_BUILT_SO="${so_serverparam} ${so_utilities} ${so_playerparam} ${so_basestate} ${so_geometry} ${so_udpsocket} ${so_networktest} ${so_plotter} "
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="worldmodel"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/WorldModel.cpp "
+PRE_BUILT_SO="${so_observer} "
 buildModule ${moduleName} ${SRC_FILES}
 
 
-
-# fi
 #---------------------------------------------------------------
 
 # module
 moduleName="player"
 # prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
-            ${SRC_PATH}/ActionEffector.cpp \
             ${SRC_PATH}/Analyser.cpp \
             ${SRC_PATH}/Agent.cpp \
-            ${SRC_PATH}/BasicCommand.cpp \
             ${SRC_PATH}/BehaviorAttack.cpp \
             ${SRC_PATH}/BehaviorBase.cpp \
             ${SRC_PATH}/BehaviorBlock.cpp \
@@ -189,31 +212,15 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/Client.cpp \
             ${SRC_PATH}/CommandSender.cpp \
             ${SRC_PATH}/CommunicateSystem.cpp \
-            ${SRC_PATH}/Dasher.cpp \
-            ${SRC_PATH}/DecisionData.cpp \
             ${SRC_PATH}/DecisionTree.cpp \
             ${SRC_PATH}/DynamicDebug.cpp \
             ${SRC_PATH}/Evaluation.cpp \
-            ${SRC_PATH}/Formation.cpp \
-            ${SRC_PATH}/FormationTactics.cpp \
-            ${SRC_PATH}/InfoState.cpp \
-            ${SRC_PATH}/InterceptInfo.cpp \
-            ${SRC_PATH}/InterceptModel.cpp \
             ${SRC_PATH}/Kicker.cpp \
-            ${SRC_PATH}/Logger.cpp \
             ${SRC_PATH}/Parser.cpp \
-            ${SRC_PATH}/PlayerState.cpp \
             ${SRC_PATH}/Plotter.cpp \
-            ${SRC_PATH}/PositionInfo.cpp \
-            ${SRC_PATH}/Simulator.cpp \
-            ${SRC_PATH}/Strategy.cpp \
-            ${SRC_PATH}/Tackler.cpp \
-            ${SRC_PATH}/VisualSystem.cpp \
-            ${SRC_PATH}/WorldModel.cpp \
-            ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Player.cpp "
 PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
-              ${so_networktest} ${so_basestate} ${so_observer}"
+              ${so_networktest} ${so_basestate} ${so_observer} ${so_playerstate} ${so_worldmodel}"
 buildModule ${moduleName} ${SRC_FILES}
 
 

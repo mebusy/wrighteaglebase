@@ -116,7 +116,7 @@ struct CommandInfo
 };
 
 
-class BasicCommand
+  class BasicCommand
 {
 public:
 	BasicCommand(const Agent & agent): mAgent(agent) {}
