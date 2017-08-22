@@ -44,6 +44,9 @@ class Client {
 	friend class Coach;
 	friend class Trainer;
 
+#if defined(SWIG) || defined(PYCLIENT)
+public:
+#endif
 	Observer        *mpObserver;
 	WorldModel      *mpWorldModel;
 	Agent           *mpAgent;

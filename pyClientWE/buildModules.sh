@@ -2,7 +2,7 @@
 SRC_PATH="../src"
 PYTHON_HEAD="/usr/include/python2.7"
 
-DEFS=-DHAVE_CONFIG_H 
+DEFS="-DHAVE_CONFIG_H -DPYCLIENT"
 CXX=g++ 
 # AM_CXXFLAGS="-W -Wall"
 CXXFLAGS="-O3 -Wall -c -fmessage-length=0 -MMD -MP"

@@ -1,4 +1,4 @@
-%module net
+%module worldmodel
 %{
 #include "WorldModel.h"  
 %}

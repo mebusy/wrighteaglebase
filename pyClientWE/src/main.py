@@ -32,6 +32,30 @@ if __name__ == '__main__':
 
     ServerParam.instance().init( len(cargv) , cargv )
     PlayerParam.instance().init( len(cargv) , cargv )
+    
+    # preload all modules
+    import analyser
+    import basestate
+    import behavior
+    import client
+    import commandsender
+    import commsystem
+    import geometry
+    import net
+    import networktest
+    import observer
+    import paramengine
+    import parser
+    import player
+    import playerparam
+    import plotter
+    import rcsstypes
+    import serverparam
+    import timetest
+    import udpsocket
+    import utilities
+    import worldmodel
+    #end
 
     client = Player()
     client.RunNormal()

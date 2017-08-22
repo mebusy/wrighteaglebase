@@ -25,6 +25,13 @@ def listAllModules():
                     allClass.add(r)
                 print '\t' , r 
 
+            print ''
+
+    for f in files:    
+        name , ext = os.path.splitext(f) 
+        print "import {0}".format( name )
+
+
 
 if __name__ == '__main__':
     listAllModules()

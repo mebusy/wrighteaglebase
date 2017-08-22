@@ -21,15 +21,16 @@
 
 %include "mymap.i"
 
-%define TEAMSIZE 11
-%include "Observer.h"
+%define TEAMSIZE 11 
 %enddef
+
 
 
 %ignore PlayerState::UpdateTackling(bool);
 %ignore PlayerState::UpdateLying(bool);
 %ignore InfoStateBase;
 
+%include "Observer.h"
 %include "PlayerState.h"
 %include "Dasher.h"
 %include "Simulator.h"  
