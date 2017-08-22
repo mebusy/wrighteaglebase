@@ -72,8 +72,7 @@ function buildModule()
 
 
 
-
-if false; then
+# if false; then
 
 #---------------------------------------------------------------
 moduleName="paramengine"
@@ -225,13 +224,10 @@ SRC_FILES="${moduleName}_wrap.cxx \
 PRE_BUILT_SO="_serverparam.so _playerparam.so _utilities.so _geometry.so _worldmodel.so _observer.so _networktest.so _timetest.so _plotter.so _udpsocket.so _parser.so _commandsender.so _commsystem.so _analyser.so _basestate.so"
 buildModule ${moduleName} ${SRC_FILES}
 
-
 #---------------------------------------------------------------
-
-# module
-moduleName="player"
-# prepare source files
+moduleName="behavior"
 SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Evaluation.cpp \
             ${SRC_PATH}/BehaviorAttack.cpp \
             ${SRC_PATH}/BehaviorBlock.cpp \
             ${SRC_PATH}/BehaviorDefense.cpp \
@@ -245,19 +241,25 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/BehaviorPenalty.cpp \
             ${SRC_PATH}/BehaviorPosition.cpp \
             ${SRC_PATH}/BehaviorSetplay.cpp \
-            ${SRC_PATH}/BehaviorShoot.cpp \
+            ${SRC_PATH}/BehaviorShoot.cpp "
+PRE_BUILT_SO="_paramengine.so _serverparam.so _playerparam.so _basestate.so _observer.so _geometry.so _utilities.so _client.so _net.so"
+buildModule ${moduleName} ${SRC_FILES}
+
+
+#---------------------------------------------------------------
+
+# module
+moduleName="player"
+# prepare source files
+SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/DecisionTree.cpp \
-            ${SRC_PATH}/DynamicDebug.cpp \
-            ${SRC_PATH}/Evaluation.cpp \
-            ${SRC_PATH}/Parser.cpp \
-            ${SRC_PATH}/Plotter.cpp \
             ${SRC_PATH}/Player.cpp "
 PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
               ${so_networktest} ${so_basestate} ${so_observer} ${so_playerstate} ${so_worldmodel} ${so_commandsender} ${so_commsystem} ${so_client} \
-              ${so_analyser} "
+              ${so_analyser} ${so_behavior}"
 buildModule ${moduleName} ${SRC_FILES}
 
-fi
+# fi
 
 
 
