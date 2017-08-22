@@ -7,7 +7,7 @@
 
 %feature("director") Player ;
 
-%include "Client.h"
+%import(module="client") "Client.h" 
 %include "Player.h"
 
 

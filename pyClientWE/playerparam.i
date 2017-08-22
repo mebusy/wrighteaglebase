@@ -5,7 +5,7 @@
 
 %include "mymap.i"
 
-%include "ParamEngine.h"
+%import(module="paramengine") "ParamEngine.h" 
 %include "PlayerParam.h"
 
 
