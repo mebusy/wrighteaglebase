@@ -35,7 +35,7 @@ function necessarySrcFiles( )
         bn=$(basename $i)
         name="${bn%.*}".o
         
-        if [ ! -f "${name}" -o  "$i" -nt "${name}" ]; then
+        if [ ! -f "${name}" -o  "$i" -nt "${name}" -o  ${i%.*}.h  -nt "${name}" ]; then
             srcFiles="${srcFiles} $i"
         fi
     done;
@@ -71,7 +71,10 @@ function buildModule()
 }
 
 
-# if fales; then
+
+
+if false; then
+
 #---------------------------------------------------------------
 moduleName="paramengine"
 SRC_FILES="${moduleName}_wrap.cxx \
@@ -153,10 +156,10 @@ SRC_FILES="${moduleName}_wrap.cxx \
 buildModule ${moduleName} ${SRC_FILES}
 
 #---------------------------------------------------------------
-# fi
 
 moduleName="observer"
 SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/ActionEffector.cpp \
             ${SRC_PATH}/Dasher.cpp \
             ${SRC_PATH}/Tackler.cpp \
             ${SRC_PATH}/BasicCommand.cpp \
@@ -171,7 +174,6 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/InfoState.cpp \
             ${SRC_PATH}/InterceptInfo.cpp \
             ${SRC_PATH}/InterceptModel.cpp \
-            ${SRC_PATH}/ActionEffector.cpp \
             ${SRC_PATH}/VisualSystem.cpp \
             ${SRC_PATH}/WorldState.cpp \
             ${SRC_PATH}/Observer.cpp "
@@ -185,6 +187,44 @@ SRC_FILES="${moduleName}_wrap.cxx \
 PRE_BUILT_SO="${so_observer} "
 buildModule ${moduleName} ${SRC_FILES}
 
+#---------------------------------------------------------------
+moduleName="parser"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Parser.cpp "
+PRE_BUILT_SO="_paramengine.so _serverparam.so _playerparam.so _utilities.so _observer.so _timetest.so _networktest.so _udpsocket.so _basestate.so"
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="commandsender"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/CommandSender.cpp "
+PRE_BUILT_SO="_networktest.so _observer.so _utilities.so"
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="commsystem"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/CommunicateSystem.cpp "
+PRE_BUILT_SO="_serverparam.so _playerparam.so _utilities.so _observer.so"
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="analyser"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Analyser.cpp "
+PRE_BUILT_SO="_observer.so"
+buildModule ${moduleName} ${SRC_FILES}
+
+#---------------------------------------------------------------
+moduleName="client"
+SRC_FILES="${moduleName}_wrap.cxx \
+            ${SRC_PATH}/Agent.cpp \
+            ${SRC_PATH}/BehaviorBase.cpp \
+            ${SRC_PATH}/Kicker.cpp \
+            ${SRC_PATH}/Client.cpp "
+PRE_BUILT_SO="_serverparam.so _playerparam.so _utilities.so _geometry.so _worldmodel.so _observer.so _networktest.so _timetest.so _plotter.so _udpsocket.so _parser.so _commandsender.so _commsystem.so _analyser.so _basestate.so"
+buildModule ${moduleName} ${SRC_FILES}
+
 
 #---------------------------------------------------------------
 
@@ -192,10 +232,7 @@ buildModule ${moduleName} ${SRC_FILES}
 moduleName="player"
 # prepare source files
 SRC_FILES="${moduleName}_wrap.cxx \
-            ${SRC_PATH}/Analyser.cpp \
-            ${SRC_PATH}/Agent.cpp \
             ${SRC_PATH}/BehaviorAttack.cpp \
-            ${SRC_PATH}/BehaviorBase.cpp \
             ${SRC_PATH}/BehaviorBlock.cpp \
             ${SRC_PATH}/BehaviorDefense.cpp \
             ${SRC_PATH}/BehaviorDribble.cpp \
@@ -209,20 +246,18 @@ SRC_FILES="${moduleName}_wrap.cxx \
             ${SRC_PATH}/BehaviorPosition.cpp \
             ${SRC_PATH}/BehaviorSetplay.cpp \
             ${SRC_PATH}/BehaviorShoot.cpp \
-            ${SRC_PATH}/Client.cpp \
-            ${SRC_PATH}/CommandSender.cpp \
-            ${SRC_PATH}/CommunicateSystem.cpp \
             ${SRC_PATH}/DecisionTree.cpp \
             ${SRC_PATH}/DynamicDebug.cpp \
             ${SRC_PATH}/Evaluation.cpp \
-            ${SRC_PATH}/Kicker.cpp \
             ${SRC_PATH}/Parser.cpp \
             ${SRC_PATH}/Plotter.cpp \
             ${SRC_PATH}/Player.cpp "
 PRE_BUILT_SO="${so_playerparam} ${so_serverparam} ${so_utilities} ${so_timetest} ${so_paramengine} ${so_udpsocket} ${so_geometry} ${so_net} \
-              ${so_networktest} ${so_basestate} ${so_observer} ${so_playerstate} ${so_worldmodel}"
+              ${so_networktest} ${so_basestate} ${so_observer} ${so_playerstate} ${so_worldmodel} ${so_commandsender} ${so_commsystem} ${so_client} \
+              ${so_analyser} "
 buildModule ${moduleName} ${SRC_FILES}
 
+fi
 
 
 

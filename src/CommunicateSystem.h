@@ -53,6 +53,14 @@ class HearMessage;
 
 static const int MAX_DENGER_OPP = 4;
 
+#ifndef WIN32
+	typedef int64_t DWORD64; //注意这里是有符号的，右移是左边补1
+	typedef uint64_t UDWORD64;
+#else
+    typedef __int64 DWORD64;
+	typedef unsigned __int64 UDWORD64;
+#endif
+	
 class CommunicateSystem {
 public:
 	static const unsigned char *CODE;
@@ -65,13 +73,7 @@ private:
 	Observer *mpObserver;
 	Agent* mpAgent;
 
-#ifndef WIN32
-	typedef int64_t DWORD64; //注意这里是有符号的，右移是左边补1
-	typedef uint64_t UDWORD64;
-#else
-    typedef __int64 DWORD64;
-	typedef unsigned __int64 UDWORD64;
-#endif
+
 
 public:
 	enum CodecType {

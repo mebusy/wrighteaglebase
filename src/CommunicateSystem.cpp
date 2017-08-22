@@ -128,7 +128,7 @@ void CommunicateSystem::GetCodecRange(CodecType type, double &min, double &max)
 	}
 }
 
-CommunicateSystem::DWORD64 CommunicateSystem::DoubleToBit(double value, CommunicateSystem::CodecType type)
+DWORD64 CommunicateSystem::DoubleToBit(double value, CommunicateSystem::CodecType type)
 {
 	int range = static_cast<int>((*mpCodecMask)[type]); // [0, range]
 
