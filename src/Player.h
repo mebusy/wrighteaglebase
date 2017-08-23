@@ -40,6 +40,9 @@ class  BeliefState;
 
 class Player: public Client
 {
+#if defined(SWIG) || defined(PYCLIENT)
+public:
+#endif	
 	DecisionTree *mpDecisionTree;
 
 public:
