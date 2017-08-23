@@ -29,7 +29,7 @@
 
 %ignore PlayerState::UpdateTackling(bool);
 %ignore PlayerState::UpdateLying(bool);
-/* %ignore InfoStateBase; */
+/* %ignore because these 2 method are not implemented */
 
 %import(module="basestate") "BaseState.h"
 %import(module="utilities") "Utilities.h"
