@@ -1,6 +1,7 @@
 %module observer
 %{
 #include "Observer.h"  
+#include "BallState.h"
 #include "PlayerState.h"  
 #include "Dasher.h"  
 #include "Tackler.h"  
@@ -36,6 +37,7 @@
 
 %include "DecisionData.h"  
 %include "Observer.h"
+%include "BallState.h"
 %include "PlayerState.h"
 %include "Dasher.h"
 %include "Simulator.h"  

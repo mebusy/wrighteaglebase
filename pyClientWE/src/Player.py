@@ -32,7 +32,11 @@ class Player( cPlayer ) :
                     # otherwise the updating of decision date will cause problem
                     self.mpAgent.World().SetCurrentTime(Time(self.last_time.T(), self.last_time.S() + 1))
         self.last_time = time 
-
+        
+        worldstate = self.mpAgent.GetWorldState()
+        ballstate = worldstate.GetBall()
+        ballpos = ballstate.GetPos() 
+        
 
         # TODO 
         # calc opponent role by self, before coach gives us that info
