@@ -31,7 +31,7 @@
 %ignore PlayerState::UpdateLying(bool);
 /* %ignore InfoStateBase; */
 
-%import(module="observer") "BaseState.h"
+%import(module="basestate") "BaseState.h"
 %import(module="utilities") "Utilities.h"
 
 %include "DecisionData.h"  

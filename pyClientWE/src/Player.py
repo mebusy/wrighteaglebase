@@ -50,6 +50,4 @@ class Player( cPlayer ) :
         self.mpAgent.SetHistoryActiveBehaviors()
         Logger.instance().LogSight()
 
-        time = 2
-        print type(time)
         pass
