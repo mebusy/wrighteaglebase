@@ -19,6 +19,14 @@
 
 %include "mymap.i"
 
+%import(module="client") "BehaviorBase.h"
+
+%template(BehaviorPlannerBase_A) BehaviorPlannerBase< BehaviorAttackData >;
+%template(BehaviorExecuterBase_D) BehaviorExecuterBase< BehaviorDefenseData >;
+%template(BehaviorPlannerBase_D) BehaviorPlannerBase< BehaviorDefenseData >;
+%template(BehaviorExecuterBase_A) BehaviorExecuterBase< BehaviorAttackData >;
+
+
 %include "BehaviorAttack.h"  
 %include "BehaviorBlock.h"  
 %include "BehaviorDefense.h"  

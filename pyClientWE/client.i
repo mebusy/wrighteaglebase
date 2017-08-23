@@ -1,15 +1,23 @@
 %module client
 %{
+#include "BehaviorBase.h"  
 #include "Agent.h"  
 #include "Client.h"  
 #include "Kicker.h"  
-/* #include "BehaviorBase.h"   */
 %}
 
 %include "mymap.i"
 
 
-/* %include "BehaviorBase.h"   */
+%immutable BehaviorAttackData::mAgent;
+%immutable BehaviorAttackData::mPositionInfo;
+%immutable BehaviorAttackData::mInterceptInfo;
+%immutable BehaviorAttackData::mStrategy;
+%immutable BehaviorAttackData::mFormation;
+
+%immutable BehaviorDefenseData::mAnalyser;
+
+%include "BehaviorBase.h"  
 %include "Agent.h"  
 %include "Client.h"
 %include "Kicker.h"  

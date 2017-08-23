@@ -44,9 +44,11 @@ class Formation;
 
 class DecisionData: public Updatable {
 	DecisionData(const DecisionData &);
-	const DecisionData & operator=(const DecisionData &);
+	
 
 public:
+	const DecisionData & operator=(const DecisionData &);
+	
 	DecisionData(Agent & agent);
 	virtual ~DecisionData();
 
