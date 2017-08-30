@@ -17,6 +17,7 @@ class Player( cPlayer ) :
         self.mpObserver.Lock()
 
         # the order of following statements MUST NOT change
+        # Formatin.instance is not a method, but a static field
         observer.cvar.Formation_instance.SetTeammateFormations()
         CommunicateSystem.instance().Update() # parser hear info, it shoud be invoked first
         self.mpAgent.CheckCommands( self.mpObserver)
