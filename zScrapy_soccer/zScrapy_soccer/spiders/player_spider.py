@@ -12,7 +12,7 @@ class PlayerSpider( scrapy.Spider ):
     def __init__(self):
         super( PlayerSpider , self ).__init__()
 
-        self.MAX_PLAYER_REQUEST = 4
+        self.MAX_PLAYER_REQUEST = 8
         self.url_offset_prefix = "https://sofifa.com/players?offset=" 
         self.url_player_prefix = "https://sofifa.com" 
         self.player_offset = 0 
@@ -23,7 +23,7 @@ class PlayerSpider( scrapy.Spider ):
                 self.player_offset = int( fp.read().strip()  )
 
     def start_requests(self):
-        yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse)
+        yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse , dont_filter = True )
         
     
     def parse(self, response):
@@ -36,12 +36,17 @@ class PlayerSpider( scrapy.Spider ):
         follow_links = player_links[ : self.nplayer2parse ]
         for link in follow_links :
             # url = "{0}{1}".format( self.url_player_prefix , link.extract()  ) 
-            yield response.follow( link.extract() , callback=self.parsePlayer ) 
+            yield response.follow( link.extract() , callback=self.parsePlayer , dont_filter = True ) 
 
     def parsePlayer( self, response ) :
         print '~~~ parse player:',  response.url 
 
         p = {}
+
+        rating = response.xpath( '//td[contains(text(), "Overall rating")]/span/text()'  ).extract() 
+        assert( len(rating) == 1 )
+
+        p["rating"] = int( rating[0] )
 
         nations = response.xpath( '//div[@class="meta"]/span/a[@title]/@title' ).extract() 
         assert( len(nations) == 1 ) 
@@ -78,8 +83,13 @@ class PlayerSpider( scrapy.Spider ):
         if not os.path.exists(  path_player_data ) :
             os.makedirs( path_player_data )
 
+        subfolder = os.path.join(  path_player_data , str( p["rating"]/10*10 )   )
+        if not os.path.exists( subfolder ) :
+            os.makedirs( subfolder )
+
+
         # write data 
-        path = os.path.join( path_player_data , "{0}.txt".format( p["id"] )  )
+        path = os.path.join( subfolder , "{0}.txt".format( p["id"] )  )
         with codecs.open( path  , "w", "utf-8") as fp :
             fp.write( json.dumps( p  , ensure_ascii=False , sort_keys= True) )
 
@@ -95,5 +105,5 @@ class PlayerSpider( scrapy.Spider ):
                 fp.write( str( self.player_offset  ) )
             
             if self.MAX_PLAYER_REQUEST  > 1: # == 1 just for debug
-                yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse) 
+                yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse , dont_filter = True ) 
             print "~~~ group parser done "
