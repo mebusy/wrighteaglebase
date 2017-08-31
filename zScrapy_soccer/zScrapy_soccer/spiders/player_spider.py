@@ -90,5 +90,5 @@ class PlayerSpider( scrapy.Spider ):
             with open( self.record_file , "w" ) as fp :
                 fp.write( str( self.player_offset  ) )
 
-            self.start_requests() 
+            yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse) 
             print "~~~ group parser done "
