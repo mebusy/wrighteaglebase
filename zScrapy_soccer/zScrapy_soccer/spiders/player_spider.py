@@ -43,6 +43,11 @@ class PlayerSpider( scrapy.Spider ):
 
         p = {}
 
+        nations = response.xpath( '//div[@class="meta"]/span/a[@title]/@title' ).extract() 
+        assert( len(nations) == 1 ) 
+
+        p["na"] = nations[0]
+
         info = response.xpath( '//div[@class="info"]' )
         p["name"],p["id"] = info.xpath( "//h1/text()" ).re(r"(.*?)\s*\(\s*ID:\s*(\d+)\s*\)") 
         
@@ -57,7 +62,6 @@ class PlayerSpider( scrapy.Spider ):
         else:
             p["clubs"] = [clubs]
 
-        assert( len( clubs ) > 0 )
 
         p["attr"] = {}
         
@@ -89,6 +93,7 @@ class PlayerSpider( scrapy.Spider ):
 
             with open( self.record_file , "w" ) as fp :
                 fp.write( str( self.player_offset  ) )
-
-            yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse) 
+            
+            if self.MAX_PLAYER_REQUEST  > 1: # == 1 just for debug
+                yield scrapy.Request(url= "{0}{1}".format( self.url_offset_prefix, self.player_offset ) , callback=self.parse) 
             print "~~~ group parser done "
