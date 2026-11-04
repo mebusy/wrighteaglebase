@@ -1,5 +1,8 @@
 # 这个是我的主 仓库
 
+https://wrighteagle2d.github.io/training.html
+
+
 # wrighteaglebase
 
 [![Build Status](https://travis-ci.org/wrighteagle2d/wrighteaglebase.svg?branch=master)](https://travis-ci.org/wrighteagle2d/wrighteaglebase)
