@@ -119,8 +119,6 @@ if [ $step -le 6 ]; then
 
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
 
-    DOXYFILE="Doxyfile"
-
     sed -i '' -E \
     's/^[[:space:]]*#?[[:space:]]*OUTPUT_LANGUAGE[[:space:]]*=.*/OUTPUT_LANGUAGE = Chinese/' \
     "$DOXYFILE"
@@ -129,6 +127,40 @@ if [ $step -le 6 ]; then
     popd
 fi
 
+# https://github.com/helios-base/helios-base/archive/refs/tags/support-v18.tar.gz
+if [ $step -le 7 ]; then
+    wget -O helios-base.tar.gz https://github.com/helios-base/helios-base/archive/refs/tags/support-v18.tar.gz
+fi
+
+if [ $step -le 8 ]; then
+    rm -rf helios-base-support-v18
+    # unzip the downloaded file
+    tar -xvzf helios-base.tar.gz
+
+    pushd helios-base-support-v18
+
+    python3 - < ../fixBoostLib.py
+
+    autoreconf -fi
+    rm -f config.cache
+
+    BOOST_PREFIX="$(brew --prefix boost)"
+
+    CPPFLAGS="-I${BOOST_PREFIX}/include" \
+    LDFLAGS="-L${BOOST_PREFIX}/lib" \
+    ./bootstrap
 
 
+    # CFLAGS="-std=gnu17 -O2" \
+    # CXXFLAGS="-std=c++17 -O2" \
+    CPPFLAGS="-I${BOOST_PREFIX}/include" \
+    LDFLAGS="-L${BOOST_PREFIX}/lib" \
+    ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --with-librcsc=${curDir}/../bin/
+
+
+    python3 - --apply < ../fixHeliosSytax.py
+    PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
+
+    popd
+fi
 
