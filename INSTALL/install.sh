@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # brew install boost automake bison qt@5
+# for librcsc doc
+# brew install doxygen
 
 
 # let step = first argument
@@ -116,6 +118,13 @@ if [ $step -le 6 ]; then
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --disable-unit-test
 
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
+
+    DOXYFILE="Doxyfile"
+
+    sed -i '' -E \
+    's/^[[:space:]]*#?[[:space:]]*OUTPUT_LANGUAGE[[:space:]]*=.*/OUTPUT_LANGUAGE = Chinese/' \
+    "$DOXYFILE"
+    make doc
 
     popd
 fi
