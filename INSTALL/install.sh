@@ -27,31 +27,9 @@ if [ $step -le 2 ]; then
 
     pushd rcssserver-19.0.0
 
-    python3 - <<'PY'
-from pathlib import Path
-
-p = Path("m4/ax_boost_system.m4")
-s = p.read_text()
-
-old = """            if test "x$ax_lib" = "x"; then
-                AC_MSG_ERROR(Could not find a version of the Boost::System library!)
-            fi
-"""
-
-new = """            if test "x$ax_lib" = "x"; then
-                dnl Modern Boost.System is header-only (Boost >= 1.69).
-                BOOST_SYSTEM_LIB=""
-                AC_SUBST(BOOST_SYSTEM_LIB)
-                AC_MSG_NOTICE([Using header-only Boost.System])
-            fi
-"""
-
-if old not in s:
-    raise SystemExit("ERROR: Original code not found; no changes made.")
-
-p.write_text(s.replace(old, new, 1))
-print("Patched:", p)
-PY
+#     python3 - <<'PY'
+# PY
+    python3 - < ../fixBoostLib.py
 
     autoreconf -fi
     rm -f config.cache
@@ -89,8 +67,8 @@ perl -pi -e \
  s/this->print_space\(\)/static_cast<formatter*>(this)->print_space()/g' \
 rcss/rcg/simdjson/simdjson.h
 
-    autoreconf -fi
-    rm -f config.cache
+    # autoreconf -fi
+    # rm -f config.cache
 
     BOOST_PREFIX="$(brew --prefix boost)"
 
@@ -103,4 +81,45 @@ rcss/rcg/simdjson/simdjson.h
     popd
 
 fi
+
+# https://github.com/helios-base/librcsc.git
+if [ $step -le 5 ]; then
+    wget -O librcsc.tar.gz https://github.com/helios-base/librcsc/archive/refs/tags/support-v18.tar.gz
+fi
+
+if [ $step -le 6 ]; then
+    rm -rf librcsc-support-v18
+    # unzip the downloaded file
+    tar -xvzf librcsc.tar.gz
+
+    pushd librcsc-support-v18
+
+    python3 - < ../fixBoostLib.py
+
+    autoreconf -fi
+    rm -f config.cache
+
+    BOOST_PREFIX="$(brew --prefix boost)"
+
+    CPPFLAGS="-I${BOOST_PREFIX}/include" \
+    LDFLAGS="-L${BOOST_PREFIX}/lib" \
+    ./bootstrap
+
+    # gcc -std=gnu23
+    # 从 C23 开始，旧式 K&R 函数定义不再是标准语法。
+    # macOS 上的 gcc 通常实际指向 Apple Clang，因此它拒绝了这些旧式函数定义。
+    # 最简单的解决方案：强制使用 GNU C17
+    CFLAGS="-std=gnu17 -O2" \
+    CXXFLAGS="-std=c++17 -O2" \
+    CPPFLAGS="-I${BOOST_PREFIX}/include" \
+    LDFLAGS="-L${BOOST_PREFIX}/lib" \
+    ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --disable-unit-test
+
+    PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
+
+    popd
+fi
+
+
+
 
