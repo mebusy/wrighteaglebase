@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # brew install boost automake bison qt@5
 # for librcsc doc
 # brew install doxygen
@@ -22,6 +24,10 @@ fi
 
 curDir=$(pwd)
 
+BOOST_PREFIX="$(brew --prefix boost)"
+export CPPFLAGS="-I${BOOST_PREFIX}/include"
+export LDFLAGS="-L${BOOST_PREFIX}/lib"
+
 if [ $step -le 2 ]; then
     rm -rf rcssserver-19.0.0
     # unzip the downloaded file
@@ -36,10 +42,6 @@ if [ $step -le 2 ]; then
     autoreconf -fi
     rm -f config.cache
 
-    BOOST_PREFIX="$(brew --prefix boost)"
-
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/
 
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
@@ -72,10 +74,6 @@ rcss/rcg/simdjson/simdjson.h
     # autoreconf -fi
     # rm -f config.cache
 
-    BOOST_PREFIX="$(brew --prefix boost)"
-
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/
 
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
@@ -89,6 +87,14 @@ if [ $step -le 5 ]; then
     wget -O librcsc.tar.gz https://github.com/helios-base/librcsc/archive/refs/tags/support-v18.tar.gz
 fi
 
+
+# gcc -std=gnu23
+# 从 C23 开始，旧式 K&R 函数定义不再是标准语法。
+# macOS 上的 gcc 通常实际指向 Apple Clang，因此它拒绝了这些旧式函数定义。
+# 最简单的解决方案：强制使用 GNU C17
+export CFLAGS="-std=gnu17 -O2"
+export CXXFLAGS="-std=c++17 -O2 -fno-typed-cxx-new-delete"
+
 if [ $step -le 6 ]; then
     rm -rf librcsc-support-v18
     # unzip the downloaded file
@@ -101,27 +107,15 @@ if [ $step -le 6 ]; then
     autoreconf -fi
     rm -f config.cache
 
-    BOOST_PREFIX="$(brew --prefix boost)"
 
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./bootstrap
 
-    # gcc -std=gnu23
-    # 从 C23 开始，旧式 K&R 函数定义不再是标准语法。
-    # macOS 上的 gcc 通常实际指向 Apple Clang，因此它拒绝了这些旧式函数定义。
-    # 最简单的解决方案：强制使用 GNU C17
-    CFLAGS="-std=gnu17 -O2" \
-    CXXFLAGS="-std=c++17 -O2" \
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --disable-unit-test
 
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
 
     sed -i '' -E \
-    's/^[[:space:]]*#?[[:space:]]*OUTPUT_LANGUAGE[[:space:]]*=.*/OUTPUT_LANGUAGE = Chinese/' \
-    "$DOXYFILE"
+    's/^[[:space:]]*#?[[:space:]]*OUTPUT_LANGUAGE[[:space:]]*=.*/OUTPUT_LANGUAGE = Chinese/' Doxyfile
     make doc
 
     popd
@@ -144,17 +138,9 @@ if [ $step -le 8 ]; then
     autoreconf -fi
     rm -f config.cache
 
-    BOOST_PREFIX="$(brew --prefix boost)"
-
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./bootstrap
 
 
-    # CFLAGS="-std=gnu17 -O2" \
-    # CXXFLAGS="-std=c++17 -O2" \
-    CPPFLAGS="-I${BOOST_PREFIX}/include" \
-    LDFLAGS="-L${BOOST_PREFIX}/lib" \
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --with-librcsc=${curDir}/../bin/
 
 
