@@ -112,6 +112,10 @@ if [ $step -le 6 ]; then
 
     ./configure --with-boost="${BOOST_PREFIX}" --prefix=${curDir}/../bin/ --disable-unit-test
 
+FILE="rcsc/common/logger.cpp"
+
+    python3 - "$FILE" < ../fixLoggerIssue.py
+
     PATH="$(brew --prefix bison)/bin:$PATH" make install -j1
 
     sed -i '' -E \
