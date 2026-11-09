@@ -115,8 +115,13 @@ inline double Cos(const AngleDeg &x) { return cos(Deg2Rad(x)); }
 inline SinCosT SinCos(const AngleDeg &x) {
   double sine, cosine;
 
-  sincos(Deg2Rad(x), &sine, &cosine); // faster way to calculate sine and cosine
+  // sincos(Deg2Rad(x), &sine, &cosine); // faster way to calculate sine and cosine
                                       // of the same angle x simultaneously
+#if defined(__APPLE__)
+    __sincos(Deg2Rad(x), &sine, &cosine);
+#else
+    sincos(Deg2Rad(x), &sine, &cosine);
+#endif
 
   return std::make_pair(sine, cosine);
 }
